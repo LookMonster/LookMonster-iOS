@@ -7,10 +7,9 @@ import RxSwift
 import RxCocoa
 
 final class StartUserInterfaceViewController: BaseViewController {
-    private let disposeBag = DisposeBag()
     private let imageOptions: [UIImage] = [ResourceKitAsset.sBackground1.image]
     private let currentImageRelay = BehaviorRelay<UIImage?>(value: nil)
-
+    
     private let gradientView = UIView()
     
     private let backgroundImageView = UIImageView().then {
@@ -19,15 +18,42 @@ final class StartUserInterfaceViewController: BaseViewController {
         $0.clipsToBounds = true
     }
     
-    private let whiteLogoImageView = UIImageView().then {
-        $0.image = ResourceKitAsset.wLogo.image
-        $0.clipsToBounds = false
+    private let whiteLogoButton = UIButton().then {
+        $0.setImage(ResourceKitAsset.wLogo.image, for: .normal)
     }
-
+    
+    private let logoNameLabelButton = UIButton().then {
+        $0.setTitle("LOOK MONSTER", for: .normal)
+        $0.titleLabel?.font = .systemFont(ofSize: 40.0, weight: .black)
+    }
+    
     override func layout() {
+        super.layout()
+        setupViews()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        displayRandomImage()
+    }
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        setupBindings()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        setupGradient()
+    }
+    
+    private func setupViews() {
         view.addSubview(backgroundImageView)
         view.addSubview(gradientView)
-//        view.addSubview(whiteLogoImageView)
+        view.addSubview(whiteLogoButton)
+        view.addSubview(logoNameLabelButton)
         
         backgroundImageView.snp.makeConstraints {
             $0.top.equalToSuperview().inset(40.0)
@@ -39,43 +65,66 @@ final class StartUserInterfaceViewController: BaseViewController {
             $0.edges.equalTo(backgroundImageView)
         }
         
-//        whiteLogoImageView.snp.makeConstraints {
-//            $0.top.equalToSuperview().offset(412.0)
-//            $0.leading.equalToSuperview().offset(24.0)
-//            $0.height.width.equalTo(120.0)
-//        }
+        whiteLogoButton.snp.makeConstraints {
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(412.0)
+            $0.leading.equalToSuperview().offset(24.0)
+            $0.height.width.equalTo(120.0)
+        }
+        
+        logoNameLabelButton.snp.makeConstraints {
+            $0.top.equalTo(whiteLogoButton.snp.bottom)
+            $0.leading.equalTo(whiteLogoButton.snp.leading)
+        }
     }
-
-    override func bindActions() {
-        currentImageRelay
-            .bind(to: backgroundImageView.rx.image)
-            .disposed(by: disposeBag)
-    }
-
+    
+    
     private func displayRandomImage() {
         let randomImage = imageOptions.randomElement()
         currentImageRelay.accept(randomImage)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    private func setupBindings() {
+        currentImageRelay
+            .bind(to: backgroundImageView.rx.image)
+            .disposed(by: disposeBag)
         
-        displayRandomImage()
+        whiteLogoButton.rx.tap
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.handleButtonTap(sender: owner.whiteLogoButton)
+            })
+            .disposed(by: disposeBag)
+        
+        logoNameLabelButton.rx.tap
+            .subscribe(with: self, onNext: { owner, _ in
+                owner.handleButtonTap(sender: owner.logoNameLabelButton)
+            })
+            .disposed(by: disposeBag)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
+    private func setupGradient() {
         let gradient = CAGradientLayer()
         let startColor = UIColor.clear.cgColor
         let endColor = UIColor.black.cgColor
-
+        
         gradient.frame = gradientView.bounds
+        
+        gradient.endPoint = CGPoint(x: 0.5, y: 1.7)
+        
         gradient.colors = [startColor, endColor]
-
+        
         gradientView.layer.insertSublayer(gradient, at: 0)
-
+        
         gradientView.backgroundColor = .clear
     }
+    
+    private func handleButtonTap(sender: UIButton) {
+        if sender == whiteLogoButton {
+            print("whiteLogoButton tapped")
+        } else if sender == logoNameLabelButton {
+            print("LogoNameLabelButton tapped")
+        }
+    }
+    
 }
 
