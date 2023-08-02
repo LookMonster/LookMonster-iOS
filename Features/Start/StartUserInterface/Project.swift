@@ -21,10 +21,16 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Core.SuperUI,
         .Core.DefaultsStore,
         
+        .ResourceKit.Implement,
+        .Core.DefaultsStore,
+        .Core.RIBsUtil,
+        .Core.SuperUI,
+        
         .ThirdParty.SPM.RIBs,
         .ThirdParty.SPM.RxSwift,
         .ThirdParty.SPM.RxRelay,
         .ThirdParty.SPM.SnapKit,
-        .ThirdParty.SPM.Then
+        .ThirdParty.SPM.Then,
+        .ThirdParty.SPM.RxCocoa
     ]
 )
