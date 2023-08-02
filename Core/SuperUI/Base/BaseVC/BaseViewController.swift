@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 
 open class BaseViewController: UIViewController {
-    let disposeBag = DisposeBag()
+    public let disposeBag = DisposeBag()
 
     open override func viewDidLoad() {
         super.viewDidLoad()
