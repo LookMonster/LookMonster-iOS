@@ -16,7 +16,7 @@ final class TransportHomeViewController: UIViewController, TransportHomePresenta
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.image = ResourceKitAsset.mapSeoul.image
+        imageView.backgroundColor = .red
         return imageView
     }()
     
