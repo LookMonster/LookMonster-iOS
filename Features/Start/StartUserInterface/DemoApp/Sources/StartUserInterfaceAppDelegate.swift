@@ -1,5 +1,7 @@
 import UIKit
 import ResourceKit
+import SnapKit
+import Then
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,10 +39,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 bgView.tag = TAG_BG_IMG
                 bgView.backgroundColor = .secondarySystemBackground
 
-                let appIcon = UIImageView()
-                appIcon.frame = CGRect(x: bgView.layer.bounds.midX - 90, y: bgView.layer.bounds.midY - 90, width: 180, height: 180)
-                appIcon.image = ResourceKitAsset.wLogo.image
+                let appIcon = UIImageView().then {
+                    $0.frame = CGRect(x: bgView.layer.bounds.midX - 90, y: bgView.layer.bounds.midY - 90, width: 180, height: 180)
+                    $0.image = ResourceKitAsset.wLogo.image
+                }
+                let textLabel = UILabel().then {
+                    $0.text = "StartUserInterfaceDemoApp"
+                    $0.font = .systemFont(ofSize: 20.0, weight: .bold)
+                }
                 bgView.addSubview(appIcon)
+                bgView.addSubview(textLabel)
+                
+                textLabel.snp.makeConstraints {
+                    $0.top.equalTo(appIcon.snp.bottom).offset(20.0)
+                    $0.centerX.equalToSuperview()
+                }
 
                 window?.addSubview(bgView)
             }
