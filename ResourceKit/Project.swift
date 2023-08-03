@@ -1,5 +1,6 @@
 import ProjectDescription
 import ProjectDescriptionHelpers
+import UtilityPlugin
 
 let infoPlist: [String: InfoPlist.Value] = [
     "CFBundleDevelopmentRegion": "ko_KR",
@@ -15,5 +16,9 @@ let project = Project.framework(name: "ResourceKit",
                                 platform: .iOS,
                                 iOSTargetVersion: "15.0.0",
                                 dependencies: [
+                                    .ThirdParty.SPM.RxCocoa,
+                                    .ThirdParty.SPM.RxSwift,
+                                    .ThirdParty.SPM.SnapKit,
+                                    .ThirdParty.SPM.Then
                                 ],
                                 infoPlist: infoPlist)
