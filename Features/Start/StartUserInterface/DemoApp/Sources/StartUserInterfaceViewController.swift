@@ -56,7 +56,8 @@ final class StartUserInterfaceViewController: BaseViewController {
         view.addSubview(logoNameLabelButton)
         
         backgroundImageView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(40.0)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(40.0).priority(.low)
+            $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
