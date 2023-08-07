@@ -11,7 +11,7 @@ lane :beta do
 
   slack( # Slack 메시지 보내기
     message: "Testflight 배포 성공",
-    slack_url: "https://hooks.slack.com/services/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"
+    slack_url: "https://hooks.slack.com/services/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"
   )
 end
 
@@ -21,7 +21,7 @@ platform :ios do
     slack(
       message: "에러 발생 : #{exception}",
       success: false,
-      slack_url: "https://hooks.slack.com/services/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"
+      slack_url: "https://hooks.slack.com/services/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"
     )
   end
 end
