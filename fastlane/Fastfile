@@ -13,11 +13,35 @@
 # Uncomment the line if you want fastlane to automatically update itself
 # update_fastlane
 
+# 1. 플랫폼(iOS) 지정
 default_platform(:ios)
 
+# 2. 빌드 및 TestFlight 업로드 주요 명령 정의
+desc "build app and upload to testflight"
+lane :beta do
+  get_certificates # 인증서들 가져오기
+  get_provisioning_profile # 프로비저닝 프로파일 가져오기
+
+  increment_build_number( # 빌드 번호 1 증가
+    build_number: latest_testflight_build_number + 1
+  )
+
+  build_app(scheme: "LookMonster-iOS") # VideoConverter 스킴으로 앱 빌드
+  upload_to_testflight # TestFlight에 빌드된 앱 업로드
+
+  slack( # Slack 메시지 보내기
+    message: "Testflight 배포 성공",
+    slack_url: "https://hooks.slack.com/services/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"
+  )
+end
+
 platform :ios do
-  desc "Description of what the lane does"
-  lane :custom_lane do
-    # add actions here: https://docs.fastlane.tools/actions
+  error do |lane, exception, options| # 에러 시 발동하는 코드
+    # 에러 발생 시, 슬랙 메시지 전송
+    slack(
+      message: "에러 발생 : #{exception}",
+      success: false,
+      slack_url: "https://hooks.slack.com/services/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"
+    )
   end
 end
