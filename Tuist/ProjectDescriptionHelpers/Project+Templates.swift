@@ -146,14 +146,16 @@ extension Project {
                     [
                         "CFBundleDevelopmentRegion": "ko_KR",
                         "CFBundleShortVersionString": "1.0",
-                        "CFBundleVersion": "1",
+                        "CFBundleVersion": "4",
                         "UILaunchStoryboardName": "LaunchScreen"
                     ]
                 
             ),
             sources: ["./DemoApp/Sources/**"],
             resources: ["./DemoApp/Resources/**"],
-            dependencies: implementDependencies + [.target(name: name)]
+            scripts: [
+                .localize // localize 스크립트를 추가합니다.
+            ], dependencies: implementDependencies + [.target(name: name)]
         )
 
         return Project(name: name,
@@ -291,4 +293,8 @@ private extension Project {
         )
         return [mainTarget]
     }
+}
+
+extension ProjectDescription.TargetScript {
+    public static let localize = TargetScript.pre(path: .relativeToRoot("Scripts/update_build_number.sh"), name: "update_build_number")
 }
