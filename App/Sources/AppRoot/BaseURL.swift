@@ -1,7 +1,7 @@
 import Foundation
 
 struct BaseURL {
-    var financeBaseURL: URL {
-        return URL(string: "https://finance.superapp.com/api/v1")!
+    var mainURL: URL {
+        return URL(string: "")! // URL 완성되면 여기 넣기
     }
 }
