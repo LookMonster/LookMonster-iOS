@@ -9,6 +9,7 @@
 import RIBs
 import UIKit
 import StyleUserInterface
+import ResourceKit
 
 protocol StyleHomePresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -39,7 +40,7 @@ final class StyleHomeViewController: UIViewController, StyleHomePresentable, Sty
     }()
     
     func setupViews() {
-        tabBarItem = UITabBarItem(title: "프로필", image: UIImage(systemName: "creditcard"), selectedImage: UIImage(systemName: "creditcard.fill"))
+        tabBarItem = UITabBarItem(title: "Style", image: ResourceKitAsset.styleImage.image, tag: 1)
         view.backgroundColor = .red
     }
 }
