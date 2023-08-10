@@ -11,6 +11,9 @@ import FinanceUserInterfaceImpl
 import UserProfileUserInterface
 import UserProfileUserInterfaceImpl
 
+import StyleUserInterface
+import StyleUserInterfaceImpl
+
 import TransportUserInterface
 import TransportUserInterfaceImpl
 
