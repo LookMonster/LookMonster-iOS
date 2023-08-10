@@ -29,7 +29,10 @@ import LKNetworkImpl
 import CommunityUserInterface
 import CommunityUserInterfaceImpl
 
-final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, UserProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency, StyleHomeDependency, CommunityHomeDependency  {
+import ShopUserInterface
+import ShopUserInterfaceImpl
+
+final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, UserProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency, StyleHomeDependency, CommunityHomeDependency, ShopHomeDependency  {
     
     var fetchBalanceUseCase: FetchBalanceUseCase
     var fetchCardsUseCase: FetchCardsUseCase

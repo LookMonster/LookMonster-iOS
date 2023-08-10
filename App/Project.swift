@@ -72,13 +72,13 @@ let project = Project(
                 .Features.User.Main.Community.UserInterface.Interface,
 //
                 //Shop
-//                .Features.User.Main.Shop.Domain.Implement,
-//                .Features.User.Main.Shop.Data.Implement,
-//                .Features.User.Main.Shop.UserInterface.Implement,
-//
-//                .Features.User.Main.Shop.Domain.Interface,
-//                .Features.User.Main.Shop.Data.Interface,
-//                .Features.User.Main.Shop.UserInterface.Interface,
+                .Features.User.Main.Shop.Domain.Implement,
+                .Features.User.Main.Shop.Data.Implement,
+                .Features.User.Main.Shop.UserInterface.Implement,
+
+                .Features.User.Main.Shop.Domain.Interface,
+                .Features.User.Main.Shop.Data.Interface,
+                .Features.User.Main.Shop.UserInterface.Interface,
                 
             ]
 //            settings: settings

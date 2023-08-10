@@ -16,6 +16,9 @@ import StyleUserInterfaceImpl
 import CommunityUserInterface
 import CommunityUserInterfaceImpl
 
+import ShopUserInterface
+import ShopUserInterfaceImpl
+
 protocol AppRootDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // 이걸로 RIB 생성
@@ -45,7 +48,8 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
         // 세가지 자식 riblet을 붙이기 위해서 생성
         let appHome = AppHomeBuilder(dependency: component)
         let styleHome = StyleHomeBuilder(dependency: component)
-        let financeHome = FinanceHomeBuilder(dependency: component)
+//        let financeHome = FinanceHomeBuilder(dependency: component)
+        let shopHome = ShopHomeBuilder(dependency: component)
         let profileHome = UserProfileHomeBuilder(dependency: component)
         let communityHome = CommunityHomeBuilder(dependency: component)
         let router = AppRootRouter(
@@ -54,7 +58,7 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
             appHome: appHome,
             styleHome: styleHome,
             communityHome: communityHome,
-            financeHome: financeHome,
+            shopHome: shopHome,
             profileHome: profileHome
         )
         

@@ -5,10 +5,11 @@ import HomeUserInterface
 import UserProfileUserInterface
 import StyleUserInterface
 import CommunityUserInterface
+import ShopUserInterface
 
 protocol AppRootInteractable: Interactable,
                               AppHomeListener,
-                              FinanceHomeListener,
+                              ShopHomeListener,
                               UserProfileHomeListener,
                               StyleHomeListener,
                               CommunityHomeListener {
@@ -23,16 +24,16 @@ protocol AppRootViewControllable: ViewControllable {
 final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControllable>, AppRootRouting {
     
     private let appHome: AppHomeBuildable
-    private let financeHome: FinanceHomeBuildable
     private let profileHome: UserProfileHomeBuildable
     private let styleHome: StyleHomeBuildable
     private let communityHome: CommunityHomeBuildable
+    private let shopHome: ShopHomeBuildable
     
     private var appHomeRouting: ViewableRouting?
-    private var financeHomeRouting: ViewableRouting?
     private var profileHomeRouting: ViewableRouting?
     private var styleHomeRouting: ViewableRouting?
     private var communityRouting: ViewableRouting?
+    private var shopRouting: ViewableRouting?
     
     init(
         interactor: AppRootInteractable,
@@ -40,13 +41,13 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
         appHome: AppHomeBuildable,
         styleHome: StyleHomeBuildable,
         communityHome: CommunityHomeBuildable,
-        financeHome: FinanceHomeBuildable,
+        shopHome: ShopHomeBuildable,
         profileHome: UserProfileHomeBuildable
     ) {
         self.appHome = appHome
         self.styleHome = styleHome
         self.communityHome = communityHome
-        self.financeHome = financeHome
+        self.shopHome = shopHome
         self.profileHome = profileHome
         
         super.init(interactor: interactor, viewController: viewController)
@@ -55,16 +56,17 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
     
     func attachTabs() {
         let appHomeRouting = appHome.build(withListener: interactor)
-        let financeHomeRouting = financeHome.build(withListener: interactor)
+//        let financeHomeRouting = financeHome.build(withListener: interactor)
         let profileHomeRouting = profileHome.build(withListener: interactor)
         let styleHomeRouting = styleHome.build(withListener: interactor)
         let communityRouting = communityHome.build(withListener: interactor)
+        let shopRouting = shopHome.build(withListener: interactor)
         
         // 붙이기
         attachChild(appHomeRouting)
         attachChild(styleHomeRouting)
         attachChild(communityRouting)
-        attachChild(financeHomeRouting)
+        attachChild(shopRouting)
         attachChild(profileHomeRouting)
         
         //뷰컨 띄우기
@@ -72,7 +74,7 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
             NavigationControllerable(root: appHomeRouting.viewControllable),
             styleHomeRouting.viewControllable,
             communityRouting.viewControllable,
-            NavigationControllerable(root: financeHomeRouting.viewControllable),
+            NavigationControllerable(root: shopRouting.viewControllable),
             profileHomeRouting.viewControllable,
         ]
         
