@@ -29,45 +29,57 @@ let project = Project(
                 //                .ThirdParty.RxRelay,
                 //                .ThirdParty.RxSwift,
                 
-                    .LKNetwork.Implement,
+                .LKNetwork.Implement,
                 .LKNetwork.Interface,
                 
-                    .Feature.Finance.Data.Interface,
+                .Feature.Finance.Data.Interface,
                 .Feature.Finance.Domain.Interface,
                 .Feature.Finance.UserInterface.Interface,
                 
-                //                .Feature.Profile.Data.Interface,
-                //                .Feature.Profile.Domain.Interface,
-                //                .Feature.Profile.UserInterface.Interface,
-                    .Features.User.Profile.UserProfile.UserInterface.Interface,
-                .Features.User.Profile.UserProfile.UserInterface.Implement,
-                
-                //                .Feature.Home.Data.Interface,
-                //                .Feature.Home.Domain.Interface,
-                //                .Feature.Home.UserInterface.Interface,
-                    .Features.User.Main.Home.UserInterface.Interface,
-                
-                //                .Feature.Transport.Data.Interface,
-                //                .Feature.Transport.Domain.Interface,
-                    .Feature.Transport.UserInterface.Interface,
-                
-                    .Feature.Finance.Data.Implement,
+                .Feature.Finance.Data.Implement,
                 .Feature.Finance.Domain.Implement,
                 .Feature.Finance.UserInterface.Implement,
                 
-                //                .Feature.Profile.Data.Implement,
-                //                .Feature.Profile.Domain.Implement,
-                //                .Feature.Profile.UserInterface.Implement,
-                    .Features.User.Profile.UserProfile.UserInterface.Interface,
+                .Features.User.Profile.UserProfile.UserInterface.Interface,
+                .Features.User.Profile.UserProfile.UserInterface.Implement,
+                .Features.User.Profile.UserProfile.UserInterface.Interface,
                 
-                //                .Feature.Home.Data.Implement,
-                //                .Feature.Home.Domain.Implement,
-                //                .Feature.Home.UserInterface.Implement,
-                    .Features.User.Main.Home.UserInterface.Implement,
+
+                .Features.User.Main.Home.UserInterface.Interface,
+                    
+                .Feature.Transport.UserInterface.Interface,
+
+                .Features.User.Main.Home.UserInterface.Implement,
                 
-                //                .Feature.Transport.Data.Implement,
-                //                .Feature.Transport.Domain.Implement,
-                    .Feature.Transport.UserInterface.Implement,
+                .Feature.Transport.UserInterface.Implement,
+                
+                //style
+                .Features.User.Main.Style.Domain.Implement,
+                .Features.User.Main.Style.Data.Implement,
+                .Features.User.Main.Style.UserInterface.Implement,
+                
+                .Features.User.Main.Style.Domain.Interface,
+                .Features.User.Main.Style.Data.Interface,
+                .Features.User.Main.Style.UserInterface.Interface,
+                
+                //Community
+//                .Features.User.Main.Community.Domain.Implement,
+//                .Features.User.Main.Community.Data.Implement,
+//                .Features.User.Main.Community.UserInterface.Implement,
+//
+//                .Features.User.Main.Community.Domain.Interface,
+//                .Features.User.Main.Community.Data.Interface,
+//                .Features.User.Main.Community.UserInterface.Interface,
+//
+                //Shop
+//                .Features.User.Main.Shop.Domain.Implement,
+//                .Features.User.Main.Shop.Data.Implement,
+//                .Features.User.Main.Shop.UserInterface.Implement,
+//
+//                .Features.User.Main.Shop.Domain.Interface,
+//                .Features.User.Main.Shop.Data.Interface,
+//                .Features.User.Main.Shop.UserInterface.Interface,
+                
             ]
 //            settings: settings
         )
