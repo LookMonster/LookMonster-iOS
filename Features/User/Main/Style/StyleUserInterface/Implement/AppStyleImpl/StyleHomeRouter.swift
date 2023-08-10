@@ -7,7 +7,7 @@
 //
 
 import RIBs
-import UserProfileUserInterface
+import StyleUserInterface
 
 protocol StyleHomeInteractable: Interactable {
   var router: StyleHomeRouting? { get set }

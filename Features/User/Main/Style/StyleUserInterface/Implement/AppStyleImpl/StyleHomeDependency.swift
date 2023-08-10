@@ -7,14 +7,14 @@
 //
 
 import RIBs
-import UserProfileUserInterface
+import StyleUserInterface
 
 public protocol StyleHomeDependency: Dependency {
     // TODO: Declare the set of dependencies required by this RIB, but cannot be
     // created by this RIB.
 }
 
-final class StyleComponent: Component<StyleHomeDependency> {
+final class StyleHomeComponent: Component<StyleHomeDependency> {
     
     // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
 }
@@ -29,7 +29,7 @@ public final class StyleHomeBuilder: Builder<StyleHomeDependency>, StyleHomeBuil
     
     public func build(withListener listener: StyleHomeListener) -> ViewableRouting {
         let _ = StyleHomeComponent(dependency: dependency)
-        let viewController =StyleHomeViewController()
+        let viewController = StyleHomeViewController()
         let interactor = StyleHomeInteractor(presenter: viewController)
         interactor.listener = listener
         return StyleHomeRouter(interactor: interactor, viewController: viewController)

@@ -7,7 +7,7 @@
 //
 
 import RIBs
-import UserProfileUserInterface
+import StyleUserInterface
 
 protocol StyleHomeRouting: ViewableRouting {
   // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
@@ -18,7 +18,7 @@ protocol StyleHomePresentable: Presentable {
   // TODO: Declare methods the interactor can invoke the presenter to present data.
 }
 
-final class UserProfileHomeInteractor: PresentableInteractor<StyleHomePresentable>, StyleHomeInteractable, StyleHomePresentableListener {
+final class StyleHomeInteractor: PresentableInteractor<StyleHomePresentable>, StyleHomeInteractable, StyleHomePresentableListener {
   
   weak var router: StyleHomeRouting?
   weak var listener: StyleHomeListener?
