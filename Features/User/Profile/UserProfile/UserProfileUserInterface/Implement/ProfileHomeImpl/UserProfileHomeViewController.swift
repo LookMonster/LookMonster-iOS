@@ -1,5 +1,6 @@
 import RIBs
 import UIKit
+import ResourceKit
 
 protocol UserProfileHomePresentableListener: AnyObject {
   // TODO: Declare properties and methods that the view controller can invoke to perform
@@ -30,7 +31,7 @@ final class UserProfileHomeViewController: UIViewController, UserProfileHomePres
   }()
   
   func setupViews() {
-    tabBarItem = UITabBarItem(title: "프로필", image: UIImage(systemName: "person"), selectedImage: UIImage(systemName: "person.fill"))
+      tabBarItem = UITabBarItem(title: "My", image: ResourceKitAsset.userImage.image, tag: 4)
     label.text = "Profile Home"
     view.backgroundColor = .systemTeal
     view.addSubview(label)
