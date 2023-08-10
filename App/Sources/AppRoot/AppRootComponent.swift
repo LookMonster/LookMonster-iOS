@@ -26,7 +26,7 @@ import FinanceDomainImpl
 import LKNetwork
 import LKNetworkImpl
 
-final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, UserProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency  {
+final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, UserProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency, StyleHomeDependency  {
     
     var fetchBalanceUseCase: FetchBalanceUseCase
     var fetchCardsUseCase: FetchCardsUseCase
