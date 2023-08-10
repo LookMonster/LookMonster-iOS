@@ -1,5 +1,6 @@
 import RIBs
 import UIKit
+import ResourceKit
 
 protocol AppHomePresentableListener: AnyObject {
 }
@@ -41,7 +42,7 @@ final class AppHomeViewController: UIViewController, AppHomePresentable, AppHome
   
   private func setupViews() {
     title = "홈"
-    tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+      tabBarItem = UITabBarItem(title: "홈", image: ResourceKitAsset.homeImage.image, tag: 0)
     view.backgroundColor = .backgroundColor
     view.addSubview(widgetStackView)
     

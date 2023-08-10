@@ -41,7 +41,7 @@ final class AppStartViewController: UIViewController, AppStartPresentable, AppSt
   
   private func setupViews() {
     title = "홈"
-    tabBarItem = UITabBarItem(title: "홈", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
+    tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), selectedImage: UIImage(systemName: "house.fill"))
     view.backgroundColor = .backgroundColor
     view.addSubview(widgetStackView)
     

@@ -8,6 +8,7 @@
 
 import RIBs
 import UIKit
+import ResourceKit
 import CommunityUserInterface
 
 protocol CommunityHomePresentableListener: AnyObject {
@@ -39,7 +40,7 @@ final class CommunityHomeViewController: UIViewController, CommunityHomePresenta
     }()
     
     func setupViews() {
-        tabBarItem = UITabBarItem(title: "커뮤니티", image: UIImage(systemName: "list.bullet.clipboard"), selectedImage: UIImage(systemName: "list.bullet.clipboard.fill"))
+        tabBarItem = UITabBarItem(title: "Community", image: ResourceKitAsset.communityImage.image, tag: 2)
         view.backgroundColor = .yellow
     }
 }
