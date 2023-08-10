@@ -52,10 +52,10 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
             interactor: interactor,
             viewController: tabBar,
             appHome: appHome,
-            financeHome: financeHome,
-            profileHome: profileHome,
             styleHome: styleHome,
-            communityHome: communityHome
+            communityHome: communityHome,
+            financeHome: financeHome,
+            profileHome: profileHome
         )
         
         return (router, interactor)

@@ -38,16 +38,16 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
         interactor: AppRootInteractable,
         viewController: AppRootViewControllable,
         appHome: AppHomeBuildable,
-        financeHome: FinanceHomeBuildable,
-        profileHome: UserProfileHomeBuildable,
         styleHome: StyleHomeBuildable,
-        communityHome: CommunityHomeBuildable
+        communityHome: CommunityHomeBuildable,
+        financeHome: FinanceHomeBuildable,
+        profileHome: UserProfileHomeBuildable
     ) {
         self.appHome = appHome
-        self.financeHome = financeHome
-        self.profileHome = profileHome
         self.styleHome = styleHome
         self.communityHome = communityHome
+        self.financeHome = financeHome
+        self.profileHome = profileHome
         
         super.init(interactor: interactor, viewController: viewController)
         interactor.router = self
@@ -62,18 +62,18 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
         
         // 붙이기
         attachChild(appHomeRouting)
-        attachChild(financeHomeRouting)
-        attachChild(profileHomeRouting)
         attachChild(styleHomeRouting)
         attachChild(communityRouting)
+        attachChild(financeHomeRouting)
+        attachChild(profileHomeRouting)
         
         //뷰컨 띄우기
         let viewControllers = [
             NavigationControllerable(root: appHomeRouting.viewControllable),
+            styleHomeRouting.viewControllable,
+            communityRouting.viewControllable,
             NavigationControllerable(root: financeHomeRouting.viewControllable),
             profileHomeRouting.viewControllable,
-            styleHomeRouting.viewControllable,
-            communityRouting.viewControllable
         ]
         
         viewController.setViewControllers(viewControllers)

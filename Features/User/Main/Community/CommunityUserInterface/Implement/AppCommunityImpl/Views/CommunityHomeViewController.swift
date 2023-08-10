@@ -40,6 +40,6 @@ final class CommunityHomeViewController: UIViewController, CommunityHomePresenta
     
     func setupViews() {
         tabBarItem = UITabBarItem(title: "커뮤니티", image: UIImage(systemName: "list.bullet.clipboard"), selectedImage: UIImage(systemName: "list.bullet.clipboard.fill"))
-        view.backgroundColor = .red
+        view.backgroundColor = .yellow
     }
 }
