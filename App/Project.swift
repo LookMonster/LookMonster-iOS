@@ -63,13 +63,13 @@ let project = Project(
                 .Features.User.Main.Style.UserInterface.Interface,
                 
                 //Community
-//                .Features.User.Main.Community.Domain.Implement,
-//                .Features.User.Main.Community.Data.Implement,
-//                .Features.User.Main.Community.UserInterface.Implement,
-//
-//                .Features.User.Main.Community.Domain.Interface,
-//                .Features.User.Main.Community.Data.Interface,
-//                .Features.User.Main.Community.UserInterface.Interface,
+                .Features.User.Main.Community.Domain.Implement,
+                .Features.User.Main.Community.Data.Implement,
+                .Features.User.Main.Community.UserInterface.Implement,
+
+                .Features.User.Main.Community.Domain.Interface,
+                .Features.User.Main.Community.Data.Interface,
+                .Features.User.Main.Community.UserInterface.Interface,
 //
                 //Shop
 //                .Features.User.Main.Shop.Domain.Implement,
