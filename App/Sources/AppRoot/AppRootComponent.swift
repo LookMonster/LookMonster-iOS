@@ -68,7 +68,7 @@ final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, F
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [SuperAppURLProtocol.self]
         
-        setupURLProtocol()
+//        setupURLProtocol()
         
         let network = NetworkImp(session: URLSession(configuration: config))
         
