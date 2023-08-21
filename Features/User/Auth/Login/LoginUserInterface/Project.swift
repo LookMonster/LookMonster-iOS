@@ -25,6 +25,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .ThirdParty.SPM.RIBs,
         .ThirdParty.SPM.RxSwift,
         .ThirdParty.SPM.RxRelay,
-        .ThirdParty.SPM.SnapKit
+        .ThirdParty.SPM.SnapKit,
+        .DesignSystem.Implement
     ]
 )

@@ -11,7 +11,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         
         .Core.RIBsUtil,
         
-        .ThirdParty.SPM.RIBs,
+        .ThirdParty.SPM.RIBs
     ],
     implementDependencies: [
         .Feature.Finance.Domain.Interface,
@@ -24,5 +24,6 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .ThirdParty.SPM.RIBs,
         .ThirdParty.SPM.RxSwift,
         .ThirdParty.SPM.RxRelay,
+        .DesignSystem.Implement
     ]
 )

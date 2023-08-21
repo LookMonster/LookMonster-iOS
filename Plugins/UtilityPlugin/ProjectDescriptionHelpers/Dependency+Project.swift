@@ -128,6 +128,8 @@ public extension TargetDependency.DesignSystem {
     static func project(name: String) -> TargetDependency {
         return .project(target: "\(name)", path: .relativeToRoot("\(foldername)"))
     }
+    
+    static let Implement = project(name: "DesignSystem")
 }
 
 public extension TargetDependency.Core {
