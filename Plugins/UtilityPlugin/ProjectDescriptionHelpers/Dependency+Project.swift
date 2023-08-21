@@ -115,6 +115,19 @@ extension TargetDependency {
     
     public struct TokenManager {}
 
+//    public static let DesignSystem = TargetDependency.project(
+//        target: "DesignSystem",
+//        path: .relativeToRoot("DesignSystem")
+//    )
+    
+    public struct DesignSystem {}
+}
+
+public extension TargetDependency.DesignSystem {
+    static let foldername = "DesignSystem"
+    static func project(name: String) -> TargetDependency {
+        return .project(target: "\(name)", path: .relativeToRoot("\(foldername)"))
+    }
 }
 
 public extension TargetDependency.Core {
