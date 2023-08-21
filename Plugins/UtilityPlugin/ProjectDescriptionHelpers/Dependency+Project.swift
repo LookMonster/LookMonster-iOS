@@ -112,6 +112,22 @@ extension TargetDependency {
     public struct ResourceKit {}
 
     public struct ThirdParty {}
+    
+    public struct TokenManager {}
+
+//    public static let DesignSystem = TargetDependency.project(
+//        target: "DesignSystem",
+//        path: .relativeToRoot("DesignSystem")
+//    )
+    
+    public struct DesignSystem {}
+}
+
+public extension TargetDependency.DesignSystem {
+    static let foldername = "DesignSystem"
+    static func project(name: String) -> TargetDependency {
+        return .project(target: "\(name)", path: .relativeToRoot("\(foldername)"))
+    }
 }
 
 public extension TargetDependency.Core {
@@ -125,6 +141,7 @@ public extension TargetDependency.Core {
 //    static let Interface = project(name: "Core", isInterface: true)
 //    static let Implement = project(name: "Core", isInterface: false)
     
+    static let CSLogger = project(name: "CSLogger", isInterface: true)
     static let DefaultsStore = project(name: "DefaultsStore", isInterface: true)
     static let RIBsUtil = project(name: "RIBsUtil", isInterface: true)
     static let SuperUI = project(name: "SuperUI", isInterface: true)
@@ -518,4 +535,17 @@ public extension TargetDependency.ThirdParty.SPM {
 //    static let Moya = TargetDependency.external(name: "Moya")
     static let RxBlocking = TargetDependency.external(name: "RxBlocking")
 //    static let RxMoya = TargetDependency.external(name: "RxMoya")
+}
+
+
+public extension TargetDependency.TokenManager {
+    static let folderName = "TokenManager"
+    static func project(name: String, isInterface: Bool) -> TargetDependency {
+        let postfix: String = isInterface ? "" : "Impl"
+        return .project(target: "\(name)\(postfix)",
+                        path: .relativeToRoot("\(folderName)"))
+    }
+    
+    static let Interface = project(name: "TokenManager", isInterface: true)
+    static let Implement = project(name: "TokenManager", isInterface: false)
 }

@@ -79,7 +79,7 @@ let project = Project(
                 .Features.User.Main.Shop.Domain.Interface,
                 .Features.User.Main.Shop.Data.Interface,
                 .Features.User.Main.Shop.UserInterface.Interface,
-                
+                .TokenManager.Interface
             ]
 //            settings: settings
         )

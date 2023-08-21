@@ -12,6 +12,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Core.RIBsUtil,
         
         .ThirdParty.SPM.RIBs,
+        .TokenManager.Interface
     ],
     implementDependencies: [
         .Feature.Finance.Domain.Interface,
