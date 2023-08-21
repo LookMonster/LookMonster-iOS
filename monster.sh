@@ -17,6 +17,11 @@ elif [ "$1" = "clean" ]; then
     rm -rf **/*.xcodeproj
     rm -rf *.xcworkspace
     echo "프로젝트 초기화가 완료되었습니다...!(옷이 세탁되었습니다...🥼)"
+    
+elif ["$1" = "edit"]; then
+    echo "프로젝트 수정 준비 중입니다. (옷장 속에서 옷을 골라 입을 준비를 하고 있습니다...)"
+    tuist edit
+    echo "프로젝트 수정 준비가 완료되었습니다! (옷장 속에서 옷을 골라 입을 준비를 완료했습니다...)"
 else
     echo "사용법: ./monster.sh generate 또는 ./monster.sh clean"
 fi
