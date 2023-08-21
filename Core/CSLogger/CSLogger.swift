@@ -1,10 +1,3 @@
-//
-//  CSLogger.swift
-//  CSLogger
-//
-//  Created by 김찬수 on 2023/06/02.
-//
-
 import UIKit
 
 public final class Logger {
@@ -45,7 +38,6 @@ public final class Logger {
     
     // MARK: - Functions
     
-    /// 설정 메소드.
     public static func configure(
         fileName: String? = nil,
         saveFileNum: Int? = nil,
@@ -54,7 +46,6 @@ public final class Logger {
         saveLevel: Level = .verbose,
         printLevel: Level = .verbose
     ) {
-        // 디렉토리 설정
         self.logsDirectoryURL = logsDirectoryURL ?? self.logsDirectoryURL
         
         if !fileManager.fileExists(atPath: self.logsDirectoryURL.path) {
@@ -119,14 +110,6 @@ public final class Logger {
             saveLog(items, level: Level.warning, file: file, function: function, line: line, threadName: tempThreadName)
         }
     }
-//
-//    public static func getCompressLogPath() -> URL? {
-//        guard let fileNames = try? fileManager.contentsOfDirectory(atPath: self.logsDirectoryURL.path) else {
-//            return nil
-//        }
-//        let urls = fileNames.map { self.logsDirectoryURL.appendingPathComponent($0)}
-//        return CompressManager.createZipFile(urls: urls)
-//    }
 }
 
 

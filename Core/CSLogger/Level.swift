@@ -1,10 +1,3 @@
-//
-//  Level.swift
-//  CSLogger
-//
-//  Created by 김찬수 on 2023/06/02.
-//
-
 import Foundation
 
 public enum Level: String {
