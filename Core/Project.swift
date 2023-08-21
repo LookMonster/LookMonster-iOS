@@ -5,6 +5,10 @@ import UtilityPlugin
 let project = Project(name: "Core",
                       targets: [
                         Project.makeTarget(
+                            name: "CSLogger",
+                            dependencies: []
+                        ),
+                        Project.makeTarget(
                             name: "DefaultsStore",
                             dependencies: [
                             ]

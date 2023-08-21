@@ -8,6 +8,7 @@ let project = Project.invertedDualTargetProject(
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
         .ThirdParty.SPM.RxSwift,
+        .Core.CSLogger
     ],
     implementDependencies: [
         .ThirdParty.SPM.RxSwift,
