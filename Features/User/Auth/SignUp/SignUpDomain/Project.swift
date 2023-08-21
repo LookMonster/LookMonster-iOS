@@ -12,5 +12,6 @@ let project = Project.invertedDualTargetProject(
     implementDependencies: [
         .ThirdParty.SPM.RxSwift,
         .Feature.Finance.Data.Interface,
+        .TokenManager.Interface
     ]
 )
