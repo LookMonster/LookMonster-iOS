@@ -10,6 +10,7 @@ import UIKit
 
 fileprivate enum DesignSystemType: String, CaseIterable {
     case button
+    case textField
 }
 
 final class DesignSystemViewController: UITableViewController {
@@ -44,6 +45,9 @@ final class DesignSystemViewController: UITableViewController {
         case .button:
             print("커스텀 버튼")
             break
+        case .textField:
+            print("텍스트 필드")
+            self.navigationController?.pushViewController(TextFieldViewController(), animated: true)
 //            self.navigationController?.pushViewController(ButtonDemoViewController(), animated: true)
         default: return
         }
