@@ -11,21 +11,19 @@ import SnapKit
 
 public class TextFieldViewController: UIViewController {
     
-    private let monsterTextField = MonsterTextField()
     private let errorMonsterTextField = MonsterTextField()
-    
-    public func monsterTextFieldConfigure() {
-        view.addSubview(monsterTextField)
-        monsterTextField.placeholder = "Enter text"
-        monsterTextField.errorMessage = "뭔가 잘못된 듯"
-        monsterTextField.showError = false
-    }
+    private let monsterTextField = MonsterTextField()
     
     public func errorMonsterTextFieldConfigure() {
         view.addSubview(errorMonsterTextField)
-        errorMonsterTextField.placeholder = "Enter text"
-        errorMonsterTextField.errorMessage = "뭔가 잘못된 듯"
-        errorMonsterTextField.showError = true
+        errorMonsterTextField.placeholder = "이메일"
+        errorMonsterTextField.errorType = .emptyInput
+    }
+    
+    
+    public func monsterTextFieldConfigure() {
+        view.addSubview(monsterTextField)
+        monsterTextField.placeholder = "이메일"
     }
     
     public override func viewDidLoad() {
@@ -37,6 +35,7 @@ public class TextFieldViewController: UIViewController {
         errorMonsterTextFieldConfigure()
         setUpConstraints()
     }
+    
     private func setUpConstraints() {
         errorMonsterTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20.0)

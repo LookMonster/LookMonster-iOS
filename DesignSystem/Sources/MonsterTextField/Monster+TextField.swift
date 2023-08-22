@@ -83,6 +83,15 @@ class MonsterTextField: UITextField {
             $0.top.equalTo(underlineView.snp.bottom).offset(4)
         }
     }
+    
+    public var errorType: MonsterTextFieldErrorType? {
+         didSet {
+             if let errorType = errorType {
+                 errorMessage = errorType.message
+                 showError = errorType.showError
+             }
+         }
+     }
 }
 
 extension MonsterTextField: UITextFieldDelegate {
