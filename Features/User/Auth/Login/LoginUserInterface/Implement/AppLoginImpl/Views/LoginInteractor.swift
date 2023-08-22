@@ -16,8 +16,6 @@ protocol LoginRouting: ViewableRouting {
 
 protocol LoginPresentable: Presentable {
     var listener: LoginListener? { get set }
-    
-//    func updateProfileIndex(index: Int?)
 }
 
 final class LoginInteractor: PresentableInteractor<LoginPresentable>,
@@ -29,7 +27,6 @@ final class LoginInteractor: PresentableInteractor<LoginPresentable>,
     override init(presenter: LoginPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
-//        presenter.updateProfileIndex(index: currentImageIndex)
     }
 
     deinit {

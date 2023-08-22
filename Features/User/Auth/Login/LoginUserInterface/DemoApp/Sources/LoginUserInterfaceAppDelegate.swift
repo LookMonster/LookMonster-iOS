@@ -35,7 +35,6 @@ class LoginAppDelegate: UIResponder, UIApplicationDelegate {
         let window = UIWindow(frame: UIScreen.main.bounds)
         
         let loginComponent = LoginMockComponent()
-        
         router = LoginBuilder(dependency: loginComponent)
             .build(withListener: MockLoginListener(), currentImageIndex: nil)
         router?.interactable.activate()
