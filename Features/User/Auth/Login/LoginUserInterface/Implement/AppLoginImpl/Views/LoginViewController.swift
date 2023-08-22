@@ -10,6 +10,10 @@ import LoginUserInterface
 public final class LoginViewContoller: UIViewController, LoginPresentable, LoginViewControllable {
         
     var listener: LoginListener?
+    
+    var testButton = UIButton().then {
+        $0.backgroundColor = .blue
+    }
         
     public var uiviewController: UIViewController {
         return self
@@ -34,6 +38,13 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     
     private func bind() {
         self.view.backgroundColor = .red
+        
+        self.view.addSubview(testButton)
+        testButton.snp.makeConstraints {
+            $0.centerX.centerY.equalToSuperview()
+            $0.height.equalTo(50.0)
+            $0.width.equalTo(50.0)
+        }
 //        profileView.rx.selectButtonTapped
 //            .subscribe(onNext: { [weak self] _ in
 //                guard let imageType = self?.profileView.currentProfileImage.profileImageType else { return }
