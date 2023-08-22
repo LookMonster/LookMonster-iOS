@@ -24,7 +24,7 @@ let project = Project(
             product: .framework,
             bundleId: "com.monster.lookMonster",
             deploymentTarget: .iOS(
-                targetVersion: "16.0.0",
+                targetVersion: "15.0.0",
                 devices: [.iphone]
             ),
             infoPlist: .default,
@@ -43,7 +43,7 @@ let project = Project(
             product: .app,
             bundleId: "com.monster.lookMonster",
             deploymentTarget: .iOS(
-                targetVersion: "16.0.0",
+                targetVersion: "15.0.0",
                 devices: [.iphone]
             ),
             infoPlist: InfoPlist.extendingDefault(

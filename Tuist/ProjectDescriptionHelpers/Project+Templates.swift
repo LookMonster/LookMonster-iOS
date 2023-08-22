@@ -61,7 +61,7 @@ extension Project {
     public static func invertedDualTargetProject(
         name: String,
         platform: Platform = .iOS,
-        iOSTargetVersion: String = "16.0.0",
+        iOSTargetVersion: String = "15.0.0",
         interfaceDependencies: [TargetDependency] = [],
         implementDependencies: [TargetDependency] = [],
         useTestTarget: Bool = true,
@@ -99,7 +99,7 @@ extension Project {
     public static func invertedDualTargetProjectWithDemoApp(
         name: String,
         platform: Platform = .iOS,
-        iOSTargetVersion: String = "16.0.0",
+        iOSTargetVersion: String = "15.0.0",
         interfaceDependencies: [TargetDependency] = [],
         implementDependencies: [TargetDependency] = [],
         demoAppDependencies: [TargetDependency] = [],
@@ -159,21 +159,15 @@ extension Project {
         
         let targets: [Target] = useTestTarget ? [interfaceTarget, implementTarget, demoApp, testTarget] : [interfaceTarget, implementTarget, demoApp]
 
-        let settings: Settings = .settings(configurations: [
-            .debug(name: "Debug", xcconfig: .relativeToRoot("Config/Debug.xcconfig")),
-            .release(name: "Release", xcconfig: .relativeToRoot("Config/Release.xcconfig")),
-        ])
-
         return Project(name: name,
                        organizationName: organizationName,
-                       settings: settings,
                        targets: targets)
     }
 
     public static func makeTarget(
         name: String,
         dependencies: [TargetDependency],
-        iOSTargetVersion: String = "16.0.0"
+        iOSTargetVersion: String = "15.0.0"
     ) -> Target {
         return Target(name: name,
                platform: .iOS,
