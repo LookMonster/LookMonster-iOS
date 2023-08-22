@@ -27,5 +27,12 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .ThirdParty.SPM.RxRelay,
         .ThirdParty.SPM.SnapKit,
         .DesignSystem.Implement
-    ]
+    ],
+    demoAppDependencies: [
+        .Features.User.Auth.Login.Data.Implement,
+        .Features.User.Auth.Login.Domain.Implement,
+        .LKNetwork.Implement,
+        .TokenManager.Implement
+    ],
+    isUserInterface: true
 )
