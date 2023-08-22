@@ -1,6 +1,8 @@
 import ProjectDescription
+import UtilityPlugin
 
 extension Project {
+    
     private static let organizationName = "lookMonster.io"
     
     public static func app(name: String,
@@ -31,8 +33,7 @@ extension Project {
                                                   platform: platform,
                                                   iOSTargetVersion: iOSTargetVersion,
                                                   infoPlist: infoPlist,
-                                                  dependencies: [.target(name: name)]))
-        
+                                                  dependencies: [.target(name: name)] + dependencies))
         return Project(name: name,
                        organizationName: organizationName,
                        targets: targets)
@@ -53,17 +54,17 @@ extension Project {
                        organizationName: organizationName,
                        targets: targets)
     }
-        
-    /// 현재 경로 내부의 Implement, Interface, test 세개의 디렉토리에 각각 Target을 가지는 Project를 만듭니다.
+    
+    /// 현재 경로 내부의 Implement, Interface 두개의 디렉토리에 각각 Target을 가지는 Project를 만듭니다.
     /// interface와 implement에 필요한 dependency를 각각 주입해줍니다.
     /// implement는 자동으로 interface에 대한 종속성을 가지고 있습니다.
     public static func invertedDualTargetProject(
         name: String,
-        platform: Platform,
-        iOSTargetVersion: String,
+        platform: Platform = .iOS,
+        iOSTargetVersion: String = "15.0.0",
         interfaceDependencies: [TargetDependency] = [],
         implementDependencies: [TargetDependency] = [],
-        demoApp: Bool = false,
+        useTestTarget: Bool = true,
         infoPlist: InfoPlist = .default
     ) -> Project {
 
@@ -81,27 +82,14 @@ extension Project {
             dependencies: implementDependencies + [.target(name: name)]
         )
         
-        let testTarget = Target(
-             name: "\(name)Tests",
-             platform: platform,
-             product: .unitTests,
-             bundleId: "monster.io.\(name)Tests",
-             deploymentTarget: .iOS(
-                 targetVersion: iOSTargetVersion,
-                 devices: [.iphone]
-             ),
-             infoPlist: .default,
-             sources: ["./Tests/**"],
-             dependencies: [
-                 .target(name: name),
-                 .target(name: name + "Impl"),
-                 
-             ]
-         )
+        let testTarget = makeTestTarget(name: name,
+                                        platform: platform,
+                                         targetVersion: iOSTargetVersion)
+        let targets: [Target] = useTestTarget ? [interfaceTarget, implementTarget, testTarget] : [interfaceTarget, implementTarget]
 
         return Project(name: name,
                        organizationName: organizationName,
-                       targets: [interfaceTarget, implementTarget, testTarget])
+                       targets: targets)
     }
     
     /// 현재 경로 내부의 Implement, Interface, DemoApp 세개의 디렉토리에 각각 Target을 가지는 Project를 만듭니다.
@@ -110,12 +98,14 @@ extension Project {
     ///
     public static func invertedDualTargetProjectWithDemoApp(
         name: String,
-        platform: Platform,
-        iOSTargetVersion: String,
+        platform: Platform = .iOS,
+        iOSTargetVersion: String = "15.0.0",
         interfaceDependencies: [TargetDependency] = [],
         implementDependencies: [TargetDependency] = [],
-        demoApp: Bool = false,
-        infoPlist: InfoPlist = .default
+        demoAppDependencies: [TargetDependency] = [],
+        useTestTarget: Bool = true,
+        infoPlist: InfoPlist = .default,
+        isUserInterface: Bool = true
     ) -> Project {
 
         let interfaceTarget = makeInterfaceDynamicFrameworkTarget(
@@ -124,12 +114,12 @@ extension Project {
             iOSTargetVersion: iOSTargetVersion,
             dependencies: interfaceDependencies
         )
-        
         let implementTarget = makeImplementStaticLibraryTarget(
             name: name,
             platform: platform,
             iOSTargetVersion: iOSTargetVersion,
-            dependencies: implementDependencies + [.target(name: name)]
+            dependencies: implementDependencies + [.target(name: name)],
+            isUserInterface: isUserInterface
         )
         
         let demoApp = Target(
@@ -146,22 +136,32 @@ extension Project {
                     [
                         "CFBundleDevelopmentRegion": "ko_KR",
                         "CFBundleShortVersionString": "1.0",
-                        "CFBundleVersion": "4",
-                        "UILaunchStoryboardName": "LaunchScreen"
+                        "CFBundleVersion": "1.0.0",
+                        "UILaunchStoryboardName": "LaunchScreen",
+                        "NSAppTransportSecurity" : [
+                            "NSAllowsArbitraryLoads": true
+                        ]
                     ]
-                
             ),
             sources: ["./DemoApp/Sources/**"],
             resources: ["./DemoApp/Resources/**"],
-//            scripts: [
-//                .localize // localize 스크립트를 추가합니다.
-//            ],
-            dependencies: implementDependencies + [.target(name: name)]
+            dependencies:
+//                implementDependencies +
+            [
+                .target(name: name),
+                .target(name: "\(name)Impl"),
+            ] + demoAppDependencies
         )
+        
+        let testTarget = makeTestTarget(name: name,
+                                        platform: platform,
+                                        targetVersion: iOSTargetVersion)
+        
+        let targets: [Target] = useTestTarget ? [interfaceTarget, implementTarget, demoApp, testTarget] : [interfaceTarget, implementTarget, demoApp]
 
         return Project(name: name,
                        organizationName: organizationName,
-                       targets: [interfaceTarget, implementTarget, demoApp])
+                       targets: targets)
     }
 
     public static func makeTarget(
@@ -176,7 +176,6 @@ extension Project {
                deploymentTarget: .iOS(targetVersion: iOSTargetVersion, devices: [.iphone]),
                infoPlist: .default,
                sources: ["./\(name)/**"],
-    //           resources: ["Resources/**"],
                dependencies: dependencies)
     }
 
@@ -184,27 +183,51 @@ extension Project {
 
 private extension Project {
     
+    private static func makeTestTarget(
+        name: String,
+        platform: Platform,
+        targetVersion: String
+    ) -> Target {
+        let testTarget = Target(
+            name: "\(name)Tests",
+            platform: platform,
+            product: .unitTests,
+            bundleId: "monster.io.\(name)Tests",
+            deploymentTarget: .iOS(
+                targetVersion: targetVersion,
+                devices: [.iphone]
+            ),
+            infoPlist: .default,
+            sources: ["./Tests/**"],
+            dependencies: [
+                .target(name: name),
+                .target(name: name + "Impl")
+            ]
+        )
+        return testTarget
+    }
+
     static func makeImplementStaticLibraryTarget(
         name: String,
         platform: Platform,
         iOSTargetVersion: String,
-        dependencies: [TargetDependency] = []
+        dependencies: [TargetDependency] = [],
+        isUserInterface: Bool = false
     ) -> Target {
+        
         return Target(name: "\(name)Impl",
                       platform: platform,
-                      product: .staticLibrary,
-                      bundleId: "team.io.\(name)",
+                      product: .staticFramework,
+                      bundleId: "monster.io.\(name)",
                       deploymentTarget: .iOS(
                         targetVersion: iOSTargetVersion,
                         devices: [.iphone]
                       ),
                       infoPlist: .default,
                       sources: ["./Implement/**"],
-//                      sources: ["\(name)/Sources/Implement/**"],
-//                      resources: ["Resources/**"],
-                      dependencies: dependencies)
+                      dependencies: dependencies
+        )
     }
-    
     static func makeInterfaceDynamicFrameworkTarget(
         name: String,
         platform: Platform,
@@ -221,11 +244,9 @@ private extension Project {
                       ),
                       infoPlist: .default,
                       sources: ["./Interface/**"],
-                      //                             resources: ["Resources/**"],
                       dependencies: dependencies)
     }
 
-    
     static func makeFrameworkTargets(name: String, platform: Platform, iOSTargetVersion: String, infoPlist: [String:InfoPlist.Value] = [:] ,dependencies: [TargetDependency] = []) -> [Target] {
         let sources = Target(name: name,
                              platform: platform,
@@ -233,26 +254,14 @@ private extension Project {
                              bundleId: "monster.io.\(name)",
                              deploymentTarget: .iOS(targetVersion: iOSTargetVersion, devices: [.iphone]),
                              infoPlist: .extendingDefault(with: infoPlist),
-//                             infoPlist: .default,
                              sources: ["Sources/**"],
                              resources: ["Resources/**"],
                              dependencies: dependencies)
-//        let tests = Target(name: "\(name)Tests",
-//                           platform: platform,
-//                           product: .unitTests,
-//                           bundleId: "team.io.\(name)Tests",
-//                           infoPlist: .default,
-//                           sources: ["Tests/**"],
-//                           resources: [],
-//                           dependencies: [
-//                            .target(name: name)
-//                           ])
         return [sources]
     }
     
     static func makeAppTargets(name: String, platform: Platform, iOSTargetVersion: String, infoPlist: [String: InfoPlist.Value] = [:], dependencies: [TargetDependency] = []) -> [Target] {
         let platform: Platform = platform
-        
         let mainTarget = Target(
             name: name,
             platform: platform,
@@ -264,23 +273,11 @@ private extension Project {
             resources: ["Resources/**"],
             dependencies: dependencies
         )
-        
-//        let testTarget = Target(
-//            name: "\(name)Tests",
-//            platform: platform,
-//            product: .unitTests,
-//            bundleId: "team.io.Tests",
-//            infoPlist: .default,
-//            sources: ["Tests/**"],
-//            dependencies: [
-//                .target(name: "\(name)"),
-//            ])
         return [mainTarget]
     }
     
     static func makeAppTargets(name: String, platform: Platform, iOSTargetVersion: String, infoPlist: String, dependencies: [TargetDependency] = []) -> [Target] {
         let platform: Platform = platform
-        
         let mainTarget = Target(
             name: name,
             platform: platform,
@@ -295,7 +292,3 @@ private extension Project {
         return [mainTarget]
     }
 }
-
-//extension ProjectDescription.TargetScript {
-//    public static let localize = TargetScript.pre(path: .relativeToRoot("Scripts/update_build_number.sh"), name: "update_build_number")
-//}
