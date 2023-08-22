@@ -97,13 +97,14 @@ extension MonsterTextField: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-
-        UIView.animate(withDuration: 0.3) {
-            self.placeholderLabel.font = UIFont.systemFont(ofSize: 16)
-            self.placeholderLabel.snp.updateConstraints {
-                $0.bottom.equalTo(self.underlineView.snp.top).offset(-4)
+        if textField.text == "" {
+            UIView.animate(withDuration: 0.3) {
+                self.placeholderLabel.font = UIFont.systemFont(ofSize: 16)
+                self.placeholderLabel.snp.updateConstraints {
+                    $0.bottom.equalTo(self.underlineView.snp.top).offset(-4)
+                }
+                self.layoutIfNeeded()
             }
-            self.layoutIfNeeded()
         }
     }
 }
