@@ -8,6 +8,7 @@
 import UIKit
 import Then
 import SnapKit
+import ResourceKit
 
 class MonsterTextField: UITextField {
     private let placeholderLabel = UILabel().then {
@@ -24,6 +25,17 @@ class MonsterTextField: UITextField {
         $0.textColor = UIColor.red
         $0.isHidden = true
     }
+    
+    private let showHideButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "eye"), for: .normal)
+        button.setImage(UIImage(systemName: "eye.slash"), for: .selected)
+        button.tintColor = .gray
+        button.contentMode = .scaleAspectFit
+        return button
+    }()
+    
+    private let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
 
     var showError: Bool = false {
         didSet {
@@ -37,6 +49,24 @@ class MonsterTextField: UITextField {
     var errorMessage: String? {
         didSet {
             errorLabel.text = errorMessage
+        }
+    }
+    
+    var useShowHideButton: Bool = true {
+        didSet {
+            showHideButton.isHidden = !useShowHideButton
+        }
+    }
+    
+    var isTextHidden: Bool = false {
+        didSet {
+            if isSecureTextEntry && !isTextHidden {
+                showHideButton.isSelected = true
+                isSecureTextEntry = false
+            } else if isTextHidden {
+                isSecureTextEntry = true
+                showHideButton.isSelected = false
+            }
         }
     }
 
@@ -65,6 +95,7 @@ class MonsterTextField: UITextField {
     private func configure() {
         addSubview(placeholderLabel)
         addSubview(underlineView)
+        addSubview(showHideButton)
         addSubview(errorLabel)
         
         placeholderLabel.snp.makeConstraints {
@@ -72,15 +103,31 @@ class MonsterTextField: UITextField {
             $0.bottom.equalTo(underlineView.snp.top).offset(-4)
             $0.height.equalToSuperview().multipliedBy(0.7)
         }
-
+        
         underlineView.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalToSuperview()
             $0.height.equalTo(1)
         }
-
+        
         errorLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(underlineView.snp.bottom).offset(4)
+        }
+               
+        if useShowHideButton {
+            addSubview(showHideButton)
+            showHideButton.snp.makeConstraints {
+                $0.trailing.equalToSuperview()
+                $0.centerY.equalToSuperview()
+                $0.width.height.equalTo(20)
+            }
+
+            rightView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
+            rightViewMode = .always
+        } else {
+            rightView = nil
+            rightViewMode = .never
         }
     }
     
@@ -92,6 +139,11 @@ class MonsterTextField: UITextField {
              }
          }
      }
+    
+     private func togglePasswordVisibility() {
+        isTextHidden.toggle()
+        print("asdf")
+    }
 }
 
 extension MonsterTextField: UITextFieldDelegate {
@@ -113,6 +165,16 @@ extension MonsterTextField: UITextFieldDelegate {
                     $0.bottom.equalTo(self.underlineView.snp.top).offset(-4)
                 }
                 self.layoutIfNeeded()
+            }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        if let touch = touches.first {
+            let location = touch.location(in: self)
+            if showHideButton.frame.contains(location) {
+                togglePasswordVisibility()
             }
         }
     }
