@@ -12,7 +12,7 @@ import UtilityPlugin
 
 let project = Project(
     name: "DesignSystem",
-    organizationName: "com.monster.lookMonster",
+//    organizationName: "com.monster.lookMonster",
 //    settings: .settings(configurations: [
 //        .debug(name: "Debug", xcconfig: .relativeToRoot("Config/Debug.xcconfig")),
 //        .release(name: "Release", xcconfig: .relativeToRoot("Config/Release.xcconfig")),
@@ -22,7 +22,7 @@ let project = Project(
             name: "DesignSystem",
             platform: .iOS,
             product: .framework,
-            bundleId: "com.monster.lookMonster",
+            bundleId: "com.monster.lookMonster.DesignSystem",
             deploymentTarget: .iOS(
                 targetVersion: "15.0.0",
                 devices: [.iphone]
@@ -41,7 +41,7 @@ let project = Project(
             name: "DesignSystemDemoApp",
             platform: .iOS,
             product: .app,
-            bundleId: "com.monster.lookMonster",
+            bundleId: "com.monster.lookMonster.DesignSystemDemoApp",
             deploymentTarget: .iOS(
                 targetVersion: "15.0.0",
                 devices: [.iphone]
