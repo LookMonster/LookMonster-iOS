@@ -14,8 +14,30 @@ class MonsterTextField: UITextField {
         $0.font = UIFont.systemFont(ofSize: 16)
         $0.textColor = UIColor.gray
     }
+
     private let underlineView = UIView().then {
         $0.backgroundColor = UIColor.black
+    }
+
+    private let errorLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 12)
+        $0.textColor = UIColor.red
+        $0.isHidden = true
+    }
+
+    var showError: Bool = false {
+        didSet {
+            errorLabel.isHidden = !showError
+            underlineView.backgroundColor = showError ? UIColor.red : UIColor.black
+            placeholderLabel.textColor = showError ? UIColor.red : UIColor.gray
+            textColor = showError ? UIColor.red : UIColor.black
+        }
+    }
+
+    var errorMessage: String? {
+        didSet {
+            errorLabel.text = errorMessage
+        }
     }
 
     override var placeholder: String? {
@@ -43,6 +65,7 @@ class MonsterTextField: UITextField {
     private func configure() {
         addSubview(placeholderLabel)
         addSubview(underlineView)
+        addSubview(errorLabel)
         
         placeholderLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
@@ -53,6 +76,11 @@ class MonsterTextField: UITextField {
         underlineView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(1)
+        }
+
+        errorLabel.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview()
+            $0.top.equalTo(underlineView.snp.bottom).offset(4)
         }
     }
 }
@@ -69,6 +97,7 @@ extension MonsterTextField: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
+
         UIView.animate(withDuration: 0.3) {
             self.placeholderLabel.font = UIFont.systemFont(ofSize: 16)
             self.placeholderLabel.snp.updateConstraints {

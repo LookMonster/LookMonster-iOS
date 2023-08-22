@@ -13,13 +13,19 @@ public class TextFieldViewController: UIViewController {
     
     private let monsterTextField = MonsterTextField()
     
+    public func errorMonsterTextField() {
+        view.addSubview(monsterTextField)
+        monsterTextField.placeholder = "Enter text"
+        monsterTextField.errorMessage = "뭔가 잘못된 듯"
+        monsterTextField.showError = true
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        view.addSubview(monsterTextField)
-        monsterTextField.placeholder = "Enter text"
         
+        errorMonsterTextField()
         setUpConstraints()
     }
     private func setUpConstraints() {
