@@ -11,6 +11,11 @@ import SnapKit
 import ResourceKit
 
 class MonsterTextField: UITextField {
+    
+    private var timerLabel: UILabel = UILabel()
+    private var countdownTimer: Timer?
+    private var remainingSeconds = 180
+    
     private let placeholderLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 16)
         $0.textColor = UIColor.gray
@@ -67,6 +72,21 @@ class MonsterTextField: UITextField {
                 isSecureTextEntry = true
                 showHideButton.isSelected = false
             }
+        }
+    }
+    
+    var useTimer: Bool = false {
+        didSet {
+            if useTimer {
+                configureTimerLabel()
+            }
+        }
+    }
+    
+    enum TimerState { case started, stopped }
+    var timerState: TimerState = .stopped {
+        didSet {
+            setupTimer(state: timerState)
         }
     }
 
@@ -143,6 +163,49 @@ class MonsterTextField: UITextField {
      private func togglePasswordVisibility() {
         isTextHidden.toggle()
         print("asdf")
+    }
+    
+    private func setupTimer(state: TimerState) {
+        switch state {
+        case .started:
+            countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+        case .stopped:
+            countdownTimer?.invalidate()
+            countdownTimer = nil
+            remainingSeconds = 180
+            updateTimerLabel()
+        }
+    }
+
+    @objc private func updateTimer() {
+        if remainingSeconds > 0 {
+            remainingSeconds -= 1
+            updateTimerLabel()
+        } else {
+            timerState = .stopped
+        }
+    }
+
+    private func updateTimerLabel() {
+        let minutes = remainingSeconds / 60
+        let seconds = remainingSeconds % 60
+        timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
+    }
+
+    private func configureTimerLabel() {
+        timerLabel.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(timerLabel)
+        timerLabel.text = "03:00"
+        timerLabel.textColor = .black
+        timerLabel.font = UIFont.systemFont(ofSize: 14)
+    
+        NSLayoutConstraint.activate([
+            timerLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            timerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
+        ])
+        
+        rightView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
+        rightViewMode = .always
     }
 }
 
