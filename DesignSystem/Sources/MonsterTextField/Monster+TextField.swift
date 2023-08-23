@@ -16,12 +16,11 @@ enum TimerState { case started, stopped }
 
 class MonsterTextField: UITextField {
     
-    private var timerLabel: UILabel = UILabel()
-    private var countdownTimer: Timer?
-    private var remainingSeconds = 180
-    
     private let disposeBag = DisposeBag()
     private var countdownDisposable: Disposable?
+    
+    private var countdownTimer: Timer?
+    private var remainingSeconds = 180
     
     public let _timerState = BehaviorRelay<TimerState>(value: .stopped)
     
@@ -33,50 +32,56 @@ class MonsterTextField: UITextField {
         $0.font = UIFont.systemFont(ofSize: 16)
         $0.textColor = UIColor.gray
     }
-
+    
     private let underlineView = UIView().then {
         $0.backgroundColor = UIColor.black
     }
-
+    
     private let errorLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12)
         $0.textColor = UIColor.red
         $0.isHidden = true
     }
     
-    private let showHideButton: UIButton = {
-        let button = UIButton()
-        button.setImage(ResourceKitAsset.closeEyeIcon.image, for: .normal)
-        button.setImage(ResourceKitAsset.openEyeIcon.image, for: .selected)
-        button.tintColor = .gray
-        button.contentMode = .scaleAspectFit
-        return button
-    }()
+    private let showHideButton = UIButton().then {
+        $0.setImage(ResourceKitAsset.closeEyeIcon.image, for: .normal)
+        $0.setImage(ResourceKitAsset.openEyeIcon.image, for: .selected)
+        $0.tintColor = .gray
+        $0.contentMode = .scaleAspectFit
+    }
+    
+    private var timerLabel = UILabel().then {
+        $0.text = "03:00"
+        $0.textColor = .blue
+        $0.font = UIFont.systemFont(ofSize: 14)
+    }
     
     private let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
-
-    var showError: Bool = false {
+    
+    public var showError: Bool = false {
         didSet {
             errorLabel.isHidden = !showError
             underlineView.backgroundColor = showError ? UIColor.red : UIColor.black
             placeholderLabel.textColor = showError ? UIColor.red : UIColor.gray
+            showHideButton.tintColor = showError ? UIColor.red : UIColor.black
+            timerLabel.textColor = showError ? UIColor.red : UIColor.blue
             textColor = showError ? UIColor.red : UIColor.black
         }
     }
-
-    var errorMessage: String? {
+    
+    public var errorMessage: String? {
         didSet {
             errorLabel.text = errorMessage
         }
     }
     
-    var useShowHideButton: Bool = true {
+    public var useShowHideButton: Bool = true {
         didSet {
             showHideButton.isHidden = !useShowHideButton
         }
     }
     
-    var isTextHidden: Bool = false {
+    public var isTextHidden: Bool = false {
         didSet {
             if isSecureTextEntry && !isTextHidden {
                 showHideButton.isSelected = true
@@ -88,42 +93,51 @@ class MonsterTextField: UITextField {
         }
     }
     
-    var useTimer: Bool = false {
+    public var useTimer: Bool = false {
         didSet {
             if useTimer {
                 configureTimerLabel()
             }
         }
     }
-
+    
+    
+    public var errorType: MonsterTextFieldErrorType? {
+        didSet {
+            if let errorType = errorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
     override var placeholder: String? {
         didSet {
             placeholderLabel.text = placeholder
             super.placeholder = ""
         }
     }
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
     }
-
+    
     private func setupUI() {
         configure()
-         delegate = self
-         
-         timerState
-             .drive(onNext: { [weak self] state in
-                 self?.setupTimer(state: state)
-             })
-             .disposed(by: disposeBag)
+        delegate = self
+        
+        _ = timerState
+            .drive(with: self, onNext: { owner, state in
+                owner.setupTimer(state: state)
+            })
     }
-
+    
     private func configure() {
         addSubview(placeholderLabel)
         addSubview(underlineView)
@@ -146,7 +160,7 @@ class MonsterTextField: UITextField {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalTo(underlineView.snp.bottom).offset(4)
         }
-               
+        
         if useShowHideButton {
             addSubview(showHideButton)
             showHideButton.snp.makeConstraints {
@@ -154,7 +168,7 @@ class MonsterTextField: UITextField {
                 $0.centerY.equalToSuperview()
                 $0.width.height.equalTo(20)
             }
-
+            
             rightView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 20))
             rightViewMode = .always
         } else {
@@ -163,16 +177,7 @@ class MonsterTextField: UITextField {
         }
     }
     
-    public var errorType: MonsterTextFieldErrorType? {
-         didSet {
-             if let errorType = errorType {
-                 errorMessage = errorType.message
-                 showError = errorType.showError
-             }
-         }
-     }
-    
-     private func togglePasswordVisibility() {
+    private func togglePasswordVisibility() {
         isTextHidden.toggle()
         print("asdf")
     }
@@ -191,7 +196,7 @@ class MonsterTextField: UITextField {
             updateTimerLabel()
         }
     }
-
+    
     private func updateTimer() {
         if remainingSeconds > 0 {
             remainingSeconds -= 1
@@ -200,19 +205,15 @@ class MonsterTextField: UITextField {
             _timerState.accept(.stopped)
         }
     }
-
+    
     private func updateTimerLabel() {
         let minutes = remainingSeconds / 60
         let seconds = remainingSeconds % 60
         timerLabel.text = String(format: "%02d:%02d", minutes, seconds)
     }
-
+    
     private func configureTimerLabel() {
-        timerLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(timerLabel)
-        timerLabel.text = "03:00"
-        timerLabel.textColor = .black
-        timerLabel.font = UIFont.systemFont(ofSize: 14)
         
         timerLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
@@ -234,7 +235,7 @@ extension MonsterTextField: UITextFieldDelegate {
             self.layoutIfNeeded()
         }
     }
-
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == "" {
             UIView.animate(withDuration: 0.3) {

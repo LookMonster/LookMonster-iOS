@@ -19,6 +19,7 @@ public class TextFieldViewController: UIViewController {
     private let eyeTextField = MonsterTextField()
     private let timeMonsterTextField = MonsterTextField()
     
+    //Error ⚠️
     public func errorMonsterTextFieldConfigure() {
         view.addSubview(errorMonsterTextField)
         errorMonsterTextField.placeholder = "이메일"
@@ -26,22 +27,25 @@ public class TextFieldViewController: UIViewController {
         errorMonsterTextField.useShowHideButton = false
     }
     
+    // Basic 🥋
     public func monsterTextFieldConfigure() {
         view.addSubview(monsterTextField)
         monsterTextField.placeholder = "이메일"
         monsterTextField.useShowHideButton = false
     }
     
+    // Eye 👁️
     public func eyeTextFieldConfigure() {
         view.addSubview(eyeTextField)
         eyeTextField.placeholder = "이메일"
         eyeTextField.useShowHideButton = true
     }
     
+    // Timer ⏱️
     public func timeMonsterTextFieldConfigure() {
         view.addSubview(timeMonsterTextField)
         
-        timeMonsterTextField.placeholder = "이메일"
+        timeMonsterTextField.placeholder = "인증번호"
         timeMonsterTextField.useShowHideButton = false
         timeMonsterTextField.useTimer = true
     }
@@ -62,13 +66,12 @@ public class TextFieldViewController: UIViewController {
             .disposed(by: disposeBag)
         
         timeMonsterTextField.timerState
-            .drive(onNext: { [weak self] state in
+            .drive(onNext: { state in
                 if state == .stopped {
                     print("펑")
                 }
             })
             .disposed(by: disposeBag)
-        
     }
     
     private func setUpConstraints() {
