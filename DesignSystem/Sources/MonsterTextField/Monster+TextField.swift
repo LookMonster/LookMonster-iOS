@@ -33,8 +33,8 @@ class MonsterTextField: UITextField {
     
     private let showHideButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "eye"), for: .normal)
-        button.setImage(UIImage(systemName: "eye.slash"), for: .selected)
+        button.setImage(ResourceKitAsset.closeEyeIcon.image, for: .normal)
+        button.setImage(ResourceKitAsset.openEyeIcon.image, for: .selected)
         button.tintColor = .gray
         button.contentMode = .scaleAspectFit
         return button
