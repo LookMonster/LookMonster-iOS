@@ -33,5 +33,26 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .ThirdParty.SPM.Then,
         .ThirdParty.SPM.RxCocoa,
         .DesignSystem.Implement
+    ],
+    demoAppDependencies: [
+        .Feature.Finance.Domain.Interface,
+        .Feature.Finance.Data.Interface,
+        
+        .Core.RIBsUtil,
+        .Core.SuperUI,
+        .Core.DefaultsStore,
+        
+        .ResourceKit.Implement,
+        .Core.DefaultsStore,
+        .Core.RIBsUtil,
+        .Core.SuperUI,
+        
+        .ThirdParty.SPM.RIBs,
+        .ThirdParty.SPM.RxSwift,
+        .ThirdParty.SPM.RxRelay,
+        .ThirdParty.SPM.SnapKit,
+        .ThirdParty.SPM.Then,
+        .ThirdParty.SPM.RxCocoa,
+        .DesignSystem.Implement
     ]
 )

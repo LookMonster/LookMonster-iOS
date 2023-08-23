@@ -12,9 +12,9 @@ import ResourceKit
 import RxCocoa
 import RxSwift
 
-enum TimerState { case started, stopped }
+public enum TimerState { case started, stopped }
 
-class MonsterTextField: UITextField {
+public class MonsterTextField: UITextField {
     
     private let disposeBag = DisposeBag()
     private var countdownDisposable: Disposable?
@@ -24,7 +24,7 @@ class MonsterTextField: UITextField {
     
     public let _timerState = BehaviorRelay<TimerState>(value: .stopped)
     
-    var timerState: Driver<TimerState> {
+    public var timerState: Driver<TimerState> {
         return _timerState.asDriver(onErrorJustReturn: .stopped)
     }
     
@@ -111,7 +111,7 @@ class MonsterTextField: UITextField {
         }
     }
     
-    override var placeholder: String? {
+    public override var placeholder: String? {
         didSet {
             placeholderLabel.text = placeholder
             super.placeholder = ""
@@ -226,7 +226,7 @@ class MonsterTextField: UITextField {
 }
 
 extension MonsterTextField: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    public func textFieldDidBeginEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.3) {
             self.placeholderLabel.font = UIFont.systemFont(ofSize: 12)
             self.placeholderLabel.snp.updateConstraints {
@@ -236,7 +236,7 @@ extension MonsterTextField: UITextFieldDelegate {
         }
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    public func textFieldDidEndEditing(_ textField: UITextField) {
         if textField.text == "" {
             UIView.animate(withDuration: 0.3) {
                 self.placeholderLabel.font = UIFont.systemFont(ofSize: 16)
@@ -248,7 +248,7 @@ extension MonsterTextField: UITextFieldDelegate {
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         if let touch = touches.first {
             let location = touch.location(in: self)

@@ -44,6 +44,7 @@ final class DesignSystemViewController: UITableViewController {
         switch designSystem {
         case .button:
             print("커스텀 버튼")
+            self.navigationController?.pushViewController(ButtonViewController(), animated: true)
             break
         case .textField:
             print("텍스트 필드")
