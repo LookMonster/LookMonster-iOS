@@ -1,9 +1,8 @@
 //
-//  AuthButton.swift
-//  ResourceKit
+//  Monster+AuthButton.swift
+//  DesignSystemDemoApp
 //
-//  Created by 박준하 on 2023/08/03.
-//  Copyright © 2023 lookMonster.io. All rights reserved.
+//  Created by 박준하 on 2023/08/23.
 //
 
 import UIKit
@@ -12,7 +11,7 @@ import RxCocoa
 import Then
 import SnapKit
 
-open class AuthButton: UIButton {
+open class MonsterAuthButton: UIButton {
 
     private let iconImageView = UIImageView().then {
         $0.contentMode = .scaleAspectFit

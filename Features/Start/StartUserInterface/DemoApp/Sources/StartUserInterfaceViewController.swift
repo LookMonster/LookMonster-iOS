@@ -5,6 +5,7 @@ import SnapKit
 import SuperUI
 import RxSwift
 import RxCocoa
+import DesignSystem
 
 final class StartUserInterfaceViewController: BaseViewController {
     private let imageOptions: [UIImage] = [ResourceKitAsset.sBackground1.image]
@@ -27,9 +28,9 @@ final class StartUserInterfaceViewController: BaseViewController {
         $0.titleLabel?.font = .systemFont(ofSize: 40.0, weight: .black)
     }
     
-    private let googleLoginButton = AuthButton(image: ResourceKitAsset.googleIcon.image, title: "Google로 시작하기", backgorundColor: .white, titleColor: .black)
+    private let googleLoginButton = MonsterAuthButton(image: ResourceKitAsset.googleIcon.image, title: "Google로 시작하기", backgorundColor: .white, titleColor: .black)
     
-    private let appleLoginButton = AuthButton(image: ResourceKitAsset.appleIcon.image, title: "apple로 시작하기", backgorundColor: .black, titleColor: .white)
+    private let appleLoginButton = MonsterAuthButton(image: ResourceKitAsset.appleIcon.image, title: "apple로 시작하기", backgorundColor: .black, titleColor: .white)
     
     private let startWithEmailButton = UIButton().then {
         $0.setTitle("이메일로 시작하기", for: .normal)
