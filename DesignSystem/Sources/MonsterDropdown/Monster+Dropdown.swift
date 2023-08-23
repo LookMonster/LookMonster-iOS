@@ -43,6 +43,7 @@ class MonsterDropdownView: UIView, UITableViewDataSource, UITableViewDelegate {
         dropdownButton.setTitle(data[0], for:.normal)
         dropdownButton.setTitleColor(.black, for:.normal)
         dropdownButton.setImage(ResourceKitAsset.arrowDownIcon.image,for:.normal)
+        dropdownButton.tintColor = UIColor.black
         dropdownButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
 
         let spacing: CGFloat = 130
