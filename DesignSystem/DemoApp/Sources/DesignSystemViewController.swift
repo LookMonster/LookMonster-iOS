@@ -11,6 +11,7 @@ import UIKit
 fileprivate enum DesignSystemType: String, CaseIterable {
     case button
     case textField
+    case dropdown
 }
 
 final class DesignSystemViewController: UITableViewController {
@@ -49,6 +50,9 @@ final class DesignSystemViewController: UITableViewController {
         case .textField:
             print("텍스트 필드")
             self.navigationController?.pushViewController(TextFieldViewController(), animated: true)
+        case .dropdown:
+            print("드롭다운")
+            self.navigationController?.pushViewController(DropDownViewController(), animated: true)
         default: return
         }
     }
