@@ -14,6 +14,7 @@ public class TextFieldViewController: UIViewController {
     private let errorMonsterTextField = MonsterTextField()
     private let monsterTextField = MonsterTextField()
     private let eyeTextField = MonsterTextField()
+    private let timeMonsterTextField = MonsterTextField()
     
     public func errorMonsterTextFieldConfigure() {
         view.addSubview(errorMonsterTextField)
@@ -21,7 +22,6 @@ public class TextFieldViewController: UIViewController {
         errorMonsterTextField.errorType = .emptyInput
         errorMonsterTextField.useShowHideButton = false
     }
-    
     
     public func monsterTextFieldConfigure() {
         view.addSubview(monsterTextField)
@@ -35,6 +35,14 @@ public class TextFieldViewController: UIViewController {
         eyeTextField.useShowHideButton = true
     }
     
+    public func timeMonsterTextFieldConfigure() {
+        view.addSubview(timeMonsterTextField)
+        
+        timeMonsterTextField.placeholder = "이메일"
+        timeMonsterTextField.useShowHideButton = false
+        timeMonsterTextField.useTimer = true
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +51,10 @@ public class TextFieldViewController: UIViewController {
         monsterTextFieldConfigure()
         errorMonsterTextFieldConfigure()
         eyeTextFieldConfigure()
+        timeMonsterTextFieldConfigure()
         setUpConstraints()
+        
+        timeMonsterTextField.timerState = .started
     }
     
     private func setUpConstraints() {
@@ -62,6 +73,12 @@ public class TextFieldViewController: UIViewController {
         eyeTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20.0)
             $0.top.equalTo(monsterTextField.snp.bottom).offset(50.0)
+            $0.height.equalTo(58.0)
+        }
+        
+        timeMonsterTextField.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(20.0)
+            $0.top.equalTo(eyeTextField.snp.bottom).offset(50.0)
             $0.height.equalTo(58.0)
         }
     }
