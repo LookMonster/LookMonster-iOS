@@ -8,8 +8,11 @@
 import Foundation
 import UIKit
 import SnapKit
+import RxCocoa
+import RxSwift
 
 public class TextFieldViewController: UIViewController {
+    private let disposeBag = DisposeBag()
     
     private let errorMonsterTextField = MonsterTextField()
     private let monsterTextField = MonsterTextField()
@@ -54,7 +57,18 @@ public class TextFieldViewController: UIViewController {
         timeMonsterTextFieldConfigure()
         setUpConstraints()
         
-        timeMonsterTextField.timerState = .started
+        Observable.just(TimerState.started)
+            .bind(to: timeMonsterTextField._timerState)
+            .disposed(by: disposeBag)
+        
+        timeMonsterTextField.timerState
+            .drive(onNext: { [weak self] state in
+                if state == .stopped {
+                    print("펑")
+                }
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     private func setUpConstraints() {

@@ -9,12 +9,25 @@ import UIKit
 import Then
 import SnapKit
 import ResourceKit
+import RxCocoa
+import RxSwift
+
+enum TimerState { case started, stopped }
 
 class MonsterTextField: UITextField {
     
     private var timerLabel: UILabel = UILabel()
     private var countdownTimer: Timer?
     private var remainingSeconds = 180
+    
+    private let disposeBag = DisposeBag()
+    private var countdownDisposable: Disposable?
+    
+    public let _timerState = BehaviorRelay<TimerState>(value: .stopped)
+    
+    var timerState: Driver<TimerState> {
+        return _timerState.asDriver(onErrorJustReturn: .stopped)
+    }
     
     private let placeholderLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 16)
@@ -82,13 +95,6 @@ class MonsterTextField: UITextField {
             }
         }
     }
-    
-    enum TimerState { case started, stopped }
-    var timerState: TimerState = .stopped {
-        didSet {
-            setupTimer(state: timerState)
-        }
-    }
 
     override var placeholder: String? {
         didSet {
@@ -109,7 +115,13 @@ class MonsterTextField: UITextField {
 
     private func setupUI() {
         configure()
-        delegate = self
+         delegate = self
+         
+         timerState
+             .drive(onNext: { [weak self] state in
+                 self?.setupTimer(state: state)
+             })
+             .disposed(by: disposeBag)
     }
 
     private func configure() {
@@ -168,21 +180,24 @@ class MonsterTextField: UITextField {
     private func setupTimer(state: TimerState) {
         switch state {
         case .started:
-            countdownTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
+            countdownDisposable = Observable<Int>
+                .interval(.seconds(1), scheduler: MainScheduler.instance)
+                .subscribe(onNext: { [weak self] _ in
+                    self?.updateTimer()
+                })
         case .stopped:
-            countdownTimer?.invalidate()
-            countdownTimer = nil
+            countdownDisposable?.dispose()
             remainingSeconds = 180
             updateTimerLabel()
         }
     }
 
-    @objc private func updateTimer() {
+    private func updateTimer() {
         if remainingSeconds > 0 {
             remainingSeconds -= 1
             updateTimerLabel()
         } else {
-            timerState = .stopped
+            _timerState.accept(.stopped)
         }
     }
 
@@ -198,11 +213,11 @@ class MonsterTextField: UITextField {
         timerLabel.text = "03:00"
         timerLabel.textColor = .black
         timerLabel.font = UIFont.systemFont(ofSize: 14)
-    
-        NSLayoutConstraint.activate([
-            timerLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            timerLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8)
-        ])
+        
+        timerLabel.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalTo(-8)
+        }
         
         rightView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         rightViewMode = .always
@@ -240,5 +255,11 @@ extension MonsterTextField: UITextFieldDelegate {
                 togglePasswordVisibility()
             }
         }
+    }
+}
+
+extension Reactive where Base: MonsterTextField {
+    var timerState: Driver<TimerState> {
+        return base._timerState.asDriver(onErrorJustReturn: .stopped)
     }
 }
