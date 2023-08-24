@@ -19,6 +19,11 @@ let project = Project(name: "Core",
                                 .ThirdParty.SPM.RIBs,
 //                                .ThirdParty.RxSwift,
                                 .Core.RIBsUtil,
+                                .ThirdParty.SPM.RxCocoa,
+                                .ThirdParty.SPM.RxSwift,
+                                .ThirdParty.SPM.SnapKit,
+                                .ThirdParty.SPM.Then,
+                                .DesignSystem.Implement
                             ]
                         ),
                         Project.makeTarget(
