@@ -22,16 +22,12 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     
     public lazy var titleLabel = MonsterAuthLabel(text: "회원가입을 위해\n이메일을 입력해 주세요")
     
-    public lazy var emailTextField = MonsterTextField().then {
-        $0.placeholder = "이메일"
+    public lazy var emailTextField = MonsterTextField(placeholder: "이메일").then {
         $0.useShowHideButton = false
     }
     
-    public lazy var nextButton = MonsterButton(title: "다음", backgorundColor: .black, titleColor: .white).then {
-        $0.isEnabled = false
-        $0.backgroundColor = .gray
-    }
-
+    public lazy var nextButton = MonsterButton(title: "다음", backgorundColor: .gray, titleColor: .white)
+    
     public var uiviewController: UIViewController {
         return self
     }

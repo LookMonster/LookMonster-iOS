@@ -118,6 +118,12 @@ public class MonsterTextField: UITextField {
         }
     }
     
+    public convenience init(placeholder: String) {
+        self.init(frame: .zero)
+        placeholderLabel.text = placeholder
+    }
+
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
