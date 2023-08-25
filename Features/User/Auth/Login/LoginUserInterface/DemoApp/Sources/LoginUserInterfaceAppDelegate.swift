@@ -38,9 +38,9 @@ class LoginAppDelegate: UIResponder, UIApplicationDelegate {
         router = LoginBuilder(dependency: loginComponent)
             .build(withListener: MockLoginListener(), currentImageIndex: nil)
         router?.interactable.activate()
-        router?.load()
         
-        window.rootViewController = self.router?.viewControllable.uiviewController
+        let navigationController = UINavigationController(rootViewController: self.router!.viewControllable.uiviewController)
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
         
