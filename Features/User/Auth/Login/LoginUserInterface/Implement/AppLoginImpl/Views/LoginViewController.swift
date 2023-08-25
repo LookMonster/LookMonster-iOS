@@ -22,13 +22,7 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
         $0.currentPageIndicatorTintColor = UIColor.black
     }
     
-    public lazy var titleLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 32.0, weight: .bold)
-        $0.textColor = UIColor.black
-        $0.textAlignment = .left
-        $0.numberOfLines = 2
-        $0.text = "회원가입을 위해\n이메일을 입력해 주세요"
-    }
+    public lazy var titleLabel = MonsterAuthLabel(text: "회원가입을 위해\n이메일을 입력해 주세요")
     
     public lazy var emailTextField = MonsterTextField().then {
         $0.placeholder = "이메일"
@@ -61,7 +55,7 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     }
     
     public func layout() {
-        self.view.addSubview(pageControl)
+        view.addSubview(pageControl)
         view.addSubview(titleLabel)
         view.addSubview(emailTextField)
         view.addSubview(nextButton)
@@ -106,10 +100,7 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
 //            })
 //            .disposed(by: disposeBag)
         
-        
         let inputTextObservable = emailTextField.rx.text.orEmpty
-        let isButtonEnabled = BehaviorRelay(value: false)
-
         
         inputTextObservable
             .map { !$0.isEmpty }
