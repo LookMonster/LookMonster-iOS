@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import DesignSystem
 
 fileprivate enum DesignSystemType: String, CaseIterable {
     case button
     case textField
     case dropdown
+    case pageControl
 }
 
 final class DesignSystemViewController: UITableViewController {
@@ -53,6 +55,9 @@ final class DesignSystemViewController: UITableViewController {
         case .dropdown:
             print("드롭다운")
             self.navigationController?.pushViewController(DropDownViewController(), animated: true)
+        case .pageControl:
+            print("페이지 컨트롤러")
+            self.navigationController?.pushViewController(PageControlViewController(), animated: true)
         default: return
         }
     }
