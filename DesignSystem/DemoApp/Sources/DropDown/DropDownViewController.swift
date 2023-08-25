@@ -7,12 +7,13 @@
 
 import UIKit
 import SnapKit
+import DesignSystem
 
-class DropDownViewController: UIViewController {
+open class DropDownViewController: UIViewController {
     
     let dropdownView = MonsterDropdownView()
     
-    override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
