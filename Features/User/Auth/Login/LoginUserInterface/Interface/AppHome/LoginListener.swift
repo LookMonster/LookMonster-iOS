@@ -10,5 +10,6 @@ import RIBs
 
 public protocol LoginListener: AnyObject {
     
-    func loginButtonDidTap(email: String)
+    func loginButtonDidTap(email: String, password: String)
+
 }

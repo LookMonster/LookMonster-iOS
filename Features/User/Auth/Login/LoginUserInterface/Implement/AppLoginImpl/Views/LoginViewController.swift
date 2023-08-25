@@ -15,15 +15,15 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     var listener: LoginListener?
     private var disposeBag = DisposeBag()
     
-    public lazy var pageControl = MonsterPageControl().then {
-        $0.numberOfPages = 4
-        $0.currentPage = 0
+    public lazy var titleLabel = MonsterAuthLabel(text: "로그인")
+    
+    public lazy var idTextField = MonsterTextField(placeholder: "아이디").then {
+        $0.useShowHideButton = false
     }
     
-    public lazy var titleLabel = MonsterAuthLabel(text: "회원가입을 위해\n이메일을 입력해 주세요")
-    
-    public lazy var emailTextField = MonsterTextField(placeholder: "이메일").then {
-        $0.useShowHideButton = false
+    public lazy var passwordTextField = MonsterTextField(placeholder: "비밀번호").then {
+        $0.useShowHideButton = true
+        $0.isSecureTextEntry = true
     }
     
     public lazy var nextButton = MonsterButton(title: "다음", backgorundColor: .gray, titleColor: .white)
@@ -33,13 +33,7 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     }
 
     public let loginView = LoginView()
-    
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        pageControl.configurePageControl()
-    }
-    
+
     public init() {
         super.init(nibName: nil, bundle: nil)
         self.bind()
@@ -55,24 +49,24 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     }
     
     public func layout() {
-        view.addSubview(pageControl)
         view.addSubview(titleLabel)
-        view.addSubview(emailTextField)
+        view.addSubview(idTextField)
+        view.addSubview(passwordTextField)
         view.addSubview(nextButton)
-        
-        pageControl.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide)
-            $0.leading.equalToSuperview().offset(5.0)
-            $0.height.equalTo(24.0)
-        }
-        
+
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(pageControl.snp.bottom).offset(20.0)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(24.0)
             $0.trailing.leading.equalToSuperview().inset(20.0)
         }
         
-        emailTextField.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(42.0)
+        idTextField.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(50.0)
+            $0.leading.trailing.equalToSuperview().inset(20.0)
+            $0.height.equalTo(58.0)
+        }
+        
+        passwordTextField.snp.makeConstraints {
+            $0.top.equalTo(idTextField.snp.bottom).offset(60.0)
             $0.leading.trailing.equalToSuperview().inset(20.0)
             $0.height.equalTo(58.0)
         }
@@ -88,7 +82,7 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     private func bind() {
         self.view.backgroundColor = .white
 
-        let inputTextObservable = emailTextField.rx.text.orEmpty
+        let inputTextObservable = idTextField.rx.text.orEmpty
         
         inputTextObservable
             .map { !$0.isEmpty }
@@ -108,8 +102,8 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                if let email = self.emailTextField.text {
-                    self.listener?.loginButtonDidTap(email: email)
+                if let email = self.idTextField.text, let password = self.passwordTextField.text {
+                    self.listener?.loginButtonDidTap(email: email, password: password)
                 }
             })
             .disposed(by: disposeBag)

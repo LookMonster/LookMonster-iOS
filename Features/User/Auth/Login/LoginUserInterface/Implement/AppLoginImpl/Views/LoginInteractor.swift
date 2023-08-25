@@ -45,7 +45,7 @@ final class LoginInteractor: PresentableInteractor<LoginPresentable>,
 
 extension LoginInteractor {
     
-    func loginButtonDidTap(email: String) {
-        print(email)
+    func loginButtonDidTap(email: String, password: String) {
+        print("ID: \(email)\nPW: \(password)")
     }
 }
