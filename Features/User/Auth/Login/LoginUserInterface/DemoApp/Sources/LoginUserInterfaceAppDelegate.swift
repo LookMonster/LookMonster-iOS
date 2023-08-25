@@ -18,13 +18,10 @@ import RxCocoa
 class LoginAppDelegate: UIResponder, UIApplicationDelegate {
     
     private final class MockLoginListener: LoginListener {
-        func loginButtonDidTap() {
-            print("loginButtonDidTap")
+        func loginButtonDidTap(email: String) {
+            fatalError()
         }
         
-        func loginCancel() {
-            print("LoginCancel")
-        }
     }
     
     var window: UIWindow?
@@ -36,11 +33,11 @@ class LoginAppDelegate: UIResponder, UIApplicationDelegate {
         
         let loginComponent = LoginMockComponent()
         router = LoginBuilder(dependency: loginComponent)
-            .build(withListener: MockLoginListener(), currentImageIndex: nil)
+                    .build(withListener: MockLoginListener(), currentImageIndex: nil)
         router?.interactable.activate()
-        router?.load()
         
-        window.rootViewController = self.router?.viewControllable.uiviewController
+        let navigationController = UINavigationController(rootViewController: self.router!.viewControllable.uiviewController)
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         self.window = window
         

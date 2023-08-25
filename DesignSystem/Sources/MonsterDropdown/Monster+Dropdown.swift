@@ -2,7 +2,7 @@ import UIKit
 import ResourceKit
 import SnapKit
 
-class MonsterDropdownView: UIView, UITableViewDataSource, UITableViewDelegate {
+open class MonsterDropdownView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     let dropdownButton = UIButton(type: .system)
     let tableView = UITableView()
@@ -11,7 +11,7 @@ class MonsterDropdownView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     var isDropdownVisible = false {
         didSet {
-            dropdownButton.setImage(isDropdownVisible ? ResourceKitAsset.arrowUpIcon.image : ResourceKitAsset.arrowDownIcon.image, for: .normal)
+            dropdownButton.setImage(isDropdownVisible ? ResourceKitAsset.arrowUp.image : ResourceKitAsset.arrowDown.image, for: .normal)
         }
     }
     
@@ -21,7 +21,7 @@ class MonsterDropdownView: UIView, UITableViewDataSource, UITableViewDelegate {
         setupUI()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         setupUI()
@@ -42,7 +42,7 @@ class MonsterDropdownView: UIView, UITableViewDataSource, UITableViewDelegate {
         
         dropdownButton.setTitle(data[0], for:.normal)
         dropdownButton.setTitleColor(.black, for:.normal)
-        dropdownButton.setImage(ResourceKitAsset.arrowDownIcon.image,for:.normal)
+        dropdownButton.setImage(ResourceKitAsset.arrowDown.image,for:.normal)
         dropdownButton.tintColor = UIColor.black
         dropdownButton.titleLabel?.font = UIFont.systemFont(ofSize: 17.0, weight: .semibold)
 
@@ -52,7 +52,7 @@ class MonsterDropdownView: UIView, UITableViewDataSource, UITableViewDelegate {
 
         dropdownButton.semanticContentAttribute = UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft ? .forceLeftToRight : .forceRightToLeft
         
-        dropdownButton.backgroundColor = ResourceKitAsset.Color.gray50.color
+        dropdownButton.backgroundColor = ResourceKitAsset.gray50.color
         dropdownButton.layer.cornerRadius = 8.0
         
         dropdownButton.addTarget(self, action:#selector(toggleDropdown), for:.touchUpInside)
@@ -85,20 +85,20 @@ class MonsterDropdownView: UIView, UITableViewDataSource, UITableViewDelegate {
         
     }
     
-    func tableView(_ tableView:UITableView,numberOfRowsInSection section:Int)->Int{
+    public func tableView(_ tableView:UITableView,numberOfRowsInSection section:Int)->Int{
         return data.count
     }
     
-    func tableView(_ tableView:UITableView,cellForRowAt indexPath : IndexPath)->UITableViewCell{
+    public func tableView(_ tableView:UITableView,cellForRowAt indexPath : IndexPath)->UITableViewCell{
         let cell = tableView.dequeueReusableCell(withIdentifier:"cell")!
         
         cell.textLabel?.text = data[indexPath.row]
-        cell.backgroundColor = ResourceKitAsset.Color.gray50.color
+        cell.backgroundColor = ResourceKitAsset.gray50.color
         
         return cell
     }
     
-    func tableView(_ tableView:UITableView,didSelectRowAt indexPath : IndexPath){
+    public func tableView(_ tableView:UITableView,didSelectRowAt indexPath : IndexPath){
         print("You selected \(data[indexPath.row])")
         dropDownButtonClick(title:data[indexPath.row])
         toggleDropdown()

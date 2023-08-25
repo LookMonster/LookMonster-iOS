@@ -32,7 +32,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Features.User.Auth.Login.Data.Implement,
         .Features.User.Auth.Login.Domain.Implement,
         .LKNetwork.Implement,
-        .TokenManager.Implement
+        .TokenManager.Implement,
     ],
     isUserInterface: true
 )
