@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 import Then
 import SnapKit
+import ResourceKit
 
 open class MonsterButton: UIButton {
     
@@ -38,7 +39,7 @@ open class MonsterButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupViews() {
+    public func setupViews() {
         addSubview(iconImageView)
         addSubview(textLabel)
 
