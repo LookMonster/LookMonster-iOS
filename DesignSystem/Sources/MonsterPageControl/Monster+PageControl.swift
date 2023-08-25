@@ -7,11 +7,24 @@
 
 import Foundation
 import UIKit
+import ResourceKit
 
 open class MonsterPageControl: UIPageControl {
     
     var dotSize: CGSize = CGSize(width: 8, height: 8)
     let spacing: CGFloat = 8.0
+    
+    public convenience init() {
+        self.init(frame: .zero)
+    }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required public init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     open override func layoutSubviews() {
         super.layoutSubviews()
@@ -35,5 +48,10 @@ open class MonsterPageControl: UIPageControl {
             dotView.layer.cornerRadius = self.dotSize.height / 2
             dotView.layer.masksToBounds = true
         }
+    }
+    
+    public func configurePageControl() {
+        self.pageIndicatorTintColor = ResourceKitAsset.gray200.color
+        self.currentPageIndicatorTintColor = UIColor.black
     }
 }

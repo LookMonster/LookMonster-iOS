@@ -18,8 +18,6 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     public lazy var pageControl = MonsterPageControl().then {
         $0.numberOfPages = 4
         $0.currentPage = 0
-        $0.pageIndicatorTintColor = ResourceKitAsset.gray200.color
-        $0.currentPageIndicatorTintColor = UIColor.black
     }
     
     public lazy var titleLabel = MonsterAuthLabel(text: "회원가입을 위해\n이메일을 입력해 주세요")
@@ -39,6 +37,12 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     }
 
     public let loginVIew = LoginView()
+    
+    public override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        pageControl.configurePageControl()
+    }
     
     public init() {
         super.init(nibName: nil, bundle: nil)
