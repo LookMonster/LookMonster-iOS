@@ -40,15 +40,12 @@ final class LoginInteractor: PresentableInteractor<LoginPresentable>,
     override func willResignActive() {
         super.willResignActive()
     }
+    
 }
 
 extension LoginInteractor {
     
-    func loginButtonDidTap() {
-        listener?.loginButtonDidTap()
-    }
-    
-    func loginCancel() {
-        listener?.loginCancel()
+    func loginButtonDidTap(email: String) {
+        print(email)
     }
 }

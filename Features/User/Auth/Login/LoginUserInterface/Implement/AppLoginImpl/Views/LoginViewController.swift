@@ -32,7 +32,7 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
         return self
     }
 
-    public let loginVIew = LoginView()
+    public let loginView = LoginView()
     
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -87,26 +87,13 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     
     private func bind() {
         self.view.backgroundColor = .white
-//        profileView.rx.selectButtonTapped
-//            .subscribe(onNext: { [weak self] _ in
-//                guard let imageType = self?.profileView.currentProfileImage.profileImageType else { return }
-//                self?.listener?.didTapSelectButton(with: imageType.rawValue)
-//            })
-//            .disposed(by: disposeBag)
-//
-//        self.rx.didTapDimmedView
-//            .subscribe(onNext: { [weak self] _ in
-//                self?.listener?.didTapDimmedView()
-//            })
-//            .disposed(by: disposeBag)
-        
+
         let inputTextObservable = emailTextField.rx.text.orEmpty
         
         inputTextObservable
             .map { !$0.isEmpty }
             .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
-        
         
         inputTextObservable
             .map { text in
@@ -119,9 +106,13 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
             .disposed(by: disposeBag)
         
         nextButton.rx.tap
-            .subscribe(with: self, onNext: { owner, _  in
-                print("asdf")
-            }).disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                if let email = self.emailTextField.text {
+                    self.listener?.loginButtonDidTap(email: email)
+                }
+            })
+            .disposed(by: disposeBag)
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
