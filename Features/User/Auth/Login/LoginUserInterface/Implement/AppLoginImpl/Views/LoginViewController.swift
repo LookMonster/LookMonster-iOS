@@ -19,6 +19,7 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     
     public lazy var idTextField = MonsterTextField(placeholder: "아이디").then {
         $0.useShowHideButton = false
+        $0.gmailCondition = true
     }
     
     public lazy var passwordTextField = MonsterTextField(placeholder: "비밀번호").then {

@@ -22,6 +22,8 @@ public class MonsterTextField: UITextField {
     private var countdownTimer: Timer?
     private var remainingSeconds = 180
     
+    public var gmailCondition: Bool = false
+    
     public let _timerState = BehaviorRelay<TimerState>(value: .stopped)
     
     public var timerState: Driver<TimerState> {
@@ -230,6 +232,13 @@ public class MonsterTextField: UITextField {
         rightView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         rightViewMode = .always
     }
+    
+    public func checkGmailFormat() -> Bool {
+        guard let emailText = self.text else { return false }
+        let emailRegex = "^[\\w.-]+@gmail.com$"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegex)
+        return emailTest.evaluate(with: emailText)
+    }
 }
 
 extension MonsterTextField: UITextFieldDelegate {
@@ -251,6 +260,15 @@ extension MonsterTextField: UITextFieldDelegate {
                     $0.bottom.equalTo(self.underlineView.snp.top).offset(-4)
                 }
                 self.layoutIfNeeded()
+            }
+        }
+
+        if gmailCondition {
+            if !checkGmailFormat() {
+                showError = true
+                errorMessage = "Please enter a valid Gmail address."
+            } else {
+                showError = false
             }
         }
     }
