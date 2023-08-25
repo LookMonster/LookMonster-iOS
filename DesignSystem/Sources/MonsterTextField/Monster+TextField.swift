@@ -29,7 +29,7 @@ public class MonsterTextField: UITextField {
     }
     
     private let placeholderLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 16)
+        $0.font = UIFont.systemFont(ofSize: 20)
         $0.textColor = UIColor.gray
     }
     
