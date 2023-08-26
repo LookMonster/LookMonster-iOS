@@ -18,10 +18,9 @@ import RxCocoa
 class LoginAppDelegate: UIResponder, UIApplicationDelegate {
     
     private final class MockLoginListener: LoginListener {
-        func loginButtonDidTap(email: String) {
+        func loginButtonDidTap(email: String, password: String) {
             fatalError()
         }
-        
     }
     
     var window: UIWindow?
