@@ -37,7 +37,9 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
 
     public init() {
         super.init(nibName: nil, bundle: nil)
-        self.bind()
+        self.textFieldBind()
+        self.buttonBind()
+        self.attrebute()
         self.layout()
     }
     
@@ -79,9 +81,12 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
         }
     }
 
-    
-    private func bind() {
+    private func attrebute() {
         self.view.backgroundColor = .white
+        self.view.setupHideKeyboardOnTap(disposeBag: disposeBag)
+    }
+    
+    private func textFieldBind() {
 
         let inputTextObservable = idTextField.rx.text.orEmpty
         
@@ -99,7 +104,9 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
                 self?.nextButton.backgroundColor = backgroundColor
             })
             .disposed(by: disposeBag)
-        
+    }
+    
+    private func buttonBind() {
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
@@ -109,8 +116,4 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
             })
             .disposed(by: disposeBag)
     }
-    
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-            self.view.endEditing(true)
-   }
 }
