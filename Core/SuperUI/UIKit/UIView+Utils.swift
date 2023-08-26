@@ -1,4 +1,6 @@
 import UIKit
+import RxCocoa
+import RxSwift
 
 public extension UIView {
     func addShadowWithRoundedCorners(
@@ -25,5 +27,16 @@ public extension UIView {
     
     func addSubviews(_ viewsToAdd: [UIView]) {
         viewsToAdd.forEach({addSubview($0)})
+    }
+    
+    func setupHideKeyboardOnTap(disposeBag: DisposeBag) {
+        let tapGesture = UITapGestureRecognizer()
+        self.addGestureRecognizer(tapGesture)
+
+        tapGesture.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.endEditing(true)
+            })
+            .disposed(by: disposeBag)
     }
 }
