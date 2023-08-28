@@ -45,6 +45,7 @@ final class LoginInteractor: PresentableInteractor<LoginPresentable>,
     
 }
 
+//로직 처리 함수
 extension LoginInteractor {
     
     func loginButtonDidTap(email: String, password: String) {
@@ -55,16 +56,28 @@ extension LoginInteractor {
         if !checkGmailFormat(emailText: textfield.text) {
             textfield.showError = true
             textfield.emailErrorType = .formatIncorrect
+        } else if !checkEmailLength(emailText: textfield.text) {
+            textfield.showError = true
+            textfield.emailErrorType = .enteredValueExceeded
         } else {
             textfield.showError = false
             textfield.emailErrorType = nil
         }
     }
+}
+
+//로직 함수
+extension LoginInteractor {
     
-    public func checkGmailFormat(emailText: String?) -> Bool {
+    func checkGmailFormat(emailText: String?) -> Bool {
         guard let emailText = emailText else { return false }
         let emailRegex = "^[\\w.-]+@gmail.com$"
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailTest.evaluate(with: emailText)
+    }
+    
+    func checkEmailLength(emailText: String?) -> Bool {
+        guard let emailText = emailText else { return false }
+        return emailText.count <= 30
     }
 }

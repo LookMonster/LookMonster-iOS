@@ -106,12 +106,19 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
             })
             .disposed(by: disposeBag)
         
+        idTextField.rx.controlEvent(.editingChanged)
+            .subscribe(onNext: { [weak self] in
+                if let text = self?.idTextField.text, text.count > 30 {
+                    self?.idTextField.deleteBackward()
+                }
+            })
+            .disposed(by: disposeBag)
+        
         inputTextObservable
             .subscribe(onNext: { [weak self] text in
                 self?.listener?.checkGmailTextField(textfield: self?.idTextField ?? MonsterTextField())
             })
             .disposed(by: disposeBag)
-        
     }
     
     private func buttonBind() {
