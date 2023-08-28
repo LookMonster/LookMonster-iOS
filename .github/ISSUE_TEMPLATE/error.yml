@@ -1,0 +1,18 @@
+name: "Erorr"
+description: "코드에 잘못된 부분을 코쳐야합니다 🧯"
+labels: 에러
+body:
+
+  - type: textarea
+    attributes:
+      label: 설명
+      description: |
+        에러가 난 부분을 알려주세요
+      placeholder: |
+        여기가 잘못된 것 같아요.
+  - type: textarea
+    attributes:
+      label: 추가사항
+      description: |
+        더 문제가 있을까요?
+

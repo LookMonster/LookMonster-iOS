@@ -21,9 +21,7 @@ public class MonsterTextField: UITextField {
     
     private var countdownTimer: Timer?
     private var remainingSeconds = 180
-    
-    public var gmailCondition: Bool = false
-    
+        
     public let _timerState = BehaviorRelay<TimerState>(value: .stopped)
     
     public var timerState: Driver<TimerState> {
@@ -103,10 +101,72 @@ public class MonsterTextField: UITextField {
         }
     }
     
-    
-    public var errorType: MonsterTextFieldErrorType? {
+    public var emailErrorType: MonsterTextFieldErrorType.Email? {
         didSet {
-            if let errorType = errorType {
+            if let errorType = emailErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var passwordErrorType: MonsterTextFieldErrorType.Password? {
+        didSet {
+            if let errorType = passwordErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var codeErrorType: MonsterTextFieldErrorType.Code? {
+        didSet {
+            if let errorType = codeErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var nameErrorType: MonsterTextFieldErrorType.Name? {
+        didSet {
+            if let errorType = nameErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var ageErrorType: MonsterTextFieldErrorType.Age? {
+        didSet {
+            if let errorType = ageErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var idErrorType: MonsterTextFieldErrorType.ID? {
+        didSet {
+            if let errorType = idErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var heightErrorType: MonsterTextFieldErrorType.Height? {
+        didSet {
+            if let errorType = heightErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var weightErrorType: MonsterTextFieldErrorType.Weight? {
+        didSet {
+            if let errorType = weightErrorType {
                 errorMessage = errorType.message
                 showError = errorType.showError
             }
@@ -232,13 +292,6 @@ public class MonsterTextField: UITextField {
         rightView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 20))
         rightViewMode = .always
     }
-    
-    public func checkGmailFormat() -> Bool {
-        guard let emailText = self.text else { return false }
-        let emailRegex = "^[\\w.-]+@gmail.com$"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegex)
-        return emailTest.evaluate(with: emailText)
-    }
 }
 
 extension MonsterTextField: UITextFieldDelegate {
@@ -263,14 +316,7 @@ extension MonsterTextField: UITextFieldDelegate {
             }
         }
 
-        if gmailCondition {
-            if !checkGmailFormat() {
-                showError = true
-                errorMessage = "Please enter a valid Gmail address."
-            } else {
-                showError = false
-            }
-        }
+
     }
     
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

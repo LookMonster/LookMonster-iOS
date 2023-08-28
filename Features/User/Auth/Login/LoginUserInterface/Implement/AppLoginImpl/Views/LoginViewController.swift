@@ -15,11 +15,12 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     var listener: LoginListener?
     private var disposeBag = DisposeBag()
     
+    public var gmailCondition: Bool = false
+    
     public lazy var titleLabel = MonsterAuthLabel(text: "로그인")
     
     public lazy var idTextField = MonsterTextField(placeholder: "아이디").then {
         $0.useShowHideButton = false
-        $0.gmailCondition = true
     }
     
     public lazy var passwordTextField = MonsterTextField(placeholder: "비밀번호").then {
@@ -37,7 +38,9 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
 
     public init() {
         super.init(nibName: nil, bundle: nil)
-        self.bind()
+        self.textFieldBind()
+        self.buttonBind()
+        self.attrebute()
         self.layout()
     }
     
@@ -79,9 +82,12 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
         }
     }
 
-    
-    private func bind() {
+    private func attrebute() {
         self.view.backgroundColor = .white
+        self.view.setupHideKeyboardOnTap(disposeBag: disposeBag)
+    }
+    
+    private func textFieldBind() {
 
         let inputTextObservable = idTextField.rx.text.orEmpty
         
@@ -100,17 +106,30 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
             })
             .disposed(by: disposeBag)
         
+        idTextField.rx.controlEvent(.editingChanged)
+            .subscribe(onNext: { [weak self] in
+                if let text = self?.idTextField.text, text.count > 30 {
+                    self?.idTextField.deleteBackward()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        inputTextObservable
+            .subscribe(onNext: { [weak self] text in
+                self?.listener?.checkGmailTextField(textfield: self?.idTextField ?? MonsterTextField())
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func buttonBind() {
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
                 if let email = self.idTextField.text, let password = self.passwordTextField.text {
                     self.listener?.loginButtonDidTap(email: email, password: password)
+                    self.listener?.checkPasswordTextField(textfield: self.passwordTextField)
                 }
             })
             .disposed(by: disposeBag)
     }
-    
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
-            self.view.endEditing(true)
-   }
 }

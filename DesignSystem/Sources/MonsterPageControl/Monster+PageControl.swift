@@ -11,7 +11,7 @@ import ResourceKit
 
 open class MonsterPageControl: UIPageControl {
     
-    var dotSize: CGSize = CGSize(width: 8, height: 8)
+    public var dotSize: CGSize = CGSize(width: 8, height: 8)
     let spacing: CGFloat = 8.0
     
     public convenience init() {

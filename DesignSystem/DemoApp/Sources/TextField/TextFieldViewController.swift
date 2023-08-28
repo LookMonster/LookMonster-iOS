@@ -24,7 +24,7 @@ public class TextFieldViewController: UIViewController {
     public func errorMonsterTextFieldConfigure() {
         view.addSubview(errorMonsterTextField)
         errorMonsterTextField.placeholder = "이메일"
-        errorMonsterTextField.errorType = .emptyInput
+        errorMonsterTextField.emailErrorType = .alreadyUse
         errorMonsterTextField.useShowHideButton = false
     }
     

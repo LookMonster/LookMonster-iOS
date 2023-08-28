@@ -1,5 +1,6 @@
 import UIKit
 import RIBs
+import DesignSystem
 import LoginUserInterface
 import LoginUserInterfaceImpl
 import LoginData
@@ -18,10 +19,17 @@ import RxCocoa
 class LoginAppDelegate: UIResponder, UIApplicationDelegate {
     
     private final class MockLoginListener: LoginListener {
-        func loginButtonDidTap(email: String) {
+        func checkGmailTextField(textfield: DesignSystem.MonsterTextField) {
             fatalError()
         }
         
+        func loginButtonDidTap(email: String, password: String) {
+            fatalError()
+        }
+        
+        func checkPasswordTextField(textfield: MonsterTextField) {
+            fatalError()
+        }
     }
     
     var window: UIWindow?
