@@ -112,6 +112,69 @@ public class MonsterTextField: UITextField {
         }
     }
     
+    public var passwordErrorType: MonsterTextFieldErrorType.Password? {
+        didSet {
+            if let errorType = passwordErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var codeErrorType: MonsterTextFieldErrorType.Code? {
+        didSet {
+            if let errorType = codeErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var nameErrorType: MonsterTextFieldErrorType.Name? {
+        didSet {
+            if let errorType = nameErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var ageErrorType: MonsterTextFieldErrorType.Age? {
+        didSet {
+            if let errorType = ageErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var idErrorType: MonsterTextFieldErrorType.ID? {
+        didSet {
+            if let errorType = idErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var heightErrorType: MonsterTextFieldErrorType.Height? {
+        didSet {
+            if let errorType = heightErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
+    public var weightErrorType: MonsterTextFieldErrorType.Weight? {
+        didSet {
+            if let errorType = weightErrorType {
+                errorMessage = errorType.message
+                showError = errorType.showError
+            }
+        }
+    }
+    
     public override var placeholder: String? {
         didSet {
             placeholderLabel.text = placeholder

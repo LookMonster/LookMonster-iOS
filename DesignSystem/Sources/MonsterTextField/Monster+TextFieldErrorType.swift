@@ -61,6 +61,29 @@ public enum MonsterTextFieldErrorType {
         }
     }
     
+    public enum Code {
+        case invalid // 유효하지 않은 인증 코드
+        case expiration // 인증 코드 만료
+        case resendRestrictions // 인증 코드 재전송 제한
+        case format // 인증 코드 형식 오류
+        
+        var message: String {
+            switch self {
+            case .invalid:
+                return "유효하지 않은 인증 코드"
+            case .expiration:
+                return "인증 코드 만료"
+            case .resendRestrictions:
+                return "인증 코드 재전송 제한"
+            case .format:
+                return "인증 코드 형식 오류"
+            }
+        }
+        var showError: Bool {
+            return true
+        }
+    }
+    
     public enum Name {
         case tooLong // 이름이 너무 길어요 (16글자 이하)
         case tooShort // 이름이 너무 짧아요 (2글자 이상)
