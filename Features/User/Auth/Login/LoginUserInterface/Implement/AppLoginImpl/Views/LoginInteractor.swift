@@ -8,7 +8,9 @@
 
 import RIBs
 import RxSwift
+import DesignSystem
 import LoginUserInterface
+import Foundation
 
 protocol LoginRouting: ViewableRouting {
     
@@ -20,7 +22,7 @@ protocol LoginPresentable: Presentable {
 
 final class LoginInteractor: PresentableInteractor<LoginPresentable>,
                              LoginInteractable, LoginListener {
-    
+
     weak var router: LoginRouting?
     weak var listener: LoginListener?
 
@@ -47,5 +49,22 @@ extension LoginInteractor {
     
     func loginButtonDidTap(email: String, password: String) {
         print("ID: \(email)\nPW: \(password)")
+    }
+    
+    func checkGmailTextField(textfield: MonsterTextField) {
+        if !checkGmailFormat(emailText: textfield.text) {
+            textfield.showError = true
+            textfield.emailErrorType = .formatIncorrect
+        } else {
+            textfield.showError = false
+            textfield.emailErrorType = nil
+        }
+    }
+    
+    public func checkGmailFormat(emailText: String?) -> Bool {
+        guard let emailText = emailText else { return false }
+        let emailRegex = "^[\\w.-]+@gmail.com$"
+        let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailTest.evaluate(with: emailText)
     }
 }

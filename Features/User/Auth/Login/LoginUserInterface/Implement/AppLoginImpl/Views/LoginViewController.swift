@@ -15,11 +15,12 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
     var listener: LoginListener?
     private var disposeBag = DisposeBag()
     
+    public var gmailCondition: Bool = false
+    
     public lazy var titleLabel = MonsterAuthLabel(text: "로그인")
     
     public lazy var idTextField = MonsterTextField(placeholder: "아이디").then {
         $0.useShowHideButton = false
-        $0.gmailCondition = true
     }
     
     public lazy var passwordTextField = MonsterTextField(placeholder: "비밀번호").then {
@@ -104,6 +105,13 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
                 self?.nextButton.backgroundColor = backgroundColor
             })
             .disposed(by: disposeBag)
+        
+        inputTextObservable
+            .subscribe(onNext: { [weak self] text in
+                self?.listener?.checkGmailTextField(textfield: self?.idTextField ?? MonsterTextField())
+            })
+            .disposed(by: disposeBag)
+        
     }
     
     private func buttonBind() {
