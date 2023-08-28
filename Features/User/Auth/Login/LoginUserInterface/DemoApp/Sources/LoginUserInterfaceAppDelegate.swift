@@ -26,6 +26,10 @@ class LoginAppDelegate: UIResponder, UIApplicationDelegate {
         func loginButtonDidTap(email: String, password: String) {
             fatalError()
         }
+        
+        func checkPasswordTextField(textfield: MonsterTextField) {
+            fatalError()
+        }
     }
     
     var window: UIWindow?

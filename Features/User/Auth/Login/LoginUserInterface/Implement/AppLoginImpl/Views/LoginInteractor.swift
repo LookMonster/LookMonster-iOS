@@ -64,9 +64,23 @@ extension LoginInteractor {
             textfield.emailErrorType = nil
         }
     }
+    
+    func checkPasswordTextField(textfield: MonsterTextField) {
+        let correctPassword = "85817469"
+        
+        if textfield.text == correctPassword {
+            print("비밀번호가 일치합니다.")
+            textfield.showError = false
+            textfield.passwordErrorType = nil
+        } else {
+            textfield.passwordErrorType = .notMatch
+            print("비밀번호가 올바르지 않습니다.")
+//            fatalError("비밀번호가 올바르지 않습니다.")
+        }
+    }
 }
-
 //로직 함수
+
 extension LoginInteractor {
     
     func checkGmailFormat(emailText: String?) -> Bool {

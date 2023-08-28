@@ -16,5 +16,5 @@ public protocol LoginListener: AnyObject {
 
     func checkGmailTextField(textfield: MonsterTextField)
     
-    
+    func checkPasswordTextField(textfield: MonsterTextField)
 }

@@ -127,6 +127,7 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
                 guard let self = self else { return }
                 if let email = self.idTextField.text, let password = self.passwordTextField.text {
                     self.listener?.loginButtonDidTap(email: email, password: password)
+                    self.listener?.checkPasswordTextField(textfield: self.passwordTextField)
                 }
             })
             .disposed(by: disposeBag)
