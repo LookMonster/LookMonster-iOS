@@ -103,10 +103,9 @@ public class MonsterTextField: UITextField {
         }
     }
     
-    
-    public var errorType: MonsterTextFieldErrorType? {
+    public var emailErrorType: MonsterTextFieldErrorType.Email? {
         didSet {
-            if let errorType = errorType {
+            if let errorType = emailErrorType {
                 errorMessage = errorType.message
                 showError = errorType.showError
             }
