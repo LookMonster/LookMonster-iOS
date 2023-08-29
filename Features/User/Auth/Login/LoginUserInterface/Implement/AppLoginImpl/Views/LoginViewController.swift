@@ -13,6 +13,7 @@ import ResourceKit
 public final class LoginViewContoller: UIViewController, LoginPresentable, LoginViewControllable {
         
     var listener: LoginListener?
+    
     private var disposeBag = DisposeBag()
     
     public var gmailCondition: Bool = false
@@ -40,6 +41,7 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
         super.init(nibName: nil, bundle: nil)
         self.textFieldBind()
         self.buttonBind()
+        self.keyboardBind()
         self.attrebute()
         self.layout()
     }
@@ -78,6 +80,12 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
         nextButton.snp.makeConstraints {
             $0.bottom.equalTo(view.safeAreaLayoutGuide).inset(24.0)
             $0.leading.trailing.equalToSuperview().inset(20.0)
+            $0.height.equalTo(48.0)
+        }
+        
+        nextButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(48.0)
+            $0.right.left.equalToSuperview().inset(20.0)
             $0.height.equalTo(48.0)
         }
     }
@@ -120,6 +128,43 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
             })
             .disposed(by: disposeBag)
     }
+    
+    private func keyboardBind() {
+        let keyboardWillShowObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+            .map { ($0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height ?? 48 }
+
+        let keyboardWillHideObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
+            .map { _ in CGFloat(48) }
+
+        Observable.merge(keyboardWillShowObservable)
+            .subscribe(onNext: { [weak self] height in
+                self?.nextButton.snp.updateConstraints {
+                    $0.left.right.equalToSuperview()
+                    $0.bottom.equalToSuperview().offset(-height)
+                }
+                self?.nextButton.layer.cornerRadius = 0
+                UIView.animate(withDuration: 0.3) {
+                    self?.view.layoutIfNeeded()
+                }
+            })
+            .disposed(by: disposeBag)
+
+        Observable.merge(keyboardWillHideObservable)
+            .subscribe(onNext:  { [weak self] _ in
+                self?.nextButton.snp.updateConstraints {
+                    $0.bottom.equalToSuperview().inset(48.0)
+                    $0.right.left.equalToSuperview().inset(20.0)
+                }
+                self?.nextButton.layer.cornerRadius = 8.0
+
+                UIView.animate(withDuration: 0.3) {
+                    self?.view.layoutIfNeeded()
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+
+
     
     private func buttonBind() {
         nextButton.rx.tap

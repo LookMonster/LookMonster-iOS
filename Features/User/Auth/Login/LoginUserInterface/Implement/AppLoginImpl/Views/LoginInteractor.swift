@@ -79,8 +79,8 @@ extension LoginInteractor {
         }
     }
 }
-//로직 함수
 
+//로직 함수
 extension LoginInteractor {
     
     func checkGmailFormat(emailText: String?) -> Bool {
