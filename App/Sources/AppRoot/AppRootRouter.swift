@@ -12,7 +12,7 @@ protocol AppRootInteractable: Interactable,
                               ShopHomeListener,
                               UserProfileHomeListener,
                               StyleHomeListener,
-                              CommunityHomeListener {
+                              CommunityListener {
     var router: AppRootRouting? { get set }
     var listener: AppRootListener? { get set }
 }
@@ -26,7 +26,7 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
     private let appHome: AppHomeBuildable
     private let profileHome: UserProfileHomeBuildable
     private let styleHome: StyleHomeBuildable
-    private let communityHome: CommunityHomeBuildable
+    private let communityHome: CommunityBuildable
     private let shopHome: ShopHomeBuildable
     
     private var appHomeRouting: ViewableRouting?
@@ -40,7 +40,7 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
         viewController: AppRootViewControllable,
         appHome: AppHomeBuildable,
         styleHome: StyleHomeBuildable,
-        communityHome: CommunityHomeBuildable,
+        communityHome: CommunityBuildable,
         shopHome: ShopHomeBuildable,
         profileHome: UserProfileHomeBuildable
     ) {
@@ -59,7 +59,7 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
 //        let financeHomeRouting = financeHome.build(withListener: interactor)
         let profileHomeRouting = profileHome.build(withListener: interactor)
         let styleHomeRouting = styleHome.build(withListener: interactor)
-        let communityRouting = communityHome.build(withListener: interactor)
+        let communityRouting = communityHome.build(withListener: interactor, cuttentImageIndex: 0)
         let shopRouting = shopHome.build(withListener: interactor)
         
         // 붙이기
