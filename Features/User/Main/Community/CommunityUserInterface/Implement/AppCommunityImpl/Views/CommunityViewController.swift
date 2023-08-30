@@ -40,6 +40,10 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
         debugPrint("\(self) deinit")
     }
     
+    func navigationSetting() {
+        
+    }
+    
     func bk() {
         view.backgroundColor = .red
     }
