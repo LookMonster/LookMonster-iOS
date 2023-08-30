@@ -64,6 +64,12 @@ extension TargetDependency {
                     public struct Domain {}
                     public struct UserInterface {}
                 }
+                
+                public struct Search {
+                    public struct Data {}
+                    public struct Domain {}
+                    public struct UserInterface {}
+                }
             }
             public struct Profile {
                 public struct OtherProfile {
@@ -307,7 +313,29 @@ public extension TargetDependency.Features.User.Main.Style.Data {
     static let Implement = TargetDependency.Features.User.Main.Style.project(name: "Data", isInterface: false)
 }
 
+//MARK: - Features/User/Main/Search
+public extension TargetDependency.Features.User.Main.Search {
+    static let folderName = "Search"
+    static func project(name: String, isInterface: Bool) -> TargetDependency {
+        let postfix: String = isInterface ? "" : "Impl"
+        return .project(target: "\(folderName)\(name)\(postfix)",
+                        path: .relativeToRoot("Features/User/Main/\(folderName)/\(folderName)\(name)"))
+    }}
 
+public extension TargetDependency.Features.User.Main.Search.UserInterface {
+    static let Interface = TargetDependency.Features.User.Main.Search.project(name: "UserInterface", isInterface: true)
+    static let Implement = TargetDependency.Features.User.Main.Search.project(name: "UserInterface", isInterface: false)
+}
+
+public extension TargetDependency.Features.User.Main.Search.Domain {
+    static let Interface = TargetDependency.Features.User.Main.Search.project(name: "Domain", isInterface: true)
+    static let Implement = TargetDependency.Features.User.Main.Search.project(name: "Domain", isInterface: false)
+}
+
+public extension TargetDependency.Features.User.Main.Search.Data {
+    static let Interface = TargetDependency.Features.User.Main.Search.project(name: "Data", isInterface: true)
+    static let Implement = TargetDependency.Features.User.Main.Search.project(name: "Data", isInterface: false)
+}
 
 
 //MARK: - Features/User/Auth/Login
