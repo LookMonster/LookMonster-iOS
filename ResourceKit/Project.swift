@@ -19,6 +19,6 @@ let project = Project.framework(name: "ResourceKit",
                                     .ThirdParty.SPM.RxCocoa,
                                     .ThirdParty.SPM.RxSwift,
                                     .ThirdParty.SPM.SnapKit,
-                                    .ThirdParty.SPM.Then,
+                                    .ThirdParty.SPM.Then
                                 ],
                                 infoPlist: infoPlist)

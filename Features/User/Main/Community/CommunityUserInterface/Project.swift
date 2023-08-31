@@ -36,7 +36,6 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .ThirdParty.SPM.RxRelay,
         .ThirdParty.SPM.SnapKit,
         .DesignSystem.Implement
-        
     ],
     demoAppDependencies: [
         .Features.User.Main.Community.Data.Implement,
