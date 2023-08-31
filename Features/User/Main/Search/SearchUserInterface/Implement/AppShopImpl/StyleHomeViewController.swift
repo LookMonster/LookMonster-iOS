@@ -1,6 +1,6 @@
 //
-//  CommunityHomeViewController.swift
-//  CommunityUserInterfaceDemoApp
+//  UserProfileHomeViewController.swift
+//  StyleUserInterface
 //
 //  Created by 박준하 on 2023/08/10.
 //  Copyright © 2023 lookMonster.io. All rights reserved.
@@ -8,18 +8,18 @@
 
 import RIBs
 import UIKit
+import StyleUserInterface 
 import ResourceKit
-import CommunityUserInterface
 
-protocol CommunityHomePresentableListener: AnyObject {
+protocol StyleHomePresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
     // business logic, such as signIn(). This protocol is implemented by the corresponding
     // interactor class.
 }
 
-final class CommunityHomeViewController: UIViewController, CommunityHomePresentable, CommunityHomeViewControllable {
+final class StyleHomeViewController: UIViewController, StyleHomePresentable, StyleHomeViewControllable {
     
-    weak var listener: CommunityHomePresentableListener?
+    weak var listener: StyleHomePresentableListener?
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -40,7 +40,7 @@ final class CommunityHomeViewController: UIViewController, CommunityHomePresenta
     }()
     
     func setupViews() {
-        tabBarItem = UITabBarItem(title: "Community", image: ResourceKitAsset.communityImage.image, tag: 2)
-        view.backgroundColor = .yellow
+        tabBarItem = UITabBarItem(title: "Style", image: ResourceKitAsset.styleImage.image, tag: 1)
+        view.backgroundColor = .red
     }
 }

@@ -78,8 +78,7 @@ let project = Project(
 
                 .Features.User.Main.Shop.Domain.Interface,
                 .Features.User.Main.Shop.Data.Interface,
-                .Features.User.Main.Shop.UserInterface.Interface,
-                
+                .Features.User.Main.Shop.UserInterface.Interface
             ]
 //            settings: settings
         )

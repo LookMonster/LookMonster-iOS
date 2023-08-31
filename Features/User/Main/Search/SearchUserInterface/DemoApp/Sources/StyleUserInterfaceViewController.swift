@@ -1,6 +1,6 @@
 import UIKit
 
-class CommunityUserInterfaceViewController: UIViewController {
+class StyleUserInterfaceViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

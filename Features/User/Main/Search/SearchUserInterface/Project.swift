@@ -3,7 +3,7 @@ import ProjectDescriptionHelpers
 import UtilityPlugin
 
 let project = Project.invertedDualTargetProjectWithDemoApp(
-    name: "LoginUserInterface",
+    name: "SearchUserInterface",
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
@@ -11,8 +11,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         
         .Core.RIBsUtil,
         
-        .ThirdParty.SPM.RIBs,
-        .TokenManager.Interface
+        .ThirdParty.SPM.RIBs
     ],
     implementDependencies: [
         .Feature.Finance.Domain.Interface,
@@ -25,14 +24,6 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .ThirdParty.SPM.RIBs,
         .ThirdParty.SPM.RxSwift,
         .ThirdParty.SPM.RxRelay,
-        .ThirdParty.SPM.SnapKit,
         .DesignSystem.Implement
-    ],
-    demoAppDependencies: [
-        .Features.User.Auth.Login.Data.Implement,
-        .Features.User.Auth.Login.Domain.Implement,
-        .LKNetwork.Implement,
-        .TokenManager.Implement
-    ],
-    isUserInterface: true
+    ]
 )

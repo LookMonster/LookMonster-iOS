@@ -32,7 +32,7 @@ import CommunityUserInterfaceImpl
 import ShopUserInterface
 import ShopUserInterfaceImpl
 
-final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, UserProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency, StyleHomeDependency, CommunityHomeDependency, ShopHomeDependency  {
+final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, FinanceHomeDependency, UserProfileHomeDependency, TransportHomeDependency, TopupDependency, AddPaymentMethodDependency, StyleHomeDependency, CommunityDependency, ShopHomeDependency  {
     
     var fetchBalanceUseCase: FetchBalanceUseCase
     var fetchCardsUseCase: FetchCardsUseCase

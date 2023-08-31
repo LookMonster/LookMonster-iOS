@@ -51,7 +51,7 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
 //        let financeHome = FinanceHomeBuilder(dependency: component)
         let shopHome = ShopHomeBuilder(dependency: component)
         let profileHome = UserProfileHomeBuilder(dependency: component)
-        let communityHome = CommunityHomeBuilder(dependency: component)
+        let communityHome = CommunityBuilder(dependency: component)
         let router = AppRootRouter(
             interactor: interactor,
             viewController: tabBar,
