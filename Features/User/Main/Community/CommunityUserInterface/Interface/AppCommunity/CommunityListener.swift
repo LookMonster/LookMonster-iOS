@@ -8,7 +8,6 @@
 
 import RIBs
 import UIKit
-import DesignSystem
 
 public protocol CommunityListener: AnyObject {
     

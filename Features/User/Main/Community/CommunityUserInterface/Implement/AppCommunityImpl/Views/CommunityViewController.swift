@@ -30,6 +30,7 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
         super.init(nibName: nil, bundle: nil)
         
         self.bk()
+        self.navigationSetting()
     }
     
     required init?(coder: NSCoder) {
@@ -41,11 +42,33 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
     }
     
     func navigationSetting() {
+        title = "커뮤니티"
+        let searchImage = ResourceKitAsset.searchIcon.image
+        let searchButton = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchButtonTap))
+        searchButton.tintColor = .black
+        self.navigationItem.leftBarButtonItem = searchButton
         
+        let penImage = ResourceKitAsset.writingIcon.image
+        let penButton = UIBarButtonItem(image: penImage, style: .plain, target: self, action: #selector(penButtonTap))
+        penButton.tintColor = .black
+        self.navigationItem.rightBarButtonItem = penButton
+
     }
     
     func bk() {
-        view.backgroundColor = .red
+        view.backgroundColor = .systemBackground
+    }
+    
+    func layout() {
+
+    }
+    
+    @objc func searchButtonTap() {
+        print("fdsa")
+    }
+    
+    @objc func penButtonTap() {
+        print("asdf")
     }
     
 }
