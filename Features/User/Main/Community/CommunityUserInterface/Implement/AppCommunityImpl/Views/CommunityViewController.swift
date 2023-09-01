@@ -31,10 +31,13 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
         
         self.bk()
         self.navigationSetting()
+        self.setupViews()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        
+        self.setupViews()
     }
     
     deinit {
@@ -71,4 +74,8 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
         print("asdf")
     }
     
+    func setupViews() {
+        tabBarItem = UITabBarItem(title: "Community", image: ResourceKitAsset.communityImage.image, tag: 2)
+        view.backgroundColor = .red
+    }
 }
