@@ -15,6 +15,9 @@ protocol AppRootListener: AnyObject {
 }
 
 final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRootInteractable, AppRootPresentableListener, URLHandler {
+    func communityBackground() {
+        print("나중에 지워야함")
+    }
     
     weak var router: AppRootRouting?
     weak var listener: AppRootListener?
