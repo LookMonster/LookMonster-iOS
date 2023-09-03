@@ -11,19 +11,19 @@ import RxCocoa
 import Then
 import SnapKit
 
-class MonsterPagingTabBar: UIView {
+public class MonsterPagingTabBar: UIView {
     
-    var cellHeight: CGFloat { 36.0 }
+    public var cellHeight: CGFloat { 36.0 }
 
     private var categoryTitleList: [String]
     
-    let selectedIndex = PublishSubject<Int>()
+    public let selectedIndex = PublishSubject<Int>()
         
-    let itemSelected = PublishSubject<IndexPath>()
+    public let itemSelected = PublishSubject<IndexPath>()
     
     private let disposeBag = DisposeBag()
     
-    lazy var collectionView: UICollectionView = {
+    public lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         
@@ -57,11 +57,11 @@ class MonsterPagingTabBar: UIView {
 
          collectionView.rx.itemSelected.bind(to:self.itemSelected).disposed(by:self.disposeBag)
 
-         return collectionView;
+         return collectionView
          
     }()
     
-    init(categoryTitleList:[String]) {
+    public init(categoryTitleList:[String]) {
        self.categoryTitleList = categoryTitleList;
        super.init(frame:.zero);
        setupLayout();
@@ -86,16 +86,16 @@ class MonsterPagingTabBar: UIView {
 }
 
 extension MonsterPagingTabBar: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
 extension MonsterPagingTabBar: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return categoryTitleList.count
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MonsterPagingTabBarCell.identifier, for: indexPath) as? MonsterPagingTabBarCell else { return UICollectionViewCell() }
         
         cell.setupView(title: categoryTitleList[indexPath.row])

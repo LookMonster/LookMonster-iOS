@@ -9,7 +9,7 @@ import UIKit
 import Then
 import SnapKit
 
-class MonsterPagingTabBarCell: UICollectionViewCell {
+public class MonsterPagingTabBarCell: UICollectionViewCell {
     
     static let identifier = "MonsterPagingTabBarCell"
     
@@ -24,7 +24,7 @@ class MonsterPagingTabBarCell: UICollectionViewCell {
         $0.alpha = 0.0
     }
     
-    override var isSelected: Bool {
+    public override var isSelected: Bool {
         didSet {
             titleLabel.textColor = isSelected ? .black : .secondaryLabel
             underline.alpha = isSelected ? 1.0 : 0.0
