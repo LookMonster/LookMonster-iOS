@@ -14,6 +14,7 @@ import DesignSystem
 import ResourceKit
 
 public class PagingTabBarViewController: UIViewController {
+    
     private let disposeBag = DisposeBag()
     private let categoryTitleList = ["인기", "토크", "투표", "질문"]
     
@@ -57,14 +58,13 @@ public class PagingTabBarViewController: UIViewController {
            $0.height.equalTo(pagingTabBar.cellHeight)
        }
        
-       containerView.snp.makeConstraints { make in
-           make.top.equalTo(pagingTabBar.snp.bottom)
-           make.leading.trailing.bottom.equalToSuperview()
+       containerView.snp.makeConstraints {
+           $0.top.equalTo(pagingTabBar.snp.bottom)
+           $0.leading.trailing.bottom.equalToSuperview()
        }
    }
 
    func bindEvents() {
-
        pagingTabBar.selectedIndex.subscribe(onNext: { [weak self] index in
           guard let self = self else { return }
 
@@ -84,7 +84,7 @@ public class PagingTabBarViewController: UIViewController {
 
           vcToAdd.didMove(toParent: self)
 
-      }).disposed(by:self.disposeBag);
+      }).disposed(by: self.disposeBag)
    }
 }
 
