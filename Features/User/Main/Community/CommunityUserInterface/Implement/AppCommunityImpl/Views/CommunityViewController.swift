@@ -11,6 +11,7 @@ import RIBs
 import SnapKit
 import Then
 import RxCocoa
+import SuperUI
 import RxSwift
 import Kingfisher
 import SuperUI
@@ -18,12 +19,37 @@ import DesignSystem
 import ResourceKit
 import CommunityUserInterface
 
-class CommunityViewController: UIViewController, CommunityPresentable, CommunityViewControllable {
+class CommunityViewController: UIViewController, CommunityPresentable, CommunityViewControllable, PageChangeable {
     
     var listener: CommunityListener?
+    var disposeBag = DisposeBag()
+    
+    internal lazy var pagingTabBar = MonsterPagingTabBar(categoryTitleList:["인기", "토크", "투표", "질문"])
+    internal lazy var viewControllers : [UIViewController] = [
+        RedViewController(),
+        BlueViewController(),
+        WhiteViewController(),
+        BlackViewController()
+    ]
     
     public var uiviewController: UIViewController {
         return self
+    }
+    
+    private lazy var containerViews: UIView = {
+         let view = UIView()
+         return view
+      }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.setupLayout(containerView: containerViews)
+        self.bindEvents(containerView: containerViews, disposeBag: disposeBag)
+
+        view.backgroundColor = .white
+
+        pagingTabBar.selectedIndex.onNext(0)
     }
     
     public init() {
@@ -31,10 +57,14 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
         
         self.bk()
         self.navigationSetting()
+        self.setupViews()
+        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        
+        self.setupViews()
     }
     
     deinit {
@@ -71,4 +101,8 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
         print("asdf")
     }
     
+    func setupViews() {
+        tabBarItem = UITabBarItem(title: "Community", image: ResourceKitAsset.communityImage.image, tag: 2)
+        view.backgroundColor = .red
+    }
 }
