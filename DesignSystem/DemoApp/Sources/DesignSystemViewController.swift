@@ -1,11 +1,3 @@
-//
-//  DesignSystemViewController.swift
-//
-//  MOIT
-//
-//  Created by kimchansoo on .
-//
-
 import UIKit
 import DesignSystem
 

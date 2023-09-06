@@ -1,11 +1,3 @@
-//
-//  MainAppDelegate.swift
-//
-//  Main
-//
-//  Created by kimchansoo on .
-//
-
 import UIKit
 
 @main

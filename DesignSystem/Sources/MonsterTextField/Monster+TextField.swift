@@ -1,10 +1,3 @@
-//
-//  Monster+TextField.swift
-//  DesignSystemDemoApp
-//
-//  Created by 박준하 on 2023/08/22.
-//
-
 import UIKit
 import Then
 import SnapKit

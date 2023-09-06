@@ -1,10 +1,3 @@
-//
-//  PagingTabBarViewController.swift
-//  DesignSystem
-//
-//  Created by 박준하 on 2023/09/01.
-//
-
 import Foundation
 import UIKit
 import SnapKit

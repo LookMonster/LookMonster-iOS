@@ -1,9 +1,3 @@
-//
-//  BaseViewController.swift
-//  DefaultsStore
-//
-//  Created by 박준하 on 2023/08/02.
-//
 import UIKit
 import SnapKit
 import RxSwift
