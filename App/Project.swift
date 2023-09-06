@@ -32,6 +32,8 @@ let project = Project(
                 .LKNetwork.Implement,
                 .LKNetwork.Interface,
                 
+                .ThirdParty.SPM.Swinject,
+                
                 .Feature.Finance.Data.Interface,
                 .Feature.Finance.Domain.Interface,
                 .Feature.Finance.UserInterface.Interface,

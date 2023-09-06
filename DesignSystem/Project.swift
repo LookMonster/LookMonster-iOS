@@ -35,7 +35,8 @@ let project = Project(
                 .ResourceKit.Implement,
                 .ThirdParty.SPM.RxCocoa,
                 .ThirdParty.SPM.RxSwift,
-                .ThirdParty.SPM.Kingfisher
+                .ThirdParty.SPM.Kingfisher,
+                .ThirdParty.SPM.Swinject
             ]),
         Target(
             name: "DesignSystemDemoApp",
@@ -65,8 +66,8 @@ let project = Project(
                     .ResourceKit.Implement,
                     .ThirdParty.SPM.RxCocoa,
                     .ThirdParty.SPM.RxSwift,
-                    .ThirdParty.SPM.Kingfisher
-
+                    .ThirdParty.SPM.Kingfisher,
+                    .ThirdParty.SPM.Swinject
                 ]
         )
         

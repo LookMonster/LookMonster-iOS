@@ -23,7 +23,8 @@ let project = Project(name: "Core",
                                 .ThirdParty.SPM.RxSwift,
                                 .ThirdParty.SPM.SnapKit,
                                 .ThirdParty.SPM.Then,
-                                .DesignSystem.Implement
+                                .DesignSystem.Implement,
+                                .ThirdParty.SPM.Swinject
                             ]
                         ),
                         Project.makeTarget(
@@ -31,6 +32,7 @@ let project = Project(name: "Core",
                             dependencies: [
                                 .ThirdParty.SPM.RIBs,
 //                                .ThirdParty.RxSwift,
+                                .ThirdParty.SPM.Swinject
                             ]
                         )
                       ])

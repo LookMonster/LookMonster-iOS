@@ -1,5 +1,6 @@
 import RIBs
 import UIKit
+import Swinject
 import FinanceData
 import FinanceUserInterface
 import HomeUserInterface
