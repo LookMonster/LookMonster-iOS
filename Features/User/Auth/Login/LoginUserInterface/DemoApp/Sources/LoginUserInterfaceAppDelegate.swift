@@ -1,5 +1,6 @@
 import UIKit
 import RIBs
+import Swinject
 import DesignSystem
 import LoginUserInterface
 import LoginUserInterfaceImpl
@@ -36,7 +37,6 @@ class LoginAppDelegate: UIResponder, UIApplicationDelegate {
     var router: ViewableRouting?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
         let window = UIWindow(frame: UIScreen.main.bounds)
         
         let loginComponent = LoginMockComponent()
