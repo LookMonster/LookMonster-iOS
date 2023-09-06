@@ -103,6 +103,5 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
     
     func setupViews() {
         tabBarItem = UITabBarItem(title: "Community", image: ResourceKitAsset.communityImage.image, tag: 2)
-        view.backgroundColor = .red
     }
 }
