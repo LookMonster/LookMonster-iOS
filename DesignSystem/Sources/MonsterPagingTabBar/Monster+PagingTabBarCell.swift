@@ -1,10 +1,3 @@
-//
-//  Monster+PagingTabBarCell.swift
-//  DesignSystem
-//
-//  Created by 박준하 on 2023/09/01.
-//
-
 import UIKit
 import Then
 import SnapKit

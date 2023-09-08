@@ -1,10 +1,3 @@
-//
-//  ButtonViewController.swift
-//  DesignSystemDemoApp
-//
-//  Created by 박준하 on 2023/08/23.
-//
-
 import Foundation
 import UIKit
 import SnapKit

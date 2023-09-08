@@ -1,10 +1,3 @@
-//
-//  DropDownViewController.swift
-//  DesignSystemDemoApp
-//
-//  Created by 박준하 on 2023/08/23.
-//
-
 import UIKit
 import SnapKit
 import DesignSystem

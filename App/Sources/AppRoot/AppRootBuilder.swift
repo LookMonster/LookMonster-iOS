@@ -1,11 +1,8 @@
 import RIBs
 import UIKit
 import Swinject
-import FinanceData
-import FinanceUserInterface
 import HomeUserInterface
 
-import FinanceUserInterfaceImpl
 import HomeUserInterfaceImpl
 
 import UserProfileUserInterface
@@ -46,10 +43,8 @@ final class AppRootBuilder: Builder<AppRootDependency>, AppRootBuildable {
         
         let interactor = AppRootInteractor(presenter: tabBar)
         
-        // 세가지 자식 riblet을 붙이기 위해서 생성
         let appHome = AppHomeBuilder(dependency: component)
         let styleHome = StyleHomeBuilder(dependency: component)
-//        let financeHome = FinanceHomeBuilder(dependency: component)
         let shopHome = ShopHomeBuilder(dependency: component)
         let profileHome = UserProfileHomeBuilder(dependency: component)
         let communityHome = CommunityBuilder(dependency: component)

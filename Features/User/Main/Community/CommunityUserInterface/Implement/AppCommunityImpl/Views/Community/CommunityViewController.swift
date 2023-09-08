@@ -1,11 +1,3 @@
-//
-//  CommunityViewController.swift
-//  CommunityUserInterfaceDemoApp
-//
-//  Created by 박준하 on 2023/08/29.
-//  Copyright © 2023 lookMonster.io. All rights reserved.
-//
-
 import UIKit
 import RIBs
 import SnapKit
@@ -103,6 +95,5 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
     
     func setupViews() {
         tabBarItem = UITabBarItem(title: "Community", image: ResourceKitAsset.communityImage.image, tag: 2)
-        view.backgroundColor = .red
     }
 }

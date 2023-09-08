@@ -1,10 +1,3 @@
-//
-//  PageChangeable.swift
-//  SuperUI
-//
-//  Created by 박준하 on 2023/09/02.
-//
-
 import UIKit
 import SnapKit
 import Then
