@@ -20,8 +20,8 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
     internal lazy var viewControllers : [UIViewController] = [
         PopularViewController(),
         TalkViewController(),
-        WhiteViewController(),
-        BlackViewController()
+        VoteViewController(),
+        QuestionViewController()
     ]
     
     public var uiviewController: UIViewController {

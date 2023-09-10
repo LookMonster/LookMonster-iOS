@@ -2,6 +2,7 @@ import UIKit
 import CommunityUserInterface
 
 class QuestionViewController: UIViewController, QuestionPresentable, QuestionViewControllable, QuestionListener  {
+    
     func communityBackground() {
         print("SAdf")
     }
@@ -15,6 +16,6 @@ class QuestionViewController: UIViewController, QuestionPresentable, QuestionVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = .orange
     }
 }
