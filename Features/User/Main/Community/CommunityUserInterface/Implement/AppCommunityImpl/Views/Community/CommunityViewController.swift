@@ -18,7 +18,7 @@ class CommunityViewController: UIViewController, CommunityPresentable, Community
     
     internal lazy var pagingTabBar = MonsterPagingTabBar(categoryTitleList:["인기", "토크", "투표", "질문"])
     internal lazy var viewControllers : [UIViewController] = [
-        RedViewController(),
+        PopularViewController(),
         BlueViewController(),
         WhiteViewController(),
         BlackViewController()
