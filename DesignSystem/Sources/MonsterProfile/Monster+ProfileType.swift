@@ -1,10 +1,3 @@
-//
-//  MonsterProfileType.swift
-//  DesignSystem
-//
-//  Created by 박준하 on 2023/09/10.
-//
-
 import UIKit
 import ResourceKit
 
@@ -54,6 +47,34 @@ public enum MonsterProfileType {
             return 26.0
         case .communitySize:
             return 18.0
+        }
+    }
+}
+
+public enum MonsterProfileImageType: Int {
+    case one
+    case custom
+}
+
+public struct MonsterProfileImage {
+    public let type: MonsterProfileImageType
+    public let customImage: UIImage?
+    
+    public init(type: MonsterProfileImageType, customImage: UIImage?) {
+        self.type = type
+        self.customImage = customImage
+    }
+    
+    var image: UIImage {
+        switch type {
+        case .one:
+            return ResourceKitAsset.testLogo.image
+        case .custom:
+            guard let customImage = customImage else {
+                return ResourceKitAsset.testLogo.image
+            }
+            
+            return customImage
         }
     }
 }
