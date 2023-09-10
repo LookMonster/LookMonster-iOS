@@ -14,9 +14,9 @@
     ```
 ## **RIB 추가 방법**
 - 🐻 터미널을 열고 아래 명령어를 넣어주세요
-      - 추가하고 싶은 RIB
-      - 추가하고 싶은 경로
-      - 받아야하는 인터페이스
+   - 추가하고 싶은 RIB
+   - 추가하고 싶은 경로
+   - 받아야하는 인터페이스
     ```Swift
    sh monster_create_rib.sh \(추가하고 싶은 RIB 이름) "/Users/\(user_name)/Desktop/LookMonster/LookMonster-iOS/Features/User/Main/Community/CommunityUserInterface/Implement/AppCommunityImpl/Views" \(받아야하는 인터페이스)
 
