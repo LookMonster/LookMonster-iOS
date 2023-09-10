@@ -4,8 +4,8 @@ import RxSwift
 import Then
 import SnapKit
 
-public class BaseCollectionViewCell: UICollectionViewCell {
-    public var disposebag = DisposeBag()
+open class BaseCollectionViewCell: UICollectionViewCell {
+    open var disposebag = DisposeBag()
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -13,7 +13,7 @@ public class BaseCollectionViewCell: UICollectionViewCell {
         self.backgroundColor = .white
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
