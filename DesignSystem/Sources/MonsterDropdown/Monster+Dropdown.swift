@@ -2,7 +2,9 @@ import UIKit
 import ResourceKit
 import SnapKit
 
-open class MonsterDropdownView: UIView, UITableViewDataSource, UITableViewDelegate {
+open class MonsterDropdownView: UIView,
+                                UITableViewDataSource,
+                                UITableViewDelegate {
     
     let dropdownButton = UIButton(type: .system)
     let tableView = UITableView()

@@ -18,7 +18,10 @@ open class MonsterBaseLabel: UILabel {
         super.init(coder: aDecoder)
     }
 
-    open func configureLabel(withText text: String, fontSize: Int = Int(14.0)) {
+    open func configureLabel (
+        withText text: String,
+        fontSize: Int = Int(14.0)
+    ) {
         self.font = UIFont.systemFont(ofSize: CGFloat(fontSize), weight: .bold)
         self.textColor = UIColor.black
         self.textAlignment = .center
@@ -26,7 +29,10 @@ open class MonsterBaseLabel: UILabel {
         self.text = text
     }
 
-    open func configureLabel(withNumber number: Int, fontSize: Int = Int(14.0)) {
+    open func configureLabel (
+        withNumber number: Int,
+        fontSize: Int = Int(14.0)
+    ) {
         let numberText = String(number)
         self.font = UIFont.systemFont(ofSize: CGFloat(fontSize), weight: .semibold)
         self.textAlignment = .center

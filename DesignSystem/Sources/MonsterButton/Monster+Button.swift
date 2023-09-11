@@ -17,7 +17,15 @@ open class MonsterButton: UIButton {
         $0.font = .systemFont(ofSize: 16, weight: .semibold)
     }
 
-    public init(image: UIImage? = nil, title: String? = nil, spacing: CGFloat = 8.0, backgorundColor: UIColor?, ridus: Double? = 8.0, titleColor: UIColor?, buttonIsEnabled: Bool? = false) {
+    public init (
+        image: UIImage? = nil,
+        title: String? = nil,
+        spacing: CGFloat = 8.0,
+        backgorundColor: UIColor?,
+        ridus: Double? = 8.0,
+        titleColor: UIColor?,
+        buttonIsEnabled: Bool? = false
+    ) {
         super.init(frame: .zero)
 
         self.textLabel.text = title

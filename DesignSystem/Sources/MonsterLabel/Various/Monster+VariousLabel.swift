@@ -11,7 +11,11 @@ public class MonsterVariousLabel: UILabel {
     public var textStyle = BehaviorRelay<TextStyle>(value: .talk)
     public var timerType = BehaviorRelay<TimeDisplay>(value: .secondsAgo(5))
     
-    public init(text: String, type: TextStyle, timerType: TimeDisplay) {
+    public init (
+        text: String,
+        type: TextStyle,
+        timerType: TimeDisplay
+    ) {
         super.init(frame: .zero)
         self.nameText.accept(text)
         self.textStyle.accept(type)
