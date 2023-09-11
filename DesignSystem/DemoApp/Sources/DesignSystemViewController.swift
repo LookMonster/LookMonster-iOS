@@ -8,6 +8,7 @@ fileprivate enum DesignSystemType: String, CaseIterable {
     case pageControl
     case pagingTapBar
     case profile
+    case label
 }
 
 final class DesignSystemViewController: UITableViewController {
@@ -58,6 +59,9 @@ final class DesignSystemViewController: UITableViewController {
         case .profile:
             print("프로필")
             self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        case .label:
+            print("라벨")
+            self.navigationController?.pushViewController(LabelViewController(), animated: true)
         default: return
         }
     }
