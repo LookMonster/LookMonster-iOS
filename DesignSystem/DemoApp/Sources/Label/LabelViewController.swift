@@ -8,16 +8,16 @@ import ResourceKit
 public class LabelViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
-    let variousLabel = MonsterVariousLabel(text: "King_of_the_junha", type: .talk, timerType: .m1)
+    let variousLabel1 = MonsterVariousLabel(text: "King_of_the_junha", type: .talk, timerType: .secondsAgo(5))
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .white
         
-        view.addSubview(variousLabel)
+        view.addSubview(variousLabel1)
         
-        variousLabel.snp.makeConstraints {
+        variousLabel1.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(view.safeAreaLayoutGuide)
         }
