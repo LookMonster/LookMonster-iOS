@@ -1,40 +1,35 @@
 import UIKit
-import SnapKit
 import RxSwift
 import RxCocoa
 import ResourceKit
 
 public class MonsterVariousLabel: UILabel {
     
-    public var nameText: String {
-        didSet {
-            configureLabel()
-        }
-    }
+    private var disposeBag = DisposeBag()
     
-    private var textStyle: TextStyle
-    private var timerType: TimerType
+    public var nameText = BehaviorRelay<String>(value: "")
+    public var textStyle = BehaviorRelay<TextStyle>(value: .talk)
+    public var timerType = BehaviorRelay<TimeDisplay>(value: .secondsAgo(5))
     
-    public init(text: String, type: TextStyle, timerType: TimerType) {
-        self.nameText = text
-        self.textStyle = type
-        self.timerType = timerType
+    public init(text: String, type: TextStyle, timerType: TimeDisplay) {
         super.init(frame: .zero)
+        self.nameText.accept(text)
+        self.textStyle.accept(type)
+        self.timerType.accept(timerType)
         configureLabel()
+        bindUI()
     }
     
     public override init(frame: CGRect) {
-        self.nameText = ""
-        self.textStyle = .talk
-        self.timerType = .m1
         super.init(frame: frame)
+        configureLabel()
+        bindUI()
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        self.nameText = ""
-        self.textStyle = .talk
-        self.timerType = .m1
         super.init(coder: aDecoder)
+        configureLabel()
+        bindUI()
     }
     
     private func configureLabel() {
@@ -43,6 +38,28 @@ public class MonsterVariousLabel: UILabel {
         self.textAlignment = .center
         self.numberOfLines = 1
         
-        self.text = "\(nameText) · \(textStyle.rawValue) · \(timerType.rawValue)"
+        Observable.combineLatest(nameText, textStyle, timerType)
+            .map { name, style, timer in
+                return "\(name) · \(style.rawValue) · \(timer.description)"
+            }
+            .bind(to: self.rx.text)
+            .disposed(by: disposeBag)
+    }
+    
+    private func bindUI() {
+        nameText.asObservable()
+            .distinctUntilChanged()
+            .bind(to: self.nameText)
+            .disposed(by: disposeBag)
+        
+        textStyle.asObservable()
+            .distinctUntilChanged()
+            .bind(to: self.textStyle)
+            .disposed(by: disposeBag)
+        
+        timerType.asObservable()
+            .distinctUntilChanged()
+            .bind(to: self.timerType)
+            .disposed(by: disposeBag)
     }
 }
