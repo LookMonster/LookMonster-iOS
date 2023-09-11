@@ -11,7 +11,10 @@ import DesignSystem
 import ResourceKit
 import CommunityUserInterface
 
-class CommunityViewController: UIViewController, CommunityPresentable, CommunityViewControllable, PageChangeable {
+class CommunityViewController: UIViewController,
+                               CommunityPresentable,
+                               CommunityViewControllable,
+                               PageChangeable {
     
     var listener: CommunityListener?
     var disposeBag = DisposeBag()
