@@ -40,6 +40,8 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     demoAppDependencies: [
         .Features.User.Main.Community.Data.Implement,
         .Features.User.Main.Community.Domain.Implement,
+        .Features.User.Main.Community.UserInterface.Implement,
+        .Features.User.Main.Community.UserInterface.Interface,
         .LKNetwork.Implement,
         .TokenManager.Implement
     ],
