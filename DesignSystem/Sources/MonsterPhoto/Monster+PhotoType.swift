@@ -28,7 +28,7 @@ public struct MonsterPhotoImage {
     public let type: MonsterPhotoImageType
     public let customImage: UIImage?
     
-    init(type: MonsterPhotoImageType, customImage: UIImage?) {
+    public init(type: MonsterPhotoImageType, customImage: UIImage?) {
         self.type = type
         self.customImage = customImage
     }
