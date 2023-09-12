@@ -1,17 +1,13 @@
-//
-//  PopularViewController.swift
-//  CommunityUserInterfaceTests
-//
-//  Created by 박준하 on 2023/09/08.
-//  Copyright © 2023 lookMonster.io. All rights reserved.
-//
-
 import UIKit
+import SnapKit
 import CommunityUserInterface
 
-class PopularViewController: UIViewController, PopularPresentable, PopularViewControllable, PopularListener  {
+class PopularViewController: UIViewController, PopularPresentable, PopularViewControllable, PopularListener {
+    
     var listener: PopularListener?
     
+    var communityCollectionView = CommunityCollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
     public var uiviewController: UIViewController {
         return self
     }
@@ -19,7 +15,12 @@ class PopularViewController: UIViewController, PopularPresentable, PopularViewCo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        view.addSubview(communityCollectionView)
+        
+        communityCollectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+            $0.height.width.equalToSuperview()
+        }
     }
     
     func communityBackground() {
