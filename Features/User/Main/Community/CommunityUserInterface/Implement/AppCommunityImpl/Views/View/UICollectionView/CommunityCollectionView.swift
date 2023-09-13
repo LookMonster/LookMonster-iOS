@@ -41,11 +41,7 @@ public class CommunityCollectionView: UICollectionView, UICollectionViewDelegate
 
    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        guard let cell = dequeueReusableCell(withReuseIdentifier:"CommunityCollectionViewCell", for:indexPath) as? CommunityCollectionViewCell else { fatalError("Unable to dequeue CommunityCollectionViewCell") }
-
-       if indexPath.row == 0 { cell.backgroundColor = .red }
-       if indexPath.row == 1 { cell.backgroundColor = .blue }
-       if indexPath.row == 2 { cell.backgroundColor = .blue }
-
+       
        return cell
    }
 
