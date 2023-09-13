@@ -17,6 +17,8 @@ final class QuestionInteractor: PresentableInteractor<QuestionPresentable>, Ques
     weak var router: QuestionRouting?
     weak var listener: QuestionListener?
     
+    private let dataSource = Array(repeating: "Question", count: 20)
+    
     override init(presenter: QuestionPresentable) {
         super.init(presenter: presenter)
         
@@ -24,6 +26,7 @@ final class QuestionInteractor: PresentableInteractor<QuestionPresentable>, Ques
     }
     
     deinit {
+        
     }
     
     override func didBecomeActive() {
@@ -32,6 +35,14 @@ final class QuestionInteractor: PresentableInteractor<QuestionPresentable>, Ques
     
     override func willResignActive() {
         super.willResignActive()
+    }
+    
+    func numberOfItems() -> Int {
+        return dataSource.count
+    }
+    
+    func itemAt(_ index: Int) -> String {
+        return dataSource[index]
     }
 }
 
