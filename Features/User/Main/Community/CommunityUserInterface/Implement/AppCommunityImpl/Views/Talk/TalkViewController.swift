@@ -1,7 +1,11 @@
 import UIKit
+import DesignSystem
 import CommunityUserInterface
+import RxSwift
+import RxCocoa
+import SuperUI
 
-class TalkViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, TalkPresentable, TalkViewControllable, TalkListener  {
+class TalkViewController: BaseViewController, UICollectionViewDelegateFlowLayout, TalkPresentable, TalkViewControllable, TalkListener  {
     
     var listener: TalkListener?
     
@@ -9,47 +13,66 @@ class TalkViewController: UICollectionViewController, UICollectionViewDelegateFl
         return self
     }
     
+    private let items = BehaviorSubject(value: Array(repeating: "King_of_the_junha", count: 20))
+    
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(CommunityCollectionViewCell.self,
+                                forCellWithReuseIdentifier:"CommunityCollectionViewCell")
+        return collectionView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.collectionView!.register(CommunityCollectionViewCell.self, forCellWithReuseIdentifier: "CommunityCollectionViewCell")
+        view.addSubview(collectionView)
+        
+        collectionView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        setupBinding()
+        
+        self.collectionView.delegate = self
     }
     
     init() {
-        let layout = UICollectionViewFlowLayout()
-        super.init(collectionViewLayout: layout)
+        super.init(nibName:nil , bundle:nil)
     }
     
-    required init?(coder: NSCoder) {
+    required init?(coder aDecoder :NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func communityBackground() {
         print("asdf")
     }
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CommunityCollectionViewCell", for: indexPath)
+    private func setupBinding() {
         
-        return cell
-    }
+        items.bind(to:
+                    collectionView.rx.items(cellIdentifier:"CommunityCollectionViewCell",
+                                            cellType: CommunityCollectionViewCell.self)) { row , data , cell in
+            
+            cell.variousLabel = MonsterVariousLabel(text:data , type:.talk , timerType:.hoursAgo(4))
+            
+        }.disposed(by:self.disposeBag)
         
-    override func collectionView(_ collectionView :UICollectionView , didSelectItemAt indexPath :IndexPath){
-        print(indexPath.row)
+        collectionView.rx.itemSelected.subscribe(onNext:{ [weak self] indexPath in
+            
+            print(indexPath.row)
+            
+        }).disposed(by:self.disposeBag)
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let size = CGSize(width: UIScreen.main.bounds.size.width, height: 80)
+    func collectionView(_ collectionView :UICollectionView ,
+                        layout collectionViewLayout :UICollectionViewLayout ,
+                        sizeForItemAt indexPath :IndexPath) -> CGSize {
+        
+        let size = CGSize(width :UIScreen.main.bounds.size.width , height :80)
         return size
+        
     }
+    
 }
