@@ -19,7 +19,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Core.RIBsUtil,
         
         .ThirdParty.SPM.RIBs,
-        .TokenManager.Interface
+        .TokenManager.Interface,
     ],
     implementDependencies: [
         .ThirdParty.SPM.RIBs,
@@ -35,6 +35,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .ThirdParty.SPM.RxSwift,
         .ThirdParty.SPM.RxRelay,
         .ThirdParty.SPM.SnapKit,
+        .ThirdParty.SPM.SkeletonView,
         .DesignSystem.Implement
     ],
     demoAppDependencies: [
