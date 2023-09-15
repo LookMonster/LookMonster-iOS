@@ -27,7 +27,7 @@ class PopularViewController: BaseViewController, UICollectionViewDelegateFlowLay
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints {
@@ -60,17 +60,17 @@ class PopularViewController: BaseViewController, UICollectionViewDelegateFlowLay
             
             cell.variousLabel = MonsterVariousLabel(text:data , type: .popular , timerType:.hoursAgo(4))
             
-        }.disposed(by:self.disposeBag)
+        }.disposed(by: self.disposeBag)
         
         collectionView.rx.itemSelected.subscribe(onNext:{ [weak self] indexPath in
             
             print(indexPath.row)
             
-        }).disposed(by:self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        
         let size = CGSize(width: UIScreen.main.bounds.size.width, height: 80)
         return size
     }
