@@ -4,6 +4,7 @@ import DesignSystem
 import CommunityUserInterface
 import RxCocoa
 import RxSwift
+import ResourceKit
 import SuperUI
 
 class QuestionViewController: BaseViewController, QuestionPresentable, QuestionViewControllable, QuestionListener, UICollectionViewDelegateFlowLayout {
@@ -14,7 +15,7 @@ class QuestionViewController: BaseViewController, QuestionPresentable, QuestionV
         return self
     }
     
-    private let items = BehaviorSubject(value: Array(repeating: "King_of_the_junha", count: 20))
+    private let items = BehaviorSubject(value: Array(repeating: "King_of_the_junha", count: 0))
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,6 +37,14 @@ class QuestionViewController: BaseViewController, QuestionPresentable, QuestionV
         setupBinding()
         
         self.collectionView.delegate = self
+        
+        items.subscribe(onNext: { [weak self] items in
+            if items.isEmpty {
+                self?.collectionView.setEmptyMessage("아직 게시물이 없어요.", image: ResourceKitAsset.memoXIcon.image)
+            } else {
+                self?.collectionView.restore()
+            }
+        }).disposed(by: disposeBag)
     }
     
     init() {
