@@ -36,7 +36,8 @@ let project = Project(
                 .ThirdParty.SPM.RxCocoa,
                 .ThirdParty.SPM.RxSwift,
                 .ThirdParty.SPM.Kingfisher,
-                .ThirdParty.SPM.Swinject
+                .ThirdParty.SPM.Swinject,
+                .ThirdParty.SPM.SkeletonView
             ]),
         Target(
             name: "DesignSystemDemoApp",
@@ -67,7 +68,8 @@ let project = Project(
                     .ThirdParty.SPM.RxCocoa,
                     .ThirdParty.SPM.RxSwift,
                     .ThirdParty.SPM.Kingfisher,
-                    .ThirdParty.SPM.Swinject
+                    .ThirdParty.SPM.Swinject,
+                    .ThirdParty.SPM.SkeletonView
                 ]
         )
         

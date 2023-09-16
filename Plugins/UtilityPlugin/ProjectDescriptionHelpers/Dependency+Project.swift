@@ -567,6 +567,7 @@ public extension TargetDependency.ThirdParty.SPM {
 //    static let Pageboy = TargetDependency.external(name: "Pageboy")
 //    static let RxMoya = TargetDependency.external(name: "RxMoya")
     static let Swinject = TargetDependency.external(name: "Swinject")
+    static let SkeletonView = TargetDependency.external(name: "SkeletonView")
 }
 
 

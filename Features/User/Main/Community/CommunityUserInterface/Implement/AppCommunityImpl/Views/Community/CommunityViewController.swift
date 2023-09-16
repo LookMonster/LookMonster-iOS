@@ -11,17 +11,20 @@ import DesignSystem
 import ResourceKit
 import CommunityUserInterface
 
-class CommunityViewController: UIViewController, CommunityPresentable, CommunityViewControllable, PageChangeable {
+class CommunityViewController: UIViewController,
+                               CommunityPresentable,
+                               CommunityViewControllable,
+                               PageChangeable {
     
     var listener: CommunityListener?
     var disposeBag = DisposeBag()
     
     internal lazy var pagingTabBar = MonsterPagingTabBar(categoryTitleList:["인기", "토크", "투표", "질문"])
     internal lazy var viewControllers : [UIViewController] = [
-        RedViewController(),
-        BlueViewController(),
-        WhiteViewController(),
-        BlackViewController()
+        PopularViewController(),
+        TalkViewController(),
+        VoteViewController(),
+        QuestionViewController()
     ]
     
     public var uiviewController: UIViewController {

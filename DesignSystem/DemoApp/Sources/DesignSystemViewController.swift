@@ -7,6 +7,10 @@ fileprivate enum DesignSystemType: String, CaseIterable {
     case dropdown
     case pageControl
     case pagingTapBar
+    case profile
+    case label
+    case photo
+    case emptyView
 }
 
 final class DesignSystemViewController: UITableViewController {
@@ -54,6 +58,18 @@ final class DesignSystemViewController: UITableViewController {
         case .pagingTapBar:
             print("페이징탭바")
             self.navigationController?.pushViewController(PagingTabBarViewController(), animated: true)
+        case .profile:
+            print("프로필")
+            self.navigationController?.pushViewController(ProfileViewController(), animated: true)
+        case .label:
+            print("라벨")
+            self.navigationController?.pushViewController(LabelViewController(), animated: true)
+        case .photo:
+            print("사진")
+            self.navigationController?.pushViewController(PhotoViewController(), animated: true)
+        case .emptyView:
+            print("empty 뷰")
+            self.navigationController?.pushViewController(EmptyViewController(), animated: true)
         default: return
         }
     }
