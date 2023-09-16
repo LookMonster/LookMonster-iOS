@@ -1,32 +1,32 @@
-import UIKit
-import SnapKit
-import DesignSystem
-import CommunityUserInterface
-import RxSwift
-import RxCocoa
-import SuperUI
-import SkeletonView
+import UIKit;
+import SnapKit;
+import DesignSystem;
+import CommunityUserInterface;
+import RxSwift;
+import RxCocoa;
+import SuperUI;
+import SkeletonView;
 
 class PopularViewController: BaseViewController, UICollectionViewDelegateFlowLayout, PopularPresentable, PopularViewControllable, PopularListener {
     
-    var listener: PopularListener?
+    var listener: PopularListener?;
     
     public var uiviewController: UIViewController {
-        return self
+        return self;
     }
     
-    private let items = BehaviorSubject(value: Array(repeating: "King_of_the_junha", count: 20))
+    private let items = BehaviorSubject(value: Array(repeating: "King_of_the_Seungwoo", count: 20));
     
     private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let layout = UICollectionViewFlowLayout();
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout);
         collectionView.register(CommunityCollectionViewCell.self,
-                                forCellWithReuseIdentifier:"CommunityCollectionViewCell")
-        return collectionView
+                                forCellWithReuseIdentifier:"CommunityCollectionViewCell");
+        return collectionView;
     }()
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        super.viewDidLoad();
         
         view.addSubview(collectionView)
         
@@ -40,7 +40,7 @@ class PopularViewController: BaseViewController, UICollectionViewDelegateFlowLay
     }
     
     init() {
-        super.init(nibName:nil , bundle:nil)
+        super.init(nibName:nil , bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -49,7 +49,7 @@ class PopularViewController: BaseViewController, UICollectionViewDelegateFlowLay
     
     
     func communityBackground() {
-        print("asdf")
+        print("asdf");
     }
     
     private func setupBinding() {
@@ -58,21 +58,21 @@ class PopularViewController: BaseViewController, UICollectionViewDelegateFlowLay
                     collectionView.rx.items(cellIdentifier:"CommunityCollectionViewCell",
                                             cellType: CommunityCollectionViewCell.self)) { row , data , cell in
             
-            cell.variousLabel = MonsterVariousLabel(text:data , type: .popular , timerType:.hoursAgo(4))
+            cell.variousLabel = MonsterVariousLabel(text: data, type: .popular, timerType:.hoursAgo(4))
             
-        }.disposed(by: self.disposeBag)
+        }.disposed(by: self.disposeBag);
         
         collectionView.rx.itemSelected.subscribe(onNext:{ [weak self] indexPath in
             
             print(indexPath.row)
             
-        }).disposed(by: self.disposeBag)
+        }).disposed(by: self.disposeBag);
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let size = CGSize(width: UIScreen.main.bounds.size.width, height: 80)
-        return size
+        let size = CGSize(width: UIScreen.main.bounds.size.width, height: 80);
+        return size;
     }
 }
 
