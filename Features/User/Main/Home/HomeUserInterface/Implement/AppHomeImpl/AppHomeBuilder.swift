@@ -5,15 +5,15 @@ import HomeUserInterface
 //import TransportHomeImpl
 
 public protocol AppHomeDependency: Dependency {
-    var cardsOnFileRepository: CardOnFileRepository { get }
-    var superPayRepository: SuperPayRepository { get }
-    var transportHomeBuildable: TransportHomeBuildable { get }
+//    var cardsOnFileRepository: CardOnFileRepository { get }
+//    var superPayRepository: SuperPayRepository { get }
+//    var transportHomeBuildable: TransportHomeBuildable { get }
 }
 
 final class AppHomeComponent: Component<AppHomeDependency> {
-    var cardsOnFileRepository: CardOnFileRepository { dependency.cardsOnFileRepository }
-    var superPayRepository: SuperPayRepository { dependency.superPayRepository }
-    var transportHomeBuildable: TransportHomeBuildable { dependency.transportHomeBuildable }
+//    var cardsOnFileRepository: CardOnFileRepository { dependency.cardsOnFileRepository }
+//    var superPayRepository: SuperPayRepository { dependency.superPayRepository }
+//    var transportHomeBuildable: TransportHomeBuildable { dependency.transportHomeBuildable }
 }
 
 // MARK: - Builder
@@ -25,15 +25,15 @@ public final class AppHomeBuilder: Builder<AppHomeDependency>, AppHomeBuildable 
     }
     
     public func build(withListener listener: AppHomeListener) -> ViewableRouting {
-        let component = AppHomeComponent(dependency: dependency)
+        let component = Component(dependency: dependency)
         let viewController = AppHomeViewController()
         let interactor = AppHomeInteractor(presenter: viewController)
         interactor.listener = listener
         
         return AppHomeRouter(
             interactor: interactor,
-            viewController: viewController,
-            transportHomeBuildable: component.transportHomeBuildable
+            viewController: viewController
+//            transportHomeBuildable: component.transportHomeBuildable
         )
     }
 }
