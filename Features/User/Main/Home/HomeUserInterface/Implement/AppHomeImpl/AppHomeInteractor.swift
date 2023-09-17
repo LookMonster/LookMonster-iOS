@@ -2,14 +2,14 @@ import RIBs
 import HomeUserInterface
 
 protocol AppHomeRouting: ViewableRouting {
-  func attachTransportHome()
-  func detachTransportHome()
+//  func attachTransportHome()
+//  func detachTransportHome()
 }
 
 protocol AppHomePresentable: Presentable {
   var listener: AppHomePresentableListener? { get set }
   
-  func updateWidget(_ viewModels: [HomeWidgetViewModel])
+//  func updateWidget(_ viewModels: [HomeWidgetViewModel])
 }
 
 final class AppHomeInteractor: PresentableInteractor<AppHomePresentable>, AppHomeInteractable, AppHomePresentableListener {
@@ -24,27 +24,27 @@ final class AppHomeInteractor: PresentableInteractor<AppHomePresentable>, AppHom
   
   override func didBecomeActive() {
     super.didBecomeActive()
-    
-    let viewModels = [
-      HomeWidgetModel(
-        imageName: "car",
-        title: "슈퍼택시",
-        tapHandler: { [weak self] in
-          self?.router?.attachTransportHome()
-        }
-      ),
-      HomeWidgetModel(
-        imageName: "cart",
-        title: "슈퍼마트",
-        tapHandler: { }
-      )
-    ]
-    
-    presenter.updateWidget(viewModels.map(HomeWidgetViewModel.init))
+//    
+//    let viewModels = [
+//      HomeWidgetModel(
+//        imageName: "car",
+//        title: "슈퍼택시",
+//        tapHandler: { [weak self] in
+//          self?.router?.attachTransportHome()
+//        }
+//      ),
+//      HomeWidgetModel(
+//        imageName: "cart",
+//        title: "슈퍼마트",
+//        tapHandler: { }
+//      )
+//    ]
+//    
+//    presenter.updateWidget(viewModels.map(HomeWidgetViewModel.init))
   }
   
-  func transportHomeDidTapClose() {
-    router?.detachTransportHome()
-  }
+//  func transportHomeDidTapClose() {
+//    router?.detachTransportHome()
+//  }
   
 }
