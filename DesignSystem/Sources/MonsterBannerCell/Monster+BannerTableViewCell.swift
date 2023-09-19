@@ -12,11 +12,11 @@ final class MonsterBannerTableViewCell: UITableViewCell {
     public let disposeBag = DisposeBag()
     private var bannerModel: MonsterBannerModel?
     public var imageList: [UIImage] = [
-        ResourceKitAsset.kreamTestImage1.image,
-        ResourceKitAsset.kreamTestImage2.image,
-        ResourceKitAsset.kreamTestImage3.image,
-        ResourceKitAsset.kreamTestImage4.image,
-        ResourceKitAsset.kreamTestImage3.image
+        ResourceKitAsset.kream1.image,
+        ResourceKitAsset.kream2.image,
+        ResourceKitAsset.kream3.image,
+        ResourceKitAsset.kream4.image,
+        ResourceKitAsset.kream4.image
     ]
     
     private lazy var collectionView: UICollectionView = {
