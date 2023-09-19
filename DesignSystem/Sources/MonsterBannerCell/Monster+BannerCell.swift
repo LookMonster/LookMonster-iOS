@@ -2,7 +2,7 @@ import UIKit
 import Then
 import SnapKit
 
-class MonsterBannerCell: UICollectionViewCell {
+public class MonsterBannerCell: UICollectionViewCell {
     
     static var identifier: String = "MonsterBannerCell"
     
@@ -28,7 +28,7 @@ extension MonsterBannerCell {
      }
     
     private func configureUI() {
-        addSubview(bannerImageView)
+        self.contentView.addSubview(bannerImageView)
         bannerImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

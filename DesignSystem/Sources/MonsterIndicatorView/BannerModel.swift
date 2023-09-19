@@ -3,7 +3,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol HomeViewModelInput {
+protocol BannerModelInput {
     func computeWidthRatio(
         _ contentSizeWidth: Double,
         _ contentInsetLeft: CGFloat,
@@ -13,14 +13,14 @@ protocol HomeViewModelInput {
     )
 }
 
-protocol HomeViewModelOutput {
+protocol BannerModelOutput {
     var widthRatioObservable: Observable<Double?> { get }
     var leftOffsetRatioObservable: Observable<Double?> { get }
 }
 
-typealias HomeViewModelProtocol = HomeViewModelInput & HomeViewModelOutput
+typealias BannerModelProtocol = BannerModelInput & BannerModelOutput
 
-final class HomeViewModel: HomeViewModelProtocol {
+final class MonsterBannerModel: BannerModelProtocol {
     let disposeBag = DisposeBag()
     
     var imageList: [UIImage] = []
@@ -59,11 +59,13 @@ final class HomeViewModel: HomeViewModelProtocol {
         _ numberOfData: Int
     ) {
         guard numberOfData > 0 else { return }
-        
+
         let leftOffset = (contentOffsetX - (contentSizeWidth / Double(numberOfData) * 2)) + Double(contentInsetLeft)
         let entireWidth = (contentSizeWidth * CGFloat(numberOfData - 4) / CGFloat(numberOfData)) + contentInsetLeft + contentInsetRight
         let leftOffsetRatio = leftOffset / entireWidth
-        
-        leftOffsetRatioSubject.onNext(leftOffsetRatio)
+
+        if !leftOffsetRatio.isNaN && !leftOffsetRatio.isInfinite {
+            leftOffsetRatioSubject.onNext(leftOffsetRatio)
+        }
     }
 }
