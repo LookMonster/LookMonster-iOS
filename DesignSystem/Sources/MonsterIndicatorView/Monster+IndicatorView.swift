@@ -9,21 +9,17 @@ final class MonsterIndicatorView: UIView {
     let disposeBag = DisposeBag()
     
     private var trackViewLeftInsetConstraint: Constraint?
-    private var viewModel: HomeViewModel?
+    public var viewModel: MonsterBannerModel?
     
-    private lazy var lineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white.withAlphaComponent(0.5)
-        return view
-    }()
+    private lazy var lineView = UIView().then {
+        $0.backgroundColor = .white.withAlphaComponent(0.5)
+    }
     
-    private lazy var trackView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .white
-        return view
-    }()
+    private lazy var trackView = UIView().then {
+        $0.backgroundColor = .white
+    }
     
-    init(viewModel: HomeViewModel) {
+    init(viewModel: MonsterBannerModel) {
         super.init(frame: .zero)
         self.viewModel = viewModel
         setupUI()
@@ -35,7 +31,7 @@ final class MonsterIndicatorView: UIView {
     }
     
     private func setupUI() {
-        addSubview(lineView)
+        self.addSubview(lineView)
         lineView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(3.0)
