@@ -24,7 +24,7 @@ final class AppHomeViewController: UIViewController,
     internal lazy var pagingTabBar = MonsterPagingTabBar(categoryTitleList:["추천", "랭킹", "발매정보", "남성", "요즘것들", "여성", "발견", "준하픽", "인기"])
     
     internal lazy var viewControllers : [UIViewController] = [
-
+        RecommandViewController()
     ]
     
     public var uiviewController: UIViewController {
@@ -49,6 +49,7 @@ final class AppHomeViewController: UIViewController,
         self.bindEvents(containerView: containerViews, disposeBag: disposeBag)
     
         setupViews()
+        pagingTabBar.selectedIndex.onNext(0)
     }
     
     required init?(coder: NSCoder) {

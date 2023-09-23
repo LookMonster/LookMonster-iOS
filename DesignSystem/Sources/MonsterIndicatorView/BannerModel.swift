@@ -3,7 +3,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-protocol BannerModelInput {
+public protocol BannerModelInput {
     func computeWidthRatio(
         _ contentSizeWidth: Double,
         _ contentInsetLeft: CGFloat,
@@ -13,14 +13,14 @@ protocol BannerModelInput {
     )
 }
 
-protocol BannerModelOutput {
+public protocol BannerModelOutput {
     var widthRatioObservable: Observable<Double?> { get }
     var leftOffsetRatioObservable: Observable<Double?> { get }
 }
 
 typealias BannerModelProtocol = BannerModelInput & BannerModelOutput
 
-final class MonsterBannerModel: BannerModelProtocol {
+public class MonsterBannerModel: BannerModelProtocol {
     let disposeBag = DisposeBag()
     
     var imageList: [UIImage] = []
@@ -28,15 +28,18 @@ final class MonsterBannerModel: BannerModelProtocol {
     private let widthRatioSubject = BehaviorSubject<Double?>(value: nil)
     private let leftOffsetRatioSubject = BehaviorSubject<Double?>(value: nil)
     
-    var widthRatioObservable: Observable<Double?> {
+    public var widthRatioObservable: Observable<Double?> {
         return widthRatioSubject.asObservable()
     }
     
-    var leftOffsetRatioObservable: Observable<Double?> {
+    public var leftOffsetRatioObservable: Observable<Double?> {
         return leftOffsetRatioSubject.asObservable()
     }
     
-    func computeWidthRatio(
+    public init() {
+    }
+    
+    public func computeWidthRatio(
         _ contentSizeWidth: Double,
         _ contentInsetLeft: CGFloat,
         _ contentInsetRight: CGFloat,

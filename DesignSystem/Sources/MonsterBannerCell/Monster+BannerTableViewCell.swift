@@ -5,18 +5,17 @@ import RxSwift
 import RxCocoa
 import ResourceKit
 
-final class MonsterBannerTableViewCell: UITableViewCell {
+public class MonsterBannerTableViewCell: UITableViewCell {
     
-    static var identifier: String = "MonsterBannerTableViewCell"
+    static public var identifier: String = "MonsterBannerTableViewCell"
     
     public let disposeBag = DisposeBag()
     private var bannerModel: MonsterBannerModel?
     public var imageList: [UIImage] = [
-        ResourceKitAsset.kream1.image,
-        ResourceKitAsset.kream2.image,
-        ResourceKitAsset.kream3.image,
-        ResourceKitAsset.kream4.image,
-        ResourceKitAsset.kream4.image
+        ResourceKitAsset.frame1.image,
+        ResourceKitAsset.frame2.image,
+        ResourceKitAsset.frame3.image,
+        ResourceKitAsset.frame4.image
     ]
     
     private lazy var collectionView: UICollectionView = {
@@ -41,7 +40,7 @@ final class MonsterBannerTableViewCell: UITableViewCell {
         return indicatorView
     }()
     
-    override func layoutIfNeeded() {
+    public override func layoutIfNeeded() {
         super.layoutIfNeeded()
         self.entryCollectionItem()
         self.bindWidthRatio(
@@ -54,7 +53,7 @@ final class MonsterBannerTableViewCell: UITableViewCell {
         self.bannerTimer()
     }
     
-    func setUp(_ model: MonsterBannerModel) {
+    public func setUp(_ model: MonsterBannerModel) {
         self.bannerModel = model
         self.layout()
         self.imageList.insert(self.imageList[self.imageList.count - 1], at: 0)
@@ -92,7 +91,7 @@ final class MonsterBannerTableViewCell: UITableViewCell {
 }
 
 extension MonsterBannerTableViewCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(
+    public func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
@@ -100,11 +99,11 @@ extension MonsterBannerTableViewCell: UICollectionViewDelegateFlowLayout {
         return CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.width)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("adsf")
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let viewModel = bannerModel else {return}
         viewModel.computeLeftOffsetRation(
             scrollView.contentSize.width,
@@ -114,7 +113,7 @@ extension MonsterBannerTableViewCell: UICollectionViewDelegateFlowLayout {
             self.imageList.count
         )
     }
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         let currentIndex = computeCurrentIndex()
         var indexPath: IndexPath?
@@ -133,11 +132,11 @@ extension MonsterBannerTableViewCell: UICollectionViewDelegateFlowLayout {
 }
 
 extension MonsterBannerTableViewCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MonsterBannerCell.identifier, for: indexPath) as? MonsterBannerCell else {
             return UICollectionViewCell()
         }
