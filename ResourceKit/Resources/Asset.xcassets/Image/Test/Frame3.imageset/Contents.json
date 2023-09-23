@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Kream_3.png",
+      "filename" : "frame3.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Kream_3@2x.png",
+      "filename" : "frame3@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Kream_3@3x.png",
+      "filename" : "frame3@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
