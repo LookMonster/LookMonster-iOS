@@ -58,9 +58,6 @@ final class AppHomeViewController: UIViewController,
         setupViews()
     }
     
-//    func updateWidget(_ viewModels: [HomeWidgetViewModel]) {
-//    }
-    
     private func setupViews() {
         let bellImage = ResourceKitAsset.bellIcon.image
         let bellButton = UIBarButtonItem(image: bellImage, style: .plain, target: self, action: nil)
