@@ -82,7 +82,6 @@ final class DesignSystemViewController: UITableViewController {
         case .category:
             print("category 뷰")
             self.navigationController?.pushViewController(CategoryViewController(), animated: true)
-        default: return
         }
     }
 }

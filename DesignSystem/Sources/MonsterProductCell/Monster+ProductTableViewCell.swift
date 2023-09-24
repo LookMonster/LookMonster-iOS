@@ -1,13 +1,8 @@
-//
-//  MonsterProductTableViewCell.swift
-//  DesignSystem
-//
-//  Created by 박준하 on 2023/09/24.
-//
-
 import UIKit
 import SnapKit
 import Then
+import RxSwift
+import RxCocoa
 import ResourceKit
 
 public enum ProductText: String {
@@ -15,7 +10,6 @@ public enum ProductText: String {
     case subTitle = "사람들이 많이 찾는 상품"
     case immediatelyText = "즉시 구매가"
 }
-
 
 public class MonsterProductTableViewCell: UITableViewCell {
     

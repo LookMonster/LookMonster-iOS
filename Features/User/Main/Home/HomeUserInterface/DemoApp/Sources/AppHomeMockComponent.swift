@@ -1,11 +1,3 @@
-//
-//  HomeUserInterfaceMockComponent.swift
-//  HomeUserInterfaceDemoApp
-//
-//  Created by 박준하 on 2023/09/17.
-//  Copyright © 2023 lookMonster.io. All rights reserved.
-//
-
 import UIKit
 import RIBs
 import DesignSystem

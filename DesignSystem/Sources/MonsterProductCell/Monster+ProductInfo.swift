@@ -1,9 +1,3 @@
-//
-//  ProductInfo.swift
-//  DesignSystem
-//
-//  Created by 박준하 on 2023/09/24.
-//
 import UIKit
 
 public struct MonsterProductInfo {
