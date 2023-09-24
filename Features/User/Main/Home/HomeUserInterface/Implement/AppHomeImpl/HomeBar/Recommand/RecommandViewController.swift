@@ -18,6 +18,40 @@ class RecommandViewController: UIViewController, RecommandPresentable, Recommand
     private var viewModel: MonsterBannerModel?
     private var cellList: [UITableViewCell] = []
     private var cells: [RecommandBannerCell] = []
+    
+    let testProductInfos: [MonsterProductInfo] = [
+        MonsterProductInfo(
+            image: ResourceKitAsset.testProduct1.image,
+            name: "Jordan",
+            description: "Jordan 1 Retro Low OG Black Toe",
+            price: "175,000원"
+        ),
+        MonsterProductInfo(
+            image: ResourceKitAsset.testProduct2.image,
+            name: "Keen",
+            description: "Keen Jasper Sneakers Brindle Cream",
+            price: "143,100원"
+        ),
+        MonsterProductInfo(
+            image: ResourceKitAsset.testProduct3.image,
+            name: "Converse",
+            description: "Converse x Play Comme des Gracons Chuck 70 Hi Black",
+            price: "115,000원"
+        ),
+        MonsterProductInfo(
+            image: ResourceKitAsset.testProduct4.image,
+            name: "Jordan",
+            description: "Jordan 1 x Travis Scott Retro Low OG SP Sail and Ridgerock",
+            price: "1,374,000원"
+        ),
+        MonsterProductInfo(
+            image: ResourceKitAsset.testProduct5.image,
+            name: "Nike",
+            description: "Nike Air Force 1 '07 WB Flax",
+            price: "153,000원"
+        )
+    ]
+    
     var listener: RecommandListener?
 
     private lazy var tableView: UITableView = {
@@ -34,7 +68,10 @@ class RecommandViewController: UIViewController, RecommandPresentable, Recommand
             MonsterCategoryTableViewCell.self,
             forCellReuseIdentifier: MonsterCategoryTableViewCell.identifier
         )
-        tableView.register(MonsterProductTableViewCell.self, forCellReuseIdentifier: MonsterProductTableViewCell.identifier)
+        tableView.register(
+            MonsterProductTableViewCell.self,
+            forCellReuseIdentifier: MonsterProductTableViewCell.identifier
+        )
         return tableView
     }()
         
@@ -130,7 +167,7 @@ extension RecommandViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: MonsterProductTableViewCell.identifier) as? MonsterProductTableViewCell else {
                 return UITableViewCell()
             }
-            cell.setUp(viewModel)
+            cell.setUp(viewModel, products: testProductInfos)
             return cell
         }
     }

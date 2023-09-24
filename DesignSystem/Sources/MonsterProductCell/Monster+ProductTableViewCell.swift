@@ -20,38 +20,7 @@ public enum ProductText: String {
 public class MonsterProductTableViewCell: UITableViewCell {
     
     static public var identifier: String = "MonsterProductTableViewCell"
-
-    private let images: [UIImage] = [
-        ResourceKitAsset.testProduct1.image,
-        ResourceKitAsset.testProduct2.image,
-        ResourceKitAsset.testProduct3.image,
-        ResourceKitAsset.testProduct4.image,
-        ResourceKitAsset.testProduct5.image
-    ]
-    
-    private let names: [String] = [
-        "Jordan",
-        "Keen",
-        "Converse",
-        "Jordan",
-        "Nike"
-    ]
-    
-    private let descriptions: [String] = [
-        "Jordan 1 Retro Low OG Black Toe",
-        "Keen Jasper Sneakers Brindle Cream",
-        "Converse x Play Comme des Gracons Chuck 70 Hi Black",
-        "Jordan 1 x Travis Scott Retro Low OG SP Sail and Ridgerock",
-        "Nike Air Force 1 '07 WB Flax"
-    ]
-    
-    private let prices: [String] = [
-        "175,000원",
-        "143,100원",
-        "115,000원",
-        "1,374,000원",
-        "153,000원"
-    ]
+    private var products: [MonsterProductInfo] = []
     
     private var viewModel: MonsterBannerModel?
     
@@ -80,11 +49,10 @@ public class MonsterProductTableViewCell: UITableViewCell {
         return collectionView
     }()
     
-    public func setUp(_ model: MonsterBannerModel) {
+    public func setUp(_ model: MonsterBannerModel, products: [MonsterProductInfo]) {
         self.viewModel = model
+        self.products = products
         self.configureUI()
-        
-        self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
     }
 }
 
@@ -112,6 +80,7 @@ extension MonsterProductTableViewCell {
     }
 }
 
+
 extension MonsterProductTableViewCell: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
@@ -125,7 +94,7 @@ extension MonsterProductTableViewCell: UICollectionViewDelegateFlowLayout {
 extension MonsterProductTableViewCell: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.images.count
+        return self.products.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -136,11 +105,13 @@ extension MonsterProductTableViewCell: UICollectionViewDataSource {
             ) as? MonsterProductCollectionViewCell else {
             return UICollectionViewCell()
         }
+        
+        let product = self.products[indexPath.item]
         cell.setUp(
-            self.images[indexPath.item],
-            self.names[indexPath.item],
-            self.descriptions[indexPath.item],
-            self.prices[indexPath.item]
+            product.image,
+            product.name,
+            product.description,
+            product.price
         )
         return cell
     }
