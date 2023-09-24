@@ -40,7 +40,6 @@ public class MonsterProductCollectionViewCell: UICollectionViewCell {
         $0.font = UIFont.systemFont(ofSize: 12, weight: .light)
         $0.textColor = .lightGray
         $0.textAlignment = .left
-        $0.text = ProductText.immediatelyText.rawValue
     }
     
     func setUp(_ productImage: UIImage, _ productName: String, _ productDescription: String, _ productPrice: String) {
@@ -51,6 +50,10 @@ public class MonsterProductCollectionViewCell: UICollectionViewCell {
         self.priceLabel.text = productPrice
         
         self.productDescriptionLabel.sizeToFit()
+    }
+    
+    public func tagLabels(immediatelyBuyLabelText: String) {
+        self.immediatelyBuyLabel.text = immediatelyBuyLabelText
     }
 }
 extension MonsterProductCollectionViewCell {

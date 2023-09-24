@@ -166,6 +166,7 @@ extension RecommandViewController: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.setUp(viewModel, products: testProductInfos)
+            cell.headerLabels(mainLabelText: "인기 상품", subLabelText: "사람들이 많이 찾는 상품")
             return cell
         }
     }

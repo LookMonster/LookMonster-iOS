@@ -5,12 +5,6 @@ import RxSwift
 import RxCocoa
 import ResourceKit
 
-public enum ProductText: String {
-    case mainTitle = "인기 상품"
-    case subTitle = "사람들이 많이 찾는 상품"
-    case immediatelyText = "즉시 구매가"
-}
-
 public class MonsterProductTableViewCell: UITableViewCell {
     
     static public var identifier: String = "MonsterProductTableViewCell"
@@ -20,13 +14,11 @@ public class MonsterProductTableViewCell: UITableViewCell {
     
     private lazy var mainLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
-        $0.text = ProductText.mainTitle.rawValue
     }
     
     private lazy var subLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 12.0, weight: .light)
         $0.textColor = .lightGray
-        $0.text = ProductText.subTitle.rawValue
     }
     
     private lazy var collectionView: UICollectionView = {
@@ -47,6 +39,11 @@ public class MonsterProductTableViewCell: UITableViewCell {
         self.viewModel = model
         self.products = products
         self.configureUI()
+    }
+    
+    public func headerLabels(mainLabelText: String, subLabelText: String) {        
+        self.mainLabel.text = mainLabelText
+        self.subLabel.text = subLabelText
     }
 }
 
@@ -107,6 +104,7 @@ extension MonsterProductTableViewCell: UICollectionViewDataSource {
             product.description,
             product.price
         )
+        cell.tagLabels(immediatelyBuyLabelText: "즉시 구매가")
         return cell
     }
 }
