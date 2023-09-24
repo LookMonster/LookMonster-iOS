@@ -12,7 +12,7 @@ import ResourceKit
 
 public enum ProductText: String {
     case mainTitle = "인기 상품"
-    case subTitle = "발매 상품"
+    case subTitle = "사람들이 많이 찾는 상품"
     case immediatelyText = "즉시 구매가"
 }
 
@@ -56,12 +56,12 @@ public class MonsterProductTableViewCell: UITableViewCell {
     private var viewModel: MonsterBannerModel?
     
     private lazy var mainLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 19.0, weight: .bold)
+        $0.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
         $0.text = ProductText.mainTitle.rawValue
     }
     
     private lazy var subLabel = UILabel().then {
-        $0.font = UIFont.systemFont(ofSize: 15.0, weight: .light)
+        $0.font = UIFont.systemFont(ofSize: 12.0, weight: .light)
         $0.textColor = .lightGray
         $0.text = ProductText.subTitle.rawValue
     }
@@ -83,6 +83,8 @@ public class MonsterProductTableViewCell: UITableViewCell {
     public func setUp(_ model: MonsterBannerModel) {
         self.viewModel = model
         self.configureUI()
+        
+        self.collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
     }
 }
 
@@ -90,8 +92,8 @@ extension MonsterProductTableViewCell {
     private func configureUI() {
         self.contentView.addSubview(self.mainLabel)
         self.mainLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(18)
-            $0.leading.equalToSuperview().offset(13)
+            $0.top.equalToSuperview().offset(24.0)
+            $0.leading.equalToSuperview().offset(20.0)
             $0.trailing.equalToSuperview()
         }
         self.contentView.addSubview(self.subLabel)
@@ -116,7 +118,7 @@ extension MonsterProductTableViewCell: UICollectionViewDelegateFlowLayout {
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionView.bounds.width / 1.8, height: self.collectionView.bounds.height)
+        return CGSize(width: self.collectionView.bounds.width / 2.2, height: self.collectionView.bounds.height)
     }
 }
 
