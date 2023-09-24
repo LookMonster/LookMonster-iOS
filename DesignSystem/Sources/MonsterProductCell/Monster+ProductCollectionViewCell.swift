@@ -16,7 +16,7 @@ public class MonsterProductCollectionViewCell: UICollectionViewCell {
     private lazy var goodsImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = 10.0
+        imageView.layer.cornerRadius = 8.0
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
         imageView.backgroundColor = ResourceKitAsset.gray50.color
@@ -61,6 +61,8 @@ public class MonsterProductCollectionViewCell: UICollectionViewCell {
         self.goodsNameLabel.text = goodsName
         self.goodsDescriptionLabel.text = goodsDescription
         self.goodsPriceLabel.text = goodsPrice
+        
+        self.goodsDescriptionLabel.sizeToFit()
     }
 }
 extension MonsterProductCollectionViewCell {
@@ -74,16 +76,16 @@ extension MonsterProductCollectionViewCell {
         }
         self.addSubview(self.bookMarkButton)
         self.bookMarkButton.snp.makeConstraints {
-            $0.trailing.equalTo(self.goodsImageView.snp.trailing)
-            $0.bottom.equalTo(self.goodsImageView.snp.bottom).inset(5)
-            $0.width.equalTo(50)
-            $0.height.equalTo(20)
+            $0.trailing.equalTo(self.goodsImageView.snp.trailing).inset(8)
+            $0.bottom.equalTo(self.goodsImageView.snp.bottom).inset(8)
+            $0.width.equalTo(18)
+            $0.height.equalTo(18)
         }
         self.addSubview(self.goodsNameLabel)
         self.goodsNameLabel.snp.makeConstraints {
-            $0.top.equalTo(self.goodsImageView.snp.bottom).offset(12)
-            $0.leading.equalTo(self.goodsImageView.snp.leading).inset(5)
-            $0.trailing.equalTo(self.goodsImageView.snp.trailing).inset(5)
+            $0.top.equalTo(self.goodsImageView.snp.bottom).offset(8)
+            $0.leading.equalTo(self.goodsImageView.snp.leading).inset(4)
+            $0.trailing.equalTo(self.goodsImageView.snp.trailing).inset(4)
         }
         self.addSubview(self.goodsDescriptionLabel)
         self.goodsDescriptionLabel.snp.makeConstraints {
@@ -93,7 +95,7 @@ extension MonsterProductCollectionViewCell {
         }
         self.addSubview(self.goodsPriceLabel)
         self.goodsPriceLabel.snp.makeConstraints {
-            $0.top.equalTo(self.goodsDescriptionLabel.snp.bottom).offset(10)
+            $0.top.equalTo(self.goodsDescriptionLabel.snp.bottom).offset(11)
             $0.leading.equalTo(self.goodsNameLabel.snp.leading)
             $0.trailing.equalTo(self.goodsNameLabel.snp.trailing)
         }

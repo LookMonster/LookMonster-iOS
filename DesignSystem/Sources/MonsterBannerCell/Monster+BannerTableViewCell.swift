@@ -12,9 +12,9 @@ public class MonsterBannerTableViewCell: UITableViewCell {
     public let disposeBag = DisposeBag()
     private var bannerModel: MonsterBannerModel?
     public var imageList: [UIImage] = [
+        ResourceKitAsset.frame3.image,
         ResourceKitAsset.frame1.image,
         ResourceKitAsset.frame2.image,
-        ResourceKitAsset.frame3.image,
         ResourceKitAsset.frame4.image
     ]
     
