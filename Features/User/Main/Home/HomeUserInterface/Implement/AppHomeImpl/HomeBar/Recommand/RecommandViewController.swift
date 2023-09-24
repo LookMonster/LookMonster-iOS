@@ -10,6 +10,7 @@ import HomeUserInterface
 enum RecommandBannerCell {
     case banner(model: MonsterBannerModel)
     case category(model: MonsterBannerModel)
+    case popularProduct(model: MonsterBannerModel)
 }
 
 class RecommandViewController: UIViewController, RecommandPresentable, RecommandViewControllable, RecommandListener  {
@@ -33,6 +34,7 @@ class RecommandViewController: UIViewController, RecommandPresentable, Recommand
             MonsterCategoryTableViewCell.self,
             forCellReuseIdentifier: MonsterCategoryTableViewCell.identifier
         )
+        tableView.register(MonsterProductTableViewCell.self, forCellReuseIdentifier: MonsterProductTableViewCell.identifier)
         return tableView
     }()
         
@@ -69,6 +71,7 @@ extension RecommandViewController {
         guard let viewModel = self.viewModel else { return }
         self.cells.append(.banner(model: viewModel))
         self.cells.append(.category(model: viewModel))
+        self.cells.append(.popularProduct(model: viewModel))
     }
 }
 
@@ -117,7 +120,14 @@ extension RecommandViewController: UITableViewDataSource {
             return cell
             
         case .category:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: MonsterCategoryTableViewCell.identifier) as? MonsterCategoryTableViewCell else {
+            guard let cell = 
+                    tableView.dequeueReusableCell(withIdentifier: MonsterCategoryTableViewCell.identifier) as? MonsterCategoryTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.setUp(viewModel)
+            return cell
+        case .popularProduct:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MonsterProductTableViewCell.identifier) as? MonsterProductTableViewCell else {
                 return UITableViewCell()
             }
             cell.setUp(viewModel)
