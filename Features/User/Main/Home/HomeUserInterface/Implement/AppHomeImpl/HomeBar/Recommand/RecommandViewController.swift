@@ -29,6 +29,10 @@ class RecommandViewController: UIViewController, RecommandPresentable, Recommand
             MonsterBannerTableViewCell.self,
             forCellReuseIdentifier: MonsterBannerTableViewCell.identifier
         )
+        tableView.register(
+            MonsterCategoryTableViewCell.self,
+            forCellReuseIdentifier: MonsterCategoryTableViewCell.identifier
+        )
         return tableView
     }()
         
@@ -64,13 +68,14 @@ extension RecommandViewController {
     private func addCells() {
         guard let viewModel = self.viewModel else { return }
         self.cells.append(.banner(model: viewModel))
+        self.cells.append(.category(model: viewModel))
     }
 }
 
 extension RecommandViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
-            return self.view.frame.height / 2
+            return (self.view.frame.height / 2) + 40
         } else if indexPath.row == 1 {
             return self.view.frame.height / 3.55
         } else {
@@ -83,7 +88,9 @@ extension RecommandViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch self.cells[indexPath.item] {
         case .banner:
-            cell.separatorInset = UIEdgeInsets(top: 0, left: self.tableView.bounds.width, bottom: 0, right: 0)
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        default:
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         }
     }
 }
@@ -104,6 +111,13 @@ extension RecommandViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: MonsterBannerTableViewCell.identifier
             ) as? MonsterBannerTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.setUp(viewModel)
+            return cell
+            
+        case .category:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MonsterCategoryTableViewCell.identifier) as? MonsterCategoryTableViewCell else {
                 return UITableViewCell()
             }
             cell.setUp(viewModel)
