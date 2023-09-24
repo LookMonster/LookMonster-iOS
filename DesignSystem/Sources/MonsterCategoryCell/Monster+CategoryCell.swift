@@ -6,19 +6,23 @@ import RxCocoa
 import RxSwift
 import ResourceKit
 
-final class MonsterCategoryTableViewCell: UITableViewCell {
+public class MonsterCategoryTableViewCell: UITableViewCell {
+    
+    static public var identifier: String = "MonsterCategoryTableViewCell"
+
     private var monsterModel: MonsterBannerModel?
+    
     private let images: [UIImage] = [
-        ResourceKitAsset.testLogo.image,
-        ResourceKitAsset.testLogo.image,
-        ResourceKitAsset.testLogo.image,
-        ResourceKitAsset.testLogo.image,
-        ResourceKitAsset.testLogo.image,
-        ResourceKitAsset.testLogo.image,
-        ResourceKitAsset.testLogo.image,
-        ResourceKitAsset.testLogo.image,
-        ResourceKitAsset.testLogo.image,
-        ResourceKitAsset.testLogo.image
+        ResourceKitAsset.arrowUp.image,
+        ResourceKitAsset.arrowUp.image,
+        ResourceKitAsset.arrowUp.image,
+        ResourceKitAsset.arrowUp.image,
+        ResourceKitAsset.arrowUp.image,
+        ResourceKitAsset.arrowUp.image,
+        ResourceKitAsset.arrowUp.image,
+        ResourceKitAsset.arrowUp.image,
+        ResourceKitAsset.arrowUp.image,
+        ResourceKitAsset.arrowUp.image
     ]
     
     private let texts: [String] = [
@@ -49,7 +53,7 @@ final class MonsterCategoryTableViewCell: UITableViewCell {
         return collectionView
     }()
     
-    func setUp(_ model: MonsterBannerModel) {
+    public func setUp(_ model: MonsterBannerModel) {
         self.monsterModel = model
         self.configureUI()
     }
@@ -58,45 +62,44 @@ final class MonsterCategoryTableViewCell: UITableViewCell {
 extension MonsterCategoryTableViewCell {
     private func configureUI() {
         self.contentView.addSubview(collectionView)
-        collectionView.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(10)
-            $0.leading.equalToSuperview().inset(12)
-            $0.trailing.equalToSuperview().inset(12)
+        self.collectionView.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(24.0)
+            $0.leading.equalToSuperview().inset(20.75)
+            $0.trailing.equalToSuperview().inset(20.75)
             $0.bottom.equalToSuperview()
         }
     }
 }
 
 extension MonsterCategoryTableViewCell: UICollectionViewDelegateFlowLayout {
-    func collectionView(
+    public func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let width = (self.collectionView.bounds.width / 5.5)
-        return CGSize(width: width, height: width + 20)
+        return CGSize(width: 54, height: 70.0)
     }
-    func collectionView(
+    public func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumInteritemSpacingForSectionAt section: Int
     ) -> CGFloat {
-        return 0.5
+        return 20
     }
-    func collectionView(
+    public func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAt section: Int
     ) -> CGFloat {
-        return 15
+        return 12
     }
 }
 
 extension MonsterCategoryTableViewCell: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.images.count
     }
-    func collectionView(
+    public func collectionView(
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
@@ -109,5 +112,9 @@ extension MonsterCategoryTableViewCell: UICollectionViewDataSource {
         cell.setUp(self.images[indexPath.item], self.texts[indexPath.item])
         
         return cell
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("asdf")
     }
 }
