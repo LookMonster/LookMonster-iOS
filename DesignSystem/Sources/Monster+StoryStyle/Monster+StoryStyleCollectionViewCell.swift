@@ -23,25 +23,25 @@ public class MonsterStoryStyleCollectionViewCell: UICollectionViewCell {
     
     private lazy var mainStyleImageView = UIImageView()
     
-    private lazy var userProfile = MonsterProfileView(profileImage: MonsterProfileImage(type: .one, customImage: nil), profileType: .styleSize).then {
-        $0.layer.borderWidth = 1
-        $0.layer.borderColor = UIColor.white.cgColor
-    }
+    private var userProfile = MonsterProfileView(profileImage: MonsterProfileImage(type: .one, customImage: nil), profileType: .styleSize)
     
-    private lazy var userNameLabel = MonsterBaseLabel(text: "@good_junha").then {
-        $0.textColor = .white
-    }
+    private lazy var userNameLabel = MonsterBaseLabel(text: "@good_junha", textColor: .white)
         
     func setUp(_ mainStyleImage: UIImage, _ userProfileImage: UIImage, _ userNameText: String) {
         self.configureUI()
         self.mainStyleImageView.image = mainStyleImage
-        self.userProfile = MonsterProfileView(profileImage: MonsterProfileImage(type: .one, customImage: userProfileImage), profileType: .styleSize)
-        self.userNameLabel = MonsterBaseLabel(text: userNameText)
+        self.userProfile.configureImage(with: MonsterProfileImage(type: .one, customImage: userProfileImage))
+        self.userNameLabel.text = userNameText
     }
 }
 
 extension MonsterStoryStyleCollectionViewCell {
     private func configureUI() {
+        
+        userProfile.layer.borderWidth = 1
+        userProfile.layer.borderColor = UIColor.white.cgColor
+        
+        
         self.addSubview(mainStyleContainerView)
         self.mainStyleContainerView.addSubview(mainStyleImageView)
         self.mainStyleContainerView.addSubview(userNameLabel)
