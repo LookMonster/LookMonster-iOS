@@ -23,10 +23,6 @@ public class MonsterStoryStyleTableViewCell: UITableViewCell {
         $0.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
         $0.text = "이번 여름 인기 스타일"
     }
-//    
-//    private lazy var subLabel = UILabel().then {
-//        $0.font = UIFont.systemFont(ofSize: 12.0, weight: .light)
-//    }
     
     private lazy var collectionView: UICollectionView = {
        let flowLayout = UICollectionViewFlowLayout()
@@ -60,7 +56,7 @@ extension MonsterStoryStyleTableViewCell {
 
         self.contentView.addSubview(self.collectionView)
         self.collectionView.snp.makeConstraints {
-            $0.top.equalTo(self.mainLabel.snp.bottom)
+            $0.top.equalTo(self.mainLabel.snp.bottom).offset(12.0)
             $0.leading.equalToSuperview().offset(20)
             $0.trailing.equalToSuperview()
             $0.bottom.equalToSuperview().inset(24)
@@ -74,7 +70,9 @@ extension MonsterStoryStyleTableViewCell: UICollectionViewDelegateFlowLayout {
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionView.bounds.width / 2.8, height: self.collectionView.bounds.height / 1.2)
+        let itemWidth = collectionView.bounds.width / 2.8
+        let itemHeight = collectionView.bounds.height
+        return CGSize(width: itemWidth, height: itemHeight)
     }
 }
 
