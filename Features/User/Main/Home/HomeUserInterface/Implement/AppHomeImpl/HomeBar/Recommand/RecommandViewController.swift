@@ -11,6 +11,7 @@ enum RecommandBannerCell {
     case banner(model: MonsterBannerModel)
     case category(model: MonsterBannerModel)
     case popularProduct(model: MonsterBannerModel)
+    case storyStyle(model: MonsterBannerModel)
 }
 
 class RecommandViewController: UIViewController, RecommandPresentable, RecommandViewControllable, RecommandListener  {
@@ -18,6 +19,8 @@ class RecommandViewController: UIViewController, RecommandPresentable, Recommand
     private var viewModel: MonsterBannerModel?
     private var cellList: [UITableViewCell] = []
     private var cells: [RecommandBannerCell] = []
+
+    private var isBannerVisible = true
     
     let testProductInfos: [MonsterProductInfo] = [
         MonsterProductInfo(
@@ -52,6 +55,14 @@ class RecommandViewController: UIViewController, RecommandPresentable, Recommand
         )
     ]
     
+    let testStoryStyleInfos: [MonsterStoryStyleInfo] = [
+        MonsterStoryStyleInfo(styleImage: ResourceKitAsset.styleTest1.image, userImage: ResourceKitAsset.frame2.image, userName: "@asdfasdf1"),
+        MonsterStoryStyleInfo(styleImage: ResourceKitAsset.styleTest1.image, userImage: ResourceKitAsset.frame2.image, userName: "@asdfasdf2"),
+        MonsterStoryStyleInfo(styleImage: ResourceKitAsset.styleTest1.image, userImage: ResourceKitAsset.frame2.image, userName: "@asdfasdf3"),
+        MonsterStoryStyleInfo(styleImage: ResourceKitAsset.styleTest1.image, userImage: ResourceKitAsset.frame2.image, userName: "@asdfasdf4"),
+        MonsterStoryStyleInfo(styleImage: ResourceKitAsset.styleTest1.image, userImage: ResourceKitAsset.frame2.image, userName: "@asdfasdf5"),
+    ]
+    
     var listener: RecommandListener?
 
     private lazy var tableView: UITableView = {
@@ -72,6 +83,10 @@ class RecommandViewController: UIViewController, RecommandPresentable, Recommand
             MonsterProductTableViewCell.self,
             forCellReuseIdentifier: MonsterProductTableViewCell.identifier
         )
+        tableView.register(
+            MonsterStoryStyleTableViewCell.self,
+            forCellReuseIdentifier: MonsterStoryStyleTableViewCell.identifier)
+        
         return tableView
     }()
         
@@ -109,7 +124,21 @@ extension RecommandViewController {
         self.cells.append(.banner(model: viewModel))
         self.cells.append(.category(model: viewModel))
         self.cells.append(.popularProduct(model: viewModel))
+        self.cells.append(.storyStyle(model: viewModel))
     }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        if let bannerCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? MonsterBannerTableViewCell {
+//            let bannerCellTopY = bannerCell.frame.origin.y
+//            let topY = scrollView.contentOffset.y
+//            let screenHeight = UIScreen.main.bounds.height
+//            isBannerVisible = (bannerCellTopY >= topY - bannerCell.frame.height) && (bannerCellTopY <= topY + screenHeight)
+//            
+//            if !isBannerVisible {
+//                bannerCell.bannerMoveToFirst()
+//            }
+//        }
+//    }
 }
 
 extension RecommandViewController: UITableViewDelegate {
@@ -118,6 +147,8 @@ extension RecommandViewController: UITableViewDelegate {
             return (self.view.frame.height / 2) + 40
         } else if indexPath.row == 1 {
             return self.view.frame.height / 3.55
+        } else if indexPath.row == 3 {
+            return self.view.frame.height / 2.6
         } else {
             return self.view.frame.height / 2
         }
@@ -167,6 +198,12 @@ extension RecommandViewController: UITableViewDataSource {
             }
             cell.setUp(viewModel, products: testProductInfos)
             cell.headerLabels(mainLabelText: "인기 상품", subLabelText: "사람들이 많이 찾는 상품")
+            return cell
+        case .storyStyle:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MonsterStoryStyleTableViewCell.identifier) as? MonsterStoryStyleTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.setUp(viewModel, storyStyleInfo: testStoryStyleInfos)
             return cell
         }
     }

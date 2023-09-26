@@ -12,6 +12,8 @@ public class MonsterBannerTableViewCell: UITableViewCell {
     private var bannerAutoScrollTimer: Timer?
     
     public let disposeBag = DisposeBag()
+    private var timerDisposeBag = DisposeBag()
+    
     private var bannerModel: MonsterBannerModel?
     public var imageList: [UIImage] = [
         ResourceKitAsset.frame3.image,
@@ -62,6 +64,7 @@ public class MonsterBannerTableViewCell: UITableViewCell {
         self.imageList.append(imageList[1])
         self.imageList.insert(self.imageList[self.imageList.count - 3], at: 0)
         self.imageList.append(imageList[3])
+        
     }
     
     private func layout() {
@@ -179,13 +182,15 @@ extension MonsterBannerTableViewCell {
         return currentIndex
     }
     
-    private func bannerTimer() {
-        bannerAutoScrollTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
-            self.bannerMove()
-        }
+    public func bannerTimer() {
+        Observable<Int>.timer(.seconds(5), period: .seconds(5), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _ in
+                self?.bannerMove()
+            })
+            .disposed(by: timerDisposeBag)
     }
-    
-    private func bannerMove() {
+
+    public func bannerMove() {
         let currentIndex = self.computeCurrentIndex()
         var indexPath: IndexPath?
         if currentIndex == self.imageList.endIndex - 3 {
@@ -197,8 +202,20 @@ extension MonsterBannerTableViewCell {
         self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
     }
     
-    private func bannerStop() {
+    public func bannerStop() {
         bannerAutoScrollTimer?.invalidate()
         bannerAutoScrollTimer = nil
+    }
+    
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        bannerAutoScrollTimer?.invalidate()
+        bannerAutoScrollTimer = nil
+        timerDisposeBag = DisposeBag()
+    }
+    
+    public func bannerMoveToFirst() {
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
     }
 }
