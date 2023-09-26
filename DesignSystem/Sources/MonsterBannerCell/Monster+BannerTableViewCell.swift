@@ -9,6 +9,8 @@ public class MonsterBannerTableViewCell: UITableViewCell {
     
     static public var identifier: String = "MonsterBannerTableViewCell"
     
+    private var bannerAutoScrollTimer: Timer?
+    
     public let disposeBag = DisposeBag()
     private var bannerModel: MonsterBannerModel?
     public var imageList: [UIImage] = [
@@ -172,13 +174,13 @@ extension MonsterBannerTableViewCell {
     
     func computeCurrentIndex() -> Int{
         let visibleIndexPaths = self.collectionView.indexPathsForVisibleItems
-        guard let currentVisibleIndexPath = visibleIndexPaths.first else { return 0}
+        guard let currentVisibleIndexPath = visibleIndexPaths.first else { return 0 }
         let currentIndex = currentVisibleIndexPath.item
         return currentIndex
     }
     
     private func bannerTimer() {
-        Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+        bannerAutoScrollTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
             self.bannerMove()
         }
     }
@@ -193,5 +195,10 @@ extension MonsterBannerTableViewCell {
         }
         guard let indexPath = indexPath else {return}
         self.collectionView.scrollToItem(at: indexPath, at: .centeredVertically, animated: true)
+    }
+    
+    private func bannerStop() {
+        bannerAutoScrollTimer?.invalidate()
+        bannerAutoScrollTimer = nil
     }
 }
