@@ -15,7 +15,7 @@ public class MonsterProductCollectionViewCell: UICollectionViewCell {
         $0.backgroundColor = ResourceKitAsset.gray50.color
     }
     
-    private lazy var bookMarkButton = UIButton().then {
+    private lazy var hartButton = UIButton().then {
         $0.setImage(ResourceKitAsset.hartEmptyIcon.image, for: .normal)
         $0.tintColor = .black
     }
@@ -42,6 +42,11 @@ public class MonsterProductCollectionViewCell: UICollectionViewCell {
         $0.textAlignment = .left
     }
     
+    private lazy var certificationBadgeImage = UIImageView().then {
+        $0.image = ResourceKitAsset.certificationIcon.image
+        $0.tintColor = .blue
+    }
+    
     func setUp(_ productImage: UIImage, _ productName: String, _ productDescription: String, _ productPrice: String) {
         self.configureUI()
         self.productImageView.image = productImage
@@ -59,11 +64,12 @@ public class MonsterProductCollectionViewCell: UICollectionViewCell {
 extension MonsterProductCollectionViewCell {
     private func configureUI() {
         self.addSubview(productImageView)
-        self.addSubview(bookMarkButton)
+        self.addSubview(hartButton)
         self.addSubview(productNameLabel)
         self.addSubview(productDescriptionLabel)
         self.addSubview(priceLabel)
         self.addSubview(immediatelyBuyLabel)
+        self.addSubview(certificationBadgeImage)
 
         self.productImageView.snp.makeConstraints {
             $0.top.equalToSuperview()
@@ -71,16 +77,24 @@ extension MonsterProductCollectionViewCell {
             $0.trailing.equalToSuperview()
             $0.height.equalTo(productImageView.snp.width)
         }
-        self.bookMarkButton.snp.makeConstraints {
+        self.hartButton.snp.makeConstraints {
             $0.trailing.equalTo(productImageView.snp.trailing).inset(8)
             $0.bottom.equalTo(productImageView.snp.bottom).inset(8)
             $0.width.equalTo(18)
             $0.height.equalTo(18)
         }
+        
         self.productNameLabel.snp.makeConstraints {
             $0.top.equalTo(productImageView.snp.bottom).offset(8)
             $0.leading.equalTo(productImageView.snp.leading).inset(4)
-            $0.trailing.equalTo(productImageView.snp.trailing).inset(4)
+            $0.trailing.equalTo(certificationBadgeImage.snp.leading).offset(-5)
+            $0.height.equalTo(11)
+        }
+
+        self.certificationBadgeImage.snp.makeConstraints {
+            $0.centerY.equalTo(productNameLabel.snp.centerY)
+            $0.trailing.equalTo(productImageView.snp.trailing)
+            $0.width.height.equalTo(12)
         }
         self.productDescriptionLabel.snp.makeConstraints {
             $0.top.equalTo(productNameLabel.snp.bottom)
