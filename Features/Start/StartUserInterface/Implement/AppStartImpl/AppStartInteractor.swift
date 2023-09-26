@@ -2,8 +2,8 @@ import RIBs
 import StartUserInterface
 
 protocol AppStartRouting: ViewableRouting {
-    func attachTransportHome()
-    func detachTransportHome()
+//    func attachTransportHome()
+//    func detachTransportHome()
 }
 
 protocol AppStartPresentable: Presentable {
@@ -22,29 +22,29 @@ final class AppStartInteractor: PresentableInteractor<AppStartPresentable>, AppS
         presenter.listener = self
     }
     
-    override func didBecomeActive() {
-        super.didBecomeActive()
-        
-        let viewModels = [
-            StartWidgetModel(
-                imageName: "car",
-                title: "슈퍼택시",
-                tapHandler: { [weak self] in
-                    self?.router?.attachTransportHome()
-                }
-            ),
-            StartWidgetModel(
-                imageName: "cart",
-                title: "슈퍼마트",
-                tapHandler: { }
-            )
-        ]
-        
-        presenter.updateWidget(viewModels.map(StartWidgetViewModel.init))
-    }
+//    override func didBecomeActive() {
+//        super.didBecomeActive()
+//
+//        let viewModels = [
+//            StartWidgetModel(
+//                imageName: "car",
+//                title: "슈퍼택시",
+//                tapHandler: { [weak self] in
+//                    self?.router?.attachTransportHome()
+//                }
+//            ),
+//            StartWidgetModel(
+//                imageName: "cart",
+//                title: "슈퍼마트",
+//                tapHandler: { }
+//            )
+//        ]
+//
+//        presenter.updateWidget(viewModels.map(StartWidgetViewModel.init))
+//    }
     
-    func transportHomeDidTapClose() {
-        router?.detachTransportHome()
-    }
+//    func transportHomeDidTapClose() {
+//        router?.detachTransportHome()
+//    }
     
 }

@@ -2,7 +2,7 @@ import Foundation
 import RIBs
 
 public protocol TransportHomeListener: AnyObject {
-    func transportHomeDidTapClose()
+//    func transportHomeDidTapClose()
 }
 
 public protocol TransportHomeBuildable: Buildable {

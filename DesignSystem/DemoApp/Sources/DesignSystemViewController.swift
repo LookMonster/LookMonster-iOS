@@ -11,6 +11,10 @@ fileprivate enum DesignSystemType: String, CaseIterable {
     case label
     case photo
     case emptyView
+    case banner
+    case product
+    case category
+    case storyStyle
 }
 
 final class DesignSystemViewController: UITableViewController {
@@ -70,7 +74,18 @@ final class DesignSystemViewController: UITableViewController {
         case .emptyView:
             print("empty 뷰")
             self.navigationController?.pushViewController(EmptyViewController(), animated: true)
-        default: return
+        case .banner:
+            print("banner 뷰")
+            self.navigationController?.pushViewController(BannerViewController(), animated: true)
+        case .product:
+            print("product 뷰")
+            self.navigationController?.pushViewController(ProductViewController(), animated: true)
+        case .category:
+            print("category 뷰")
+            self.navigationController?.pushViewController(CategoryViewController(), animated: true)
+        case .storyStyle:
+            print("storyStyle 뷰")
+            self.navigationController?.pushViewController(StoryStyleViewController(), animated: true)
         }
     }
 }

@@ -34,7 +34,7 @@ class CommunityViewController: UIViewController,
     private lazy var containerViews: UIView = {
          let view = UIView()
          return view
-      }()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()

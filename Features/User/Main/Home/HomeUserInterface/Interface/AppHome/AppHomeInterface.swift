@@ -15,4 +15,6 @@ public protocol AppHomeBuildable: Buildable {
 
 public protocol AppHomeListener: AnyObject {
   // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
+    
+    func homeBackground()
 }

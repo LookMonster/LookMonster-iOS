@@ -7,7 +7,7 @@ import ResourceKit
 
 open class MonsterPhotoView: UIView {
     private var photoImageView = UIImageView()
-    private private(set) var photoImage: MonsterPhotoImage?
+    private var photoImage: MonsterPhotoImage?
     private let photoType: MonsterPhotoType
     
     public init (

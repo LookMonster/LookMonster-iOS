@@ -5,9 +5,9 @@ import Then
 
 open class MonsterBaseLabel: UILabel {
     
-    public convenience init(text: String) {
+    public convenience init(text: String, textColor: UIColor) {
         self.init(frame: .zero)
-        configureLabel(withText: text)
+        configureLabel(withText: text, withTextColor: textColor)
     }
 
     public override init(frame: CGRect) {
@@ -21,10 +21,11 @@ open class MonsterBaseLabel: UILabel {
 
     open func configureLabel (
         withText text: String,
+        withTextColor textColor: UIColor,
         fontSize: Int = Int(14.0)
     ) {
         self.font = UIFont.systemFont(ofSize: CGFloat(fontSize), weight: .bold)
-        self.textColor = UIColor.black
+        self.textColor = textColor
         self.textAlignment = .center
         self.numberOfLines = 0
         self.text = text

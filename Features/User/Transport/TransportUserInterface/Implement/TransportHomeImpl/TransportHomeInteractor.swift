@@ -61,7 +61,7 @@ final class TransportHomeInteractor: PresentableInteractor<TransportHomePresenta
     }
     
     func didTapBack() {
-        listener?.transportHomeDidTapClose()
+//        listener?.transportHomeDidTapClose()
     }
     
     func didTapRideConfirmButton() {
