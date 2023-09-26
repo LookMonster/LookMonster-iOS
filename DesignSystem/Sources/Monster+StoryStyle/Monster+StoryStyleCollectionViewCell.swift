@@ -23,12 +23,15 @@ public class MonsterStoryStyleCollectionViewCell: UICollectionViewCell {
     
     private lazy var mainStyleImageView = UIImageView()
     
-    private lazy var userProfile = MonsterProfileView(profileImage: MonsterProfileImage(type: .one, customImage: nil), profileType: .styleSize)
-    
-    private lazy var userNameLabel = MonsterBaseLabel(text: "@goodjunha").then {
-        $0.textColor = .white
+    private lazy var userProfile = MonsterProfileView(profileImage: MonsterProfileImage(type: .one, customImage: nil), profileType: .styleSize).then {
+        $0.layer.borderWidth = 1
+        $0.layer.borderColor = UIColor.white.cgColor
     }
     
+    private lazy var userNameLabel = MonsterBaseLabel(text: "@good_junha").then {
+        $0.textColor = .white
+    }
+        
     func setUp(_ mainStyleImage: UIImage, _ userProfileImage: UIImage, _ userNameText: String) {
         self.configureUI()
         self.mainStyleImageView.image = mainStyleImage
@@ -50,7 +53,6 @@ extension MonsterStoryStyleCollectionViewCell {
         
         self.mainStyleImageView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
-//            $0.height.equalToSuperview().dividedBy(1.5)
         }
         
         self.userNameLabel.snp.makeConstraints {
