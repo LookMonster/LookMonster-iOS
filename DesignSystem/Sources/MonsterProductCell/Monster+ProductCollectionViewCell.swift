@@ -77,6 +77,7 @@ extension MonsterProductCollectionViewCell {
             $0.trailing.equalToSuperview()
             $0.height.equalTo(productImageView.snp.width)
         }
+        
         self.hartButton.snp.makeConstraints {
             $0.trailing.equalTo(productImageView.snp.trailing).inset(8)
             $0.bottom.equalTo(productImageView.snp.bottom).inset(8)
@@ -96,16 +97,19 @@ extension MonsterProductCollectionViewCell {
             $0.trailing.equalTo(productImageView.snp.trailing)
             $0.width.height.equalTo(12)
         }
+        
         self.productDescriptionLabel.snp.makeConstraints {
             $0.top.equalTo(productNameLabel.snp.bottom)
             $0.leading.equalTo(productNameLabel.snp.leading)
             $0.trailing.equalTo(productNameLabel.snp.trailing)
         }
+        
         self.priceLabel.snp.makeConstraints {
             $0.top.equalTo(productDescriptionLabel.snp.bottom).offset(11)
             $0.leading.equalTo(productNameLabel.snp.leading)
             $0.trailing.equalTo(productNameLabel.snp.trailing)
         }
+        
         self.immediatelyBuyLabel.snp.makeConstraints {
             $0.top.equalTo(priceLabel.snp.bottom)
             $0.leading.equalTo(productNameLabel.snp.leading)
