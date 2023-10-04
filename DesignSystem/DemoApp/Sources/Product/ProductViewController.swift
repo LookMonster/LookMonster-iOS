@@ -1,4 +1,5 @@
 import Foundation
+import DesignSystem
 import UIKit
 import SnapKit
 import RxCocoa
@@ -63,6 +64,7 @@ public class ProductViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.viewModel = MonsterBannerModel()
         self.configureUI()
         self.addCells()

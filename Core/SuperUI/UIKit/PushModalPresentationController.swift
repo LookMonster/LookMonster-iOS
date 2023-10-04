@@ -26,7 +26,7 @@ private final class PushModalPresentTransitioning: NSObject, UIViewControllerAni
         let toView = transitionContext.view(forKey: .to)
         
         var toViewInitialFrame   = transitionContext.initialFrame(for: toViewController)
-        let toViewFinalFrame     = transitionContext.finalFrame(for: toViewController)
+        let toViewFinalFrame  = transitionContext.finalFrame(for: toViewController)
         toView.map(containerView.addSubview)
         
         toViewInitialFrame.origin = CGPoint(x: containerView.bounds.maxX, y: containerView.bounds.minY)
