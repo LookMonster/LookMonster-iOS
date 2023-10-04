@@ -1,5 +1,3 @@
-![LookMonster-3](https://github.com/LookMonster/LookMonster-iOS/assets/102890390/ef13b89a-e601-44be-9544-2bee1fce2c05)
-
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLookMonster%2FLookMonster-iOS&count_bg=%230D0D0D&title_bg=%23000000&icon=&icon_color=%23FFFFFF&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
 ### **LookMonster-iOS 프로젝트 시작 방법**
