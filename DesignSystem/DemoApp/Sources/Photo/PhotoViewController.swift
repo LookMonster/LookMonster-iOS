@@ -14,7 +14,15 @@ public class PhotoViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        attribute()
+        layout()
+    }
+    
+    func attribute() {
         view.backgroundColor = .white
+    }
+    
+    func layout() {
         view.addSubview(photoView)
         
         photoView.snp.makeConstraints {

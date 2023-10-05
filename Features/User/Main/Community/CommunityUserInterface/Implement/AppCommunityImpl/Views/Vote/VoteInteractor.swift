@@ -36,7 +36,5 @@ final class VoteInteractor: PresentableInteractor<VotePresentable>, VoteListener
 }
 
 extension VoteInteractor {
-    func communityBackground() {
-    }
-    
+
 }

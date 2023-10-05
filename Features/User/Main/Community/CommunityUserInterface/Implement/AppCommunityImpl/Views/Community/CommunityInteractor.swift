@@ -3,6 +3,7 @@ import RxSwift
 import DesignSystem
 import Foundation
 import CommunityUserInterface
+import ResourceKit
 
 protocol CommunityRouting: ViewableRouting {
     
@@ -36,9 +37,13 @@ final class CommunityInteractor: PresentableInteractor<CommunityPresentable>, Co
     }
 }
 
+// 로직 처리 함수
 extension CommunityInteractor {
-    func communityBackground() {
-        print("asdf")
+    func searchButtonTap() {
+        print("searchButtonTap")
     }
     
+    func penButtonTap() {
+        print("penButtonTap")
+    }
 }

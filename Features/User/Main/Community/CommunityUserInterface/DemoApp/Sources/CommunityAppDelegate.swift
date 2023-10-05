@@ -19,7 +19,11 @@ import RxCocoa
 class CommunityAppDelegate: UIResponder, UIApplicationDelegate {
 
     private final class MockCommunityListener: CommunityListener {
-        func communityBackground() {
+        func searchButtonTap() {
+            fatalError()
+        }
+        
+        func penButtonTap() {
             fatalError()
         }
     }

@@ -126,19 +126,6 @@ extension RecommandViewController {
         self.cells.append(.popularProduct(model: viewModel))
         self.cells.append(.storyStyle(model: viewModel))
     }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        if let bannerCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? MonsterBannerTableViewCell {
-//            let bannerCellTopY = bannerCell.frame.origin.y
-//            let topY = scrollView.contentOffset.y
-//            let screenHeight = UIScreen.main.bounds.height
-//            isBannerVisible = (bannerCellTopY >= topY - bannerCell.frame.height) && (bannerCellTopY <= topY + screenHeight)
-//            
-//            if !isBannerVisible {
-//                bannerCell.bannerMoveToFirst()
-//            }
-//        }
-//    }
 }
 
 extension RecommandViewController: UITableViewDelegate {

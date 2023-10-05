@@ -36,7 +36,4 @@ final class RecommandInteractor: PresentableInteractor<RecommandPresentable>, Re
 }
 
 extension RecommandInteractor {
-    func communityBackground() {
-    }
-    
 }

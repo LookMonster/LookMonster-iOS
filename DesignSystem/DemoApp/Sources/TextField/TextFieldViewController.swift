@@ -53,7 +53,7 @@ public class TextFieldViewController: UIViewController {
         errorMonsterTextFieldConfigure()
         eyeTextFieldConfigure()
         timeMonsterTextFieldConfigure()
-        setUpConstraints()
+        layout()
         
         Observable.just(TimerState.started)
             .bind(to: timeMonsterTextField._timerState)
@@ -68,7 +68,7 @@ public class TextFieldViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
-    private func setUpConstraints() {
+    private func layout() {
         errorMonsterTextField.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20.0)
             $0.top.equalTo(view.safeAreaLayoutGuide)

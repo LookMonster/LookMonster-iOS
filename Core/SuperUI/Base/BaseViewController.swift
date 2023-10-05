@@ -5,6 +5,15 @@ import RxCocoa
 
 open class BaseViewController: UIViewController {
     public let disposeBag = DisposeBag()
+    
+    public init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    @available(*, unavailable)
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,6 +21,11 @@ open class BaseViewController: UIViewController {
         bindViewModel()
         configureNavigationBar()
         setupKeyboardHandling()
+        attribute()
+    }
+    
+    open func attribute() {
+        // 속성을 정의 하는 곳
     }
 
     open func layout() {

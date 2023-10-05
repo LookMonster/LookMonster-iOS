@@ -10,7 +10,7 @@ public class ButtonViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     // Auth 🍎
-    var AppleButton = MonsterAuthButton(image: ResourceKitAsset.appleIcon.image, title: "apple로 시작하기", backgorundColor: .black, titleColor: .white)
+    var appleButton = MonsterAuthButton(image: ResourceKitAsset.appleIcon.image, title: "apple로 시작하기", backgorundColor: .black, titleColor: .white)
     
     // basic 🎱
     var nextButton = MonsterButton(title: "다음", backgorundColor: .black, titleColor: .white)
@@ -18,19 +18,25 @@ public class ButtonViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        attribute()
+        layout()
+    }
+    
+    func attribute() {
         view.backgroundColor = .white
+    }
+    
+    func layout() {
+        [appleButton, nextButton].forEach { view.addSubview($0) }
         
-        view.addSubview(AppleButton)
-        view.addSubview(nextButton)
-        
-        AppleButton.snp.makeConstraints {
+        appleButton.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview().inset(24.0)
             $0.height.equalTo(48.0)
         }
         
         nextButton.snp.makeConstraints {
-            $0.top.equalTo(AppleButton.snp.bottom).offset(30.0)
+            $0.top.equalTo(appleButton.snp.bottom).offset(30.0)
             $0.leading.trailing.equalToSuperview().inset(24.0)
             $0.height.equalTo(48.0)
         }

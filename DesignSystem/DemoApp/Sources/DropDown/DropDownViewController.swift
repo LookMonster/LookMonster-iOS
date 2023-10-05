@@ -9,17 +9,21 @@ open class DropDownViewController: UIViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
+        attribute()
+        layout()
+    }
+    
+    func attribute() {
         view.backgroundColor = .white
     }
     
-    func setupUI() {
+    func layout() {
         view.addSubview(dropdownView)
         
-        dropdownView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.equalToSuperview().inset(20.0)
-            make.height.equalTo(300)
+        dropdownView.snp.makeConstraints {
+            $0.center.equalToSuperview()
+            $0.width.equalToSuperview().inset(20.0)
+            $0.height.equalTo(300)
         }
     }
 }

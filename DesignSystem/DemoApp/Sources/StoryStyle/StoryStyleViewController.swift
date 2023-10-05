@@ -1,4 +1,5 @@
 import Foundation
+import DesignSystem
 import UIKit
 import SnapKit
 import RxCocoa
@@ -39,15 +40,19 @@ public class StoryStyleViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.viewModel = MonsterBannerModel()
-        self.configureUI()
+        self.layout()
         self.addCells()
-        
-        view.backgroundColor = .white
+        self.attribute()
     }
 }
 
 extension StoryStyleViewController {
-    private func configureUI() {
+    
+    private func attribute() {
+        view.backgroundColor = .white
+    }
+
+    private func layout() {
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)

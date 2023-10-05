@@ -64,9 +64,11 @@ extension BannerViewController: UITableViewDelegate {
             return self.view.frame.height / 2
         }
     }
+    
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        print("클릭")
     }
+    
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         switch self.cells[indexPath.item] {
         case .banner:

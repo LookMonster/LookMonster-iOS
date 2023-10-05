@@ -1,7 +1,5 @@
 import RIBs
 import UIKit
 
-public protocol QuestionListener: AnyObject {
-    func communityBackground()
-    
+public protocol QuestionListener: AnyObject {    
 }

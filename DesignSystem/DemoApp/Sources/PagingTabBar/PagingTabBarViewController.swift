@@ -30,16 +30,17 @@ public class PagingTabBarViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupLayout()
-        
+        layout()
         bindEvents()
-
-        view.backgroundColor = .white
-        
+        attribute()
         pagingTabBar.selectedIndex.onNext(0)
     }
     
-    func setupLayout() {
+    func attribute() {
+        view.backgroundColor = .white
+    }
+    
+    func layout() {
        [
             pagingTabBar,
             containerView

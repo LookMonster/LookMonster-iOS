@@ -37,9 +37,5 @@ final class Popularnteractor: PresentableInteractor<PopularPresentable>, Popular
 }
 
 extension Popularnteractor {
-    func communityBackground() {
-        print("Asdf")
-    }
-    
-    
+
 }

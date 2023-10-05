@@ -3,5 +3,6 @@ import UIKit
 
 public protocol CommunityListener: AnyObject {
     
-    func communityBackground()
+    func searchButtonTap()
+    func penButtonTap()
 }
