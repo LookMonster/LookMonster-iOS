@@ -25,15 +25,24 @@ public class ProfileViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        attribute()
+        layout()
+    }
+    
+    func attribute() {
         view.backgroundColor = .white
-        
-        view.addSubview(profileViewSelectProfileSize)
-        view.addSubview(profileViewUserSize)
-        view.addSubview(profileViewCustom)
-        view.addSubview(profileViewSelectListSize)
-        view.addSubview(profileViewSelectStyleSize)
-        view.addSubview(profileViewSelectLookbookSize)
-        view.addSubview(profileViewSelectCommunitySize)
+    }
+    
+    func layout() {
+        [
+            profileViewSelectProfileSize,
+            profileViewUserSize,
+            profileViewCustom,
+            profileViewSelectListSize,
+            profileViewSelectStyleSize,
+            profileViewSelectLookbookSize,
+            profileViewSelectCommunitySize
+        ].forEach { view.addSubview($0) }
 
         
         profileViewSelectProfileSize.snp.makeConstraints {
@@ -71,5 +80,4 @@ public class ProfileViewController: UIViewController {
             $0.top.equalTo(profileViewSelectLookbookSize.snp.bottom).offset(20.0)
         }
     }
-    
 }
