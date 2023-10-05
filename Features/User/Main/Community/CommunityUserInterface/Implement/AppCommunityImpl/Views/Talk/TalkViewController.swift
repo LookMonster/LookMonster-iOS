@@ -5,7 +5,11 @@ import RxSwift
 import RxCocoa
 import SuperUI
 
-class TalkViewController: BaseViewController, UICollectionViewDelegateFlowLayout, TalkPresentable, TalkViewControllable, TalkListener  {
+class TalkViewController: BaseViewController,
+                          UICollectionViewDelegateFlowLayout,
+                          TalkPresentable,
+                          TalkViewControllable,
+                          TalkListener  {
     
     var listener: TalkListener?
     
@@ -23,32 +27,27 @@ class TalkViewController: BaseViewController, UICollectionViewDelegateFlowLayout
         return collectionView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func attribute() {
+        super.attribute()
+        self.listener = self
+    }
+    
+    override func layout() {
+        super.layout()
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        setupBinding()
-        
+                
         self.collectionView.delegate = self
     }
     
-    override init() {
-        super.init()
+    override func bindViewModel() {
+        super.bindViewModel()
+        setupBinding()
     }
-    
-    required init?(coder aDecoder :NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func communityBackground() {
-        print("asdf")
-    }
-    
+
     private func setupBinding() {
         
         items.bind(to:
@@ -59,7 +58,7 @@ class TalkViewController: BaseViewController, UICollectionViewDelegateFlowLayout
             
         }.disposed(by:self.disposeBag)
         
-        collectionView.rx.itemSelected.subscribe(onNext:{ [weak self] indexPath in
+        collectionView.rx.itemSelected.subscribe(onNext:{ indexPath in
             
             print(indexPath.row)
             
@@ -72,7 +71,5 @@ class TalkViewController: BaseViewController, UICollectionViewDelegateFlowLayout
         
         let size = CGSize(width :UIScreen.main.bounds.size.width , height :80)
         return size
-        
     }
-    
 }
