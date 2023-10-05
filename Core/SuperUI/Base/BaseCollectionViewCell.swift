@@ -17,7 +17,16 @@ open class BaseCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    open override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        self.attribute()
+        self.layout()
+        self.bind()
+    }
+    
     open func bind() { }
     open func layout() { }
+    open func attribute() { }
     
 }

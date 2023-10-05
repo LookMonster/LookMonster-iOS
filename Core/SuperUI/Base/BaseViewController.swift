@@ -13,6 +13,10 @@ open class BaseViewController: UIViewController {
         configureNavigationBar()
         setupKeyboardHandling()
     }
+    
+    open func attribute() {
+        // 속성을 정의 하는 곳
+    }
 
     open func layout() {
         // 서브뷰를 구성하고 SnapKit을 사용해서 layout을 하는 함수입니다.
