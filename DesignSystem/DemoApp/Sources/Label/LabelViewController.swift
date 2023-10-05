@@ -21,15 +21,23 @@ public class LabelViewController: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        attribute()
+        layout()
+    }
+    
+    func attribute() {
         view.backgroundColor = .white
-        
-        view.addSubview(variousLabel1)
-        view.addSubview(variousLabel2)
-        view.addSubview(variousLabel3)
-        view.addSubview(variousLabel4)
-        
-        view.addSubview(authLabel)
+    }
+    
+    func layout() {
+        [
+            variousLabel1,
+            variousLabel2,
+            variousLabel3,
+            variousLabel4,
+            authLabel
+        ].forEach { view.addSubview($0) }
         
         variousLabel1.snp.makeConstraints {
             $0.centerX.equalToSuperview()
