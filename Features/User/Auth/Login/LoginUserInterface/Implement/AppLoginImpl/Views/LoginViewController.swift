@@ -10,12 +10,10 @@ import SuperUI
 import DesignSystem
 import ResourceKit
 
-public final class LoginViewContoller: UIViewController, LoginPresentable, LoginViewControllable {
+public final class LoginViewContoller: BaseViewController, LoginPresentable, LoginViewControllable {
         
     var listener: LoginListener?
-    
-    private var disposeBag = DisposeBag()
-    
+        
     public var gmailCondition: Bool = false
     
     public lazy var titleLabel = MonsterAuthLabel(text: "로그인")
@@ -54,11 +52,13 @@ public final class LoginViewContoller: UIViewController, LoginPresentable, Login
         debugPrint("\(self) deinit")
     }
     
-    public func layout() {
-        view.addSubview(titleLabel)
-        view.addSubview(idTextField)
-        view.addSubview(passwordTextField)
-        view.addSubview(nextButton)
+    public override func layout() {
+        [
+            titleLabel,
+            idTextField,
+            passwordTextField,
+            nextButton
+        ].forEach { view.addSubview($0) }
 
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(24.0)
