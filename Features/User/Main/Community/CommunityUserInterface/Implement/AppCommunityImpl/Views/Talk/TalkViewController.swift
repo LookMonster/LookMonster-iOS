@@ -37,8 +37,8 @@ class TalkViewController: BaseViewController, UICollectionViewDelegateFlowLayout
         self.collectionView.delegate = self
     }
     
-    init() {
-        super.init(nibName:nil , bundle:nil)
+    override init() {
+        super.init()
     }
     
     required init?(coder aDecoder :NSCoder) {

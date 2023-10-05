@@ -47,8 +47,8 @@ class QuestionViewController: BaseViewController, QuestionPresentable, QuestionV
         }).disposed(by: disposeBag)
     }
     
-    init() {
-        super.init(nibName:nil , bundle:nil)
+    override init() {
+        super.init()
     }
     
     required init?(coder: NSCoder) {

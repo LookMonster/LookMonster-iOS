@@ -57,8 +57,7 @@ class CommunityViewController: BaseViewController,
         pagingTabBar.selectedIndex.onNext(0)
     }
     
-    public init() {
-        super.init(nibName: nil, bundle: nil)
+    public override init() {
         
         attribute()
         bindActions()

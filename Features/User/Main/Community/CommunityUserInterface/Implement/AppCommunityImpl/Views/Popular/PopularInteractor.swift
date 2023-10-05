@@ -40,6 +40,4 @@ extension Popularnteractor {
     func communityBackground() {
         print("Asdf")
     }
-    
-    
 }
