@@ -15,7 +15,7 @@ public class CommunityCollectionViewCell: BaseCollectionViewCell {
         $0.backgroundColor = ResourceKitAsset.gray50.color
     }
     
-    public lazy var titleLabel = MonsterBaseLabel(text: "나이키와 아디다스 둘 중 어느것이 났나요?")
+    public lazy var titleLabel = MonsterBaseLabel(text: "나이키와 아디다스 둘 중 어느것이 났나요?", textColor: .black)
     
     public lazy var alarmCountLabel = CommunityAlarmCountLabel()
 
@@ -41,12 +41,12 @@ public class CommunityCollectionViewCell: BaseCollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public override func layoutSubviews() {
-        super.layoutSubviews()
-        
+    public override func attribute() {
         self.backgroundColor = .clear
         alarmCountLabel.updateCount(countObservable)
-        
+    }
+    
+    public override func layout() {
         self.addSubviews([titleLabel,
                           alarmCountLabel,
                           userProfileView,
@@ -85,7 +85,6 @@ public class CommunityCollectionViewCell: BaseCollectionViewCell {
             $0.bottom.equalToSuperview()
         }
     }
-
     
     public override func bind() {
         super.bind()

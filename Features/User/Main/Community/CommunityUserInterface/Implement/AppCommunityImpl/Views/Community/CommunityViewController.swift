@@ -11,13 +11,12 @@ import DesignSystem
 import ResourceKit
 import CommunityUserInterface
 
-class CommunityViewController: UIViewController,
+class CommunityViewController: BaseViewController,
                                CommunityPresentable,
                                CommunityViewControllable,
                                PageChangeable {
     
-    var listener: CommunityListener?
-    var disposeBag = DisposeBag()
+    internal var listener: CommunityListener?
     
     internal lazy var pagingTabBar = MonsterPagingTabBar(categoryTitleList:["인기", "토크", "투표", "질문"])
     internal lazy var viewControllers : [UIViewController] = [
@@ -31,16 +30,27 @@ class CommunityViewController: UIViewController,
         return self
     }
     
-    private lazy var containerViews: UIView = {
-         let view = UIView()
-         return view
+    private lazy var containerViews = UIView()
+    
+    private lazy var searchButton: UIBarButtonItem = {
+        let searchImage = ResourceKitAsset.searchIcon.image
+        return UIBarButtonItem(image: searchImage, style: .plain, target: nil, action: nil).then {
+            $0.tintColor = .black
+        }
+    }()
+
+    private lazy var penButton: UIBarButtonItem = {
+        let penImage = ResourceKitAsset.writingIcon.image
+        return UIBarButtonItem(image: penImage, style: .plain, target: nil, action: nil).then {
+            $0.tintColor = .black
+        }
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setupLayout(containerView: containerViews)
-        self.bindEvents(containerView: containerViews, disposeBag: disposeBag)
+        setupLayout(containerView: containerViews)
+        bindEvents(containerView: containerViews, disposeBag: disposeBag)
 
         view.backgroundColor = .white
 
@@ -50,53 +60,41 @@ class CommunityViewController: UIViewController,
     public init() {
         super.init(nibName: nil, bundle: nil)
         
-        self.bk()
-        self.navigationSetting()
-        self.setupViews()
-        
+        attribute()
+        bindActions()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        
-        self.setupViews()
     }
     
     deinit {
         debugPrint("\(self) deinit")
     }
     
-    func navigationSetting() {
+    override func configureNavigationBar() {
         title = "커뮤니티"
-        let searchImage = ResourceKitAsset.searchIcon.image
-        let searchButton = UIBarButtonItem(image: searchImage, style: .plain, target: self, action: #selector(searchButtonTap))
-        searchButton.tintColor = .black
-        self.navigationItem.leftBarButtonItem = searchButton
         
-        let penImage = ResourceKitAsset.writingIcon.image
-        let penButton = UIBarButtonItem(image: penImage, style: .plain, target: self, action: #selector(penButtonTap))
-        penButton.tintColor = .black
-        self.navigationItem.rightBarButtonItem = penButton
-
+        navigationItem.leftBarButtonItem = searchButton
+        navigationItem.rightBarButtonItem = penButton
+        tabBarItem = UITabBarItem(title: "Community", image: ResourceKitAsset.communityImage.image, tag: 2)
     }
     
-    func bk() {
+    override func attribute() {
         view.backgroundColor = .systemBackground
     }
     
-    func layout() {
-
-    }
-    
-    @objc func searchButtonTap() {
-        print("fdsa")
-    }
-    
-    @objc func penButtonTap() {
-        print("asdf")
-    }
-    
-    func setupViews() {
-        tabBarItem = UITabBarItem(title: "Community", image: ResourceKitAsset.communityImage.image, tag: 2)
+    override func bindActions() {
+        searchButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.listener?.searchButtonTap()
+            })
+            .disposed(by: disposeBag)
+        
+        penButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.listener?.penButtonTap()
+            })
+            .disposed(by: disposeBag)
     }
 }
