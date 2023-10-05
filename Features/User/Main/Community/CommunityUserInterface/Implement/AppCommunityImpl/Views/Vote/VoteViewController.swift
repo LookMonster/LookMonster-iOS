@@ -23,48 +23,40 @@ class VoteViewController: BaseViewController, UICollectionViewDelegateFlowLayout
         return collectionView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func attribute() {
+        super.attribute()
+        self.listener = self
+    }
+    
+    override func layout() {
+        super.layout()
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        setupBinding()
-        
         self.collectionView.delegate = self
     }
     
-    override init() {
-        super.init()
+    override func bindViewModel() {
+        super.bindViewModel()
+        setupBinding()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func communityBackground() {
-        print("asdf")
-    }
-    
-    
+
     private func setupBinding() {
-        
         items.bind(to:
                     collectionView.rx.items(cellIdentifier:"CommunityCollectionViewCell",
                                             cellType: CommunityCollectionViewCell.self)) { row , data , cell in
             
-            cell.variousLabel = MonsterVariousLabel(text:data , type:.talk , timerType:.hoursAgo(4))
+            cell.variousLabel = MonsterVariousLabel(text: data , type: .vote , timerType: .weeksAgo(2))
             
         }.disposed(by:self.disposeBag)
         
-        collectionView.rx.itemSelected.subscribe(onNext:{ [weak self] indexPath in
+        collectionView.rx.itemSelected.subscribe(onNext:{ indexPath in
             
             print(indexPath.row)
             
-        }).disposed(by:self.disposeBag)
+        }).disposed(by: self.disposeBag)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
