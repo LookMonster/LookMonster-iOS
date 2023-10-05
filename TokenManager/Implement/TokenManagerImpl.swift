@@ -55,7 +55,7 @@ public struct TokenManagerImpl: TokenManager {
 		
 		switch status {
 		case errSecSuccess:
-			Logger.debug("save requested token: \(token), saved token: \(get(key: key))")
+            Logger.debug("save requested token: \(token), saved token: \(String(describing: get(key: key)))")
 			return true
 		case errSecDuplicateItem:
 			return update(token: token, with: key)
@@ -87,7 +87,7 @@ public struct TokenManagerImpl: TokenManager {
 		
 		switch status {
 		case errSecSuccess:
-			Logger.debug("update requested token: \(token), updated token: \(get(key: key))")
+            Logger.debug("update requested token: \(token), updated token: \(String(describing: get(key: key)))")
 			return true
 		case errSecItemNotFound:
 			return save(token: token, with: key)
@@ -106,7 +106,7 @@ public struct TokenManagerImpl: TokenManager {
 		
 		let status = SecItemDelete(query as CFDictionary)
 		
-		Logger.debug("check empty token: Is \(get(key: key)) empty?")
+        Logger.debug("check empty token: Is \(String(describing: get(key: key))) empty?")
 		Logger.debug("delete token status: \(status)")
 		
 		return status == errSecSuccess

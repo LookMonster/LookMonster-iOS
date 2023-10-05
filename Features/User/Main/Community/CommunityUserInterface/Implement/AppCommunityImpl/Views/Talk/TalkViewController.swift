@@ -65,11 +65,11 @@ class TalkViewController: BaseViewController,
         }).disposed(by:self.disposeBag)
     }
     
-    func collectionView(_ collectionView :UICollectionView ,
-                        layout collectionViewLayout :UICollectionViewLayout ,
-                        sizeForItemAt indexPath :IndexPath) -> CGSize {
+    func collectionView(_ collectionView :UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let size = CGSize(width :UIScreen.main.bounds.size.width , height :80)
+        let size = CGSize(width :UIScreen.main.bounds.size.width ,height :80)
         return size
     }
 }

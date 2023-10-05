@@ -31,10 +31,7 @@ final class AppHomeViewController: UIViewController,
         return self
     }
     
-    private lazy var containerViews: UIView = {
-         let view = UIView()
-         return view
-    }()
+    private lazy var containerViews = UIView()
     
     private lazy var navLabel = UILabel().then {
         $0.textColor = UIColor.black
