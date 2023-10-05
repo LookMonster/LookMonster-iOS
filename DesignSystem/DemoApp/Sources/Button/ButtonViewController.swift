@@ -18,8 +18,15 @@ public class ButtonViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        attribute()
+        layout()
+    }
+    
+    func attribute() {
         view.backgroundColor = .white
-        
+    }
+    
+    func layout() {
         [appleButton, nextButton].forEach { view.addSubview($0) }
         
         appleButton.snp.makeConstraints {
