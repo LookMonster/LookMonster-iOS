@@ -21,6 +21,7 @@ open class BaseViewController: UIViewController {
         bindViewModel()
         configureNavigationBar()
         setupKeyboardHandling()
+        attribute()
     }
     
     open func attribute() {

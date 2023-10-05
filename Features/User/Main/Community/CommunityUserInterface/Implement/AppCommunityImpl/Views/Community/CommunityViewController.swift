@@ -58,7 +58,7 @@ class CommunityViewController: BaseViewController,
     }
     
     public override init() {
-        
+        super.init()
         attribute()
         bindActions()
     }

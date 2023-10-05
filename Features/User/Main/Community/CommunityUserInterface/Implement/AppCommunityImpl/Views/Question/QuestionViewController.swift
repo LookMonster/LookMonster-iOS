@@ -7,7 +7,11 @@ import RxSwift
 import ResourceKit
 import SuperUI
 
-class QuestionViewController: BaseViewController, QuestionPresentable, QuestionViewControllable, QuestionListener, UICollectionViewDelegateFlowLayout {
+class QuestionViewController: BaseViewController,
+                              QuestionPresentable,
+                              QuestionViewControllable,
+                              QuestionListener,
+                              UICollectionViewDelegateFlowLayout {
     
     var listener: QuestionListener?
     
@@ -25,18 +29,28 @@ class QuestionViewController: BaseViewController, QuestionPresentable, QuestionV
         return collectionView
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    override func attribute() {
+        super.attribute()
+        self.listener = self
+    }
+    
+    override func layout() {
+        super.layout()
         view.addSubview(collectionView)
         
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
-        setupBinding()
-        
         self.collectionView.delegate = self
+    }
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        setupBinding()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         items.subscribe(onNext: { [weak self] items in
             if items.isEmpty {
@@ -55,10 +69,6 @@ class QuestionViewController: BaseViewController, QuestionPresentable, QuestionV
         fatalError("init(coder:) has not been implemented")
     }
     
-    func communityBackground() {
-        print("SAdf")
-    }
-    
     private func setupBinding() {
         
         items.bind(to:
@@ -69,7 +79,7 @@ class QuestionViewController: BaseViewController, QuestionPresentable, QuestionV
             
         }.disposed(by:self.disposeBag)
         
-        collectionView.rx.itemSelected.subscribe(onNext:{ [weak self] indexPath in
+        collectionView.rx.itemSelected.subscribe(onNext:{ indexPath in
             
             print(indexPath.row)
             

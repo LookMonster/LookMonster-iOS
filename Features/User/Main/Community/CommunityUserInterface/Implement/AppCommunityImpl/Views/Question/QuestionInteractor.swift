@@ -47,7 +47,4 @@ final class QuestionInteractor: PresentableInteractor<QuestionPresentable>, Ques
 }
 
 extension QuestionInteractor {
-    func communityBackground() {
-    }
-    
 }
