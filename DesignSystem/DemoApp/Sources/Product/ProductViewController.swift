@@ -66,15 +66,19 @@ public class ProductViewController: UIViewController {
         super.viewDidLoad()
         
         self.viewModel = MonsterBannerModel()
-        self.configureUI()
+        self.layout()
         self.addCells()
-        
-        view.backgroundColor = .white
+        self.attribute()
     }
 }
 
 extension ProductViewController {
-    private func configureUI() {
+    
+    private func attribute() {
+        view.backgroundColor = .white
+    }
+    
+    private func layout() {
         self.view.addSubview(self.tableView)
         self.tableView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
