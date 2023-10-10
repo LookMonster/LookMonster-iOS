@@ -12,11 +12,6 @@ import UtilityPlugin
 
 let project = Project(
     name: "DesignSystem",
-//    organizationName: "com.monster.lookMonster",
-//    settings: .settings(configurations: [
-//        .debug(name: "Debug", xcconfig: .relativeToRoot("Config/Debug.xcconfig")),
-//        .release(name: "Release", xcconfig: .relativeToRoot("Config/Release.xcconfig")),
-//    ]),
     targets: [
         Target(
             name: "DesignSystem",
@@ -30,14 +25,11 @@ let project = Project(
             infoPlist: .default,
             sources: ["Sources/**"],
             dependencies: [
-//                .ThirdParty.SPM.SnapKit,
+                .ThirdParty.SPM.SnapKit,
                 .ThirdParty.SPM.Then,
                 .ResourceKit.Implement,
                 .ThirdParty.SPM.RxCocoa,
-                .ThirdParty.SPM.RxSwift,
-//                .ThirdParty.SPM.Kingfisher,
-//                .ThirdParty.SPM.Swinject,
-//                .ThirdParty.SPM.SkeletonView
+                .ThirdParty.SPM.RxSwift
             ]),
         Target(
             name: "DesignSystemDemoApp",
@@ -62,14 +54,11 @@ let project = Project(
             dependencies:
                 [
                     .target(name: "DesignSystem"),
-//                    .ThirdParty.SPM.SnapKit,
+                    .ThirdParty.SPM.SnapKit,
                     .ThirdParty.SPM.Then,
                     .ResourceKit.Implement,
                     .ThirdParty.SPM.RxCocoa,
-                    .ThirdParty.SPM.RxSwift,
-//                    .ThirdParty.SPM.Kingfisher,
-//                    .ThirdParty.SPM.Swinject,
-//                    .ThirdParty.SPM.SkeletonView
+                    .ThirdParty.SPM.RxSwift
                 ]
         )
         
