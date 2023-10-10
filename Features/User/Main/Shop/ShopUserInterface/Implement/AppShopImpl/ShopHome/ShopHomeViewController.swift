@@ -49,15 +49,15 @@ final class ShopHomeViewController: BaseViewController,
         self.setupLayout(containerView: containerViews)
         self.bindEvents(containerView: containerViews, disposeBag: disposeBag)
         
-        setupViews()
+        self.setupViews()
         
-        pagingTabBar.selectedIndex.onNext(0)
+        self.pagingTabBar.selectedIndex.onNext(0)
     }
     
     required init?(coder: NSCoder) {
         super.init()
         
-        setupViews()
+        self.setupViews()
     }
     
     func setupViews() {

@@ -23,8 +23,7 @@ final class ShopHomeInteractor: PresentableInteractor<ShopHomePresentable>, Shop
         presenter.listener = self
     }
     
-    deinit {
-    }
+    deinit {}
     
     override func didBecomeActive() {
         super.didBecomeActive()

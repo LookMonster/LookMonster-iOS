@@ -1,6 +1,7 @@
 import UIKit
 import SuperUI
 import ShopUserInterface
+import DesignSystem
 
 enum Item {
     case subCategory
@@ -30,5 +31,14 @@ class AllViewController: UITableViewController, AllPresentable, AllViewControlla
     
     public var uiviewController: UITableViewController {
         return self
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .systemBackground
+        tableView.separatorInset.left = 0
+        tableView.allowsSelection = false
+        tableView.register(MonsterTrendingKeywordCollectionView.self, forCellReuseIdentifier: MonsterTrendingKeywordCollectionView.id)
     }
 }

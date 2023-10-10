@@ -24,6 +24,7 @@ final class AllInteractor: PresentableInteractor<AllPresentable>, AllListener, A
     }
     
     deinit {
+        
     }
     
     override func didBecomeActive() {
