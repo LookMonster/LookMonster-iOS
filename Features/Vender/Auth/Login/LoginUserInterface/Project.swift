@@ -13,17 +13,10 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .TokenManager.Interface
     ],
     implementDependencies: [
-//        .Feature.Finance.Domain.Interface,
-//        .Feature.Finance.Data.Interface,
-        
         .Core.RIBsUtil,
         .Core.SuperUI,
         .Core.DefaultsStore,
         
-//        .ThirdParty.SPM.RIBs,
-//        .ThirdParty.SPM.RxSwift,
-//        .ThirdParty.SPM.RxRelay,
-//        .ThirdParty.SPM.SnapKit,
         .DesignSystem.Implement
     ]
 )

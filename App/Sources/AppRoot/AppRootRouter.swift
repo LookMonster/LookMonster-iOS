@@ -1,6 +1,6 @@
 import RIBs
 import RIBsUtil
-import FinanceUserInterface
+//import FinanceUserInterface
 import HomeUserInterface
 import UserProfileUserInterface
 import StyleUserInterface

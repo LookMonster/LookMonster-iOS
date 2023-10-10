@@ -5,7 +5,6 @@ import Then
 import RxCocoa
 import SuperUI
 import RxSwift
-import Kingfisher
 import SuperUI
 import DesignSystem
 import ResourceKit

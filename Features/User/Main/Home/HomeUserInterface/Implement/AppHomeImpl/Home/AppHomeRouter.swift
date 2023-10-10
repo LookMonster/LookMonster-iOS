@@ -1,10 +1,9 @@
 import RIBs
 import RIBsUtil
 import SuperUI
-import TransportUserInterface
 import HomeUserInterface
 
-protocol AppHomeInteractable: Interactable, TransportHomeListener {
+protocol AppHomeInteractable: Interactable {
   var router: AppHomeRouting? { get set }
   var listener: AppHomeListener? { get set }
 }

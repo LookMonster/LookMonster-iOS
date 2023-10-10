@@ -7,20 +7,12 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
-//        .Feature.Finance.Domain.Interface,
-        
         .Core.RIBsUtil,
         .TokenManager.Interface
     ],
     implementDependencies: [
-//        .Feature.Finance.Domain.Interface,
-//        .Feature.Finance.Data.Interface,
-        
         .Core.SuperUI,
         .Core.DefaultsStore,
-//        .ThirdParty.SPM.RxSwift,
-//        .ThirdParty.SPM.RxRelay,
-//        .ThirdParty.SPM.SnapKit,
         .DesignSystem.Implement
     ]
 )

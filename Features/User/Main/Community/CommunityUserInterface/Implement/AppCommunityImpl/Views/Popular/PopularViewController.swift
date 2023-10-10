@@ -5,7 +5,6 @@ import CommunityUserInterface
 import RxSwift
 import RxCocoa
 import SuperUI
-import SkeletonView
 
 class PopularViewController: BaseViewController,
                              UICollectionViewDelegateFlowLayout,

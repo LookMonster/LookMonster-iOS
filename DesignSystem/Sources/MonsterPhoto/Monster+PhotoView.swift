@@ -1,5 +1,4 @@
 import UIKit
-import Kingfisher
 import SnapKit
 import RxCocoa
 import RxSwift
