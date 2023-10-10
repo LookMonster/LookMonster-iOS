@@ -24,7 +24,6 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
 //        .Feature.Transport.UserInterface.Interface,
         
         .Core.RIBsUtil,
-//        .ThirdParty.SPM.RIBs,
         .TokenManager.Interface
     ],
     implementDependencies: [

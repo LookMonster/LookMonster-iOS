@@ -30,7 +30,7 @@ let project = Project(name: "Core",
                         Project.makeTarget(
                             name: "RIBsUtil",
                             dependencies: [
-//                                .ThirdParty.SPM.RIBs,
+                                .ThirdParty.SPM.RIBs,
 //                                .ThirdParty.RxSwift,
 //                                .ThirdParty.SPM.Swinject
                             ]

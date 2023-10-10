@@ -7,11 +7,11 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
-//        .ThirdParty.SPM.RIBs,
+        .Core.RIBsUtil
 //        .ThirdParty.SPM.SnapKit
     ],
     implementDependencies: [
-//        .ThirdParty.SPM.RIBs,
+        .Core.RIBsUtil,
 //        .ThirdParty.SPM.SnapKit,
         .DesignSystem.Implement
     ]

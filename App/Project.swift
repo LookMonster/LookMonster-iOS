@@ -25,7 +25,7 @@ let project = Project(
             dependencies: [
                 //                .ResourceKit.Implement,
                 
-//                .ThirdParty.SPM.RIBs,
+                .ThirdParty.SPM.RIBs,
                 //                .ThirdParty.RxRelay,
                 //                .ThirdParty.RxSwift,
                 

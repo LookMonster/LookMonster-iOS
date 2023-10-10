@@ -7,11 +7,9 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
-//        .Feature.Finance.Domain.Interface,
-        
         .Core.RIBsUtil,
         
-//        .ThirdParty.SPM.RIBs,
+        .ThirdParty.SPM.RIBs,
         .TokenManager.Interface
     ],
     implementDependencies: [

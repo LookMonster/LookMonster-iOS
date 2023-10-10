@@ -15,6 +15,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
 //        .Core.RIBsUtil,
 //        .Feature.Finance.Data.Interface,
 //        .Feature.Transport.UserInterface.Interface,
+        .Core.RIBsUtil
     ],
     implementDependencies: [
 //        .ThirdParty.SPM.RIBs,

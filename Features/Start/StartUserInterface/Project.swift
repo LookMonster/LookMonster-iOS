@@ -9,9 +9,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     interfaceDependencies: [
 //        .Feature.Finance.Domain.Interface,
         
-        .Core.RIBsUtil,
-        
-//        .ThirdParty.SPM.RIBs
+        .Core.RIBsUtil
     ],
     implementDependencies: [
 //        .Feature.Finance.Domain.Interface,
@@ -26,7 +24,6 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Core.RIBsUtil,
         .Core.SuperUI,
         
-//        .ThirdParty.SPM.RIBs,
 //        .ThirdParty.SPM.RxSwift,
 //        .ThirdParty.SPM.RxRelay,
 //        .ThirdParty.SPM.SnapKit,
@@ -45,9 +42,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .ResourceKit.Implement,
         .Core.DefaultsStore,
         .Core.RIBsUtil,
-        .Core.SuperUI,
-        
-//        .ThirdParty.SPM.RIBs,
+        .Core.SuperUI,        
 //        .ThirdParty.SPM.RxSwift,
 //        .ThirdParty.SPM.RxRelay,
 //        .ThirdParty.SPM.SnapKit,

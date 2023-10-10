@@ -10,8 +10,6 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
 //        .Feature.Finance.Domain.Interface,
         
         .Core.RIBsUtil,
-        
-//        .ThirdParty.SPM.RIBs,
         .TokenManager.Interface
     ],
     implementDependencies: [
@@ -22,7 +20,6 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Core.SuperUI,
         .Core.DefaultsStore,
         
-//        .ThirdParty.SPM.RIBs,
 //        .ThirdParty.SPM.RxSwift,
 //        .ThirdParty.SPM.RxRelay,
 //        .ThirdParty.SPM.SnapKit,

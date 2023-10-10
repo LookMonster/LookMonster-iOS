@@ -2,7 +2,7 @@ import ProjectDescription
 import ProjectDescriptionHelpers
 
 let spm = SwiftPackageManagerDependencies([
-//    .remote(url: "https://github.com/uber/RIBs", requirement: .upToNextMajor(from: "0.13.0")),
+    .remote(url: "https://github.com/uber/RIBs", requirement: .upToNextMajor(from: "0.13.0")),
 //    .remote(url: "https://github.com/SnapKit/SnapKit.git", requirement: .upToNextMinor(from: "5.0.0")),
 //    .remote(url: "https://github.com/Moya/Moya.git", requirement: .upToNextMajor(from: "15.0.0")),
     .remote(url: "https://github.com/devxoul/Then", requirement: .upToNextMajor(from: "2")),
