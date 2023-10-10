@@ -22,6 +22,8 @@ final class AppHomeViewController: UIViewController,
     
     internal lazy var pagingTabBar = MonsterPagingTabBar(categoryTitleList:["추천", "랭킹", "발매정보", "남성", "요즘것들", "여성", "발견", "준하픽", "인기"])
     
+    private lazy var containerViews = UIView()
+    
     internal lazy var viewControllers : [UIViewController] = [
         RecommandViewController()
     ]
@@ -29,9 +31,7 @@ final class AppHomeViewController: UIViewController,
     public var uiviewController: UIViewController {
         return self
     }
-    
-    private lazy var containerViews = UIView()
-    
+        
     private lazy var navLabel = UILabel().then {
         $0.textColor = UIColor.black
         $0.text = "LOOK MONSTER"
@@ -45,6 +45,7 @@ final class AppHomeViewController: UIViewController,
         self.bindEvents(containerView: containerViews, disposeBag: disposeBag)
     
         setupViews()
+        
         pagingTabBar.selectedIndex.onNext(0)
     }
     
