@@ -6,9 +6,7 @@ let project = Project.invertedDualTargetProject(
     name: "StyleDomain",
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
-    interfaceDependencies: [
-    ],
-    implementDependencies: [
-    ]
+    interfaceDependencies: [],
+    implementDependencies: []
 )
 
