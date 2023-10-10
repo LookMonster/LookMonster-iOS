@@ -12,7 +12,7 @@ let project = Project.invertedDualTargetProject(
 //        .ThirdParty.SPM.RxSwift,
 //        .ThirdParty.SPM.RxRelay,
         
-        .Feature.Finance.Domain.Interface,
+//        .Feature.Finance.Domain.Interface,
         
     ],
     implementDependencies: [
@@ -21,6 +21,6 @@ let project = Project.invertedDualTargetProject(
 //        .ThirdParty.SPM.RxSwift,
 //        .ThirdParty.SPM.RxRelay,
         
-        .Feature.Finance.Domain.Interface,
+//        .Feature.Finance.Domain.Interface,
     ]
 )

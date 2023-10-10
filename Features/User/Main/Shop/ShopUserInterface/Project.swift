@@ -25,8 +25,8 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Core.RIBsUtil,
         .Core.SuperUI,
         
-        .Feature.Finance.Data.Interface,
-        .Feature.Transport.UserInterface.Interface,
+//        .Feature.Finance.Data.Interface,
+//        .Feature.Transport.UserInterface.Interface,
         .DesignSystem.Implement
     ]
 )

@@ -93,21 +93,21 @@ extension TargetDependency {
         }
     }
     
-    public struct Feature {
-        public struct Finance {
-            public struct Data {}
-            public struct Domain {}
-            public struct UserInterface {}
-        }
-        
-        public struct Transport {
-            public struct Data {}
-            public struct Domain {}
-            public struct UserInterface {}
-        }
-        
-        public struct BaseDependency {}
-    }
+//    public struct Feature {
+//        public struct Finance {
+//            public struct Data {}
+//            public struct Domain {}
+//            public struct UserInterface {}
+//        }
+//        
+//        public struct Transport {
+//            public struct Data {}
+//            public struct Domain {}
+//            public struct UserInterface {}
+//        }
+//        
+//        public struct BaseDependency {}
+//    }
     
     public struct Core {
         
@@ -161,54 +161,54 @@ public extension TargetDependency.ResourceKit {
 }
 
 // MARK: - Features/User/Finance
-public extension TargetDependency.Feature.Finance {
-    static let folderName = "Finance"
-    static func project(name: String, isInterface: Bool) -> TargetDependency {
-        let postfix: String = isInterface ? "" : "Impl"
-        return .project(target: "\(folderName)\(name)\(postfix)",
-                        path: .relativeToRoot("Features/User/\(folderName)/\(folderName)\(name)"))
-    }
-}
-
-public extension TargetDependency.Feature.Finance.UserInterface {
-    static let Interface = TargetDependency.Feature.Finance.project(name: "UserInterface", isInterface: true)
-    static let Implement = TargetDependency.Feature.Finance.project(name: "UserInterface", isInterface: false)
-}
-
-public extension TargetDependency.Feature.Finance.Domain {
-    static let Interface = TargetDependency.Feature.Finance.project(name: "Domain", isInterface: true)
-    static let Implement = TargetDependency.Feature.Finance.project(name: "Domain", isInterface: false)
-}
-
-public extension TargetDependency.Feature.Finance.Data {
-    static let Interface = TargetDependency.Feature.Finance.project(name: "Data", isInterface: true)
-    static let Implement = TargetDependency.Feature.Finance.project(name: "Data", isInterface: false)
-}
-
-// MARK: - Features/User/Transport
-public extension TargetDependency.Feature.Transport {
-    static let folderName = "Transport"
-    static func project(name: String, isInterface: Bool) -> TargetDependency {
-        let postfix: String = isInterface ? "" : "Impl"
-        return .project(target: "\(folderName)\(name)\(postfix)",
-                        path: .relativeToRoot("Features/User/\(folderName)/\(folderName)\(name)"))
-    }
-}
-
-public extension TargetDependency.Feature.Transport.UserInterface {
-    static let Interface = TargetDependency.Feature.Transport.project(name: "UserInterface", isInterface: true)
-    static let Implement = TargetDependency.Feature.Transport.project(name: "UserInterface", isInterface: false)
-}
-
-public extension TargetDependency.Feature.Transport.Domain {
-    static let Interface = TargetDependency.Feature.Transport.project(name: "Domain", isInterface: true)
-    static let Implement = TargetDependency.Feature.Transport.project(name: "Domain", isInterface: false)
-}
-
-public extension TargetDependency.Feature.Transport.Data {
-    static let Interface = TargetDependency.Feature.Transport.project(name: "Data", isInterface: true)
-    static let Implement = TargetDependency.Feature.Transport.project(name: "Data", isInterface: false)
-}
+//public extension TargetDependency.Feature.Finance {
+//    static let folderName = "Finance"
+//    static func project(name: String, isInterface: Bool) -> TargetDependency {
+//        let postfix: String = isInterface ? "" : "Impl"
+//        return .project(target: "\(folderName)\(name)\(postfix)",
+//                        path: .relativeToRoot("Features/User/\(folderName)/\(folderName)\(name)"))
+//    }
+//}
+//
+//public extension TargetDependency.Feature.Finance.UserInterface {
+//    static let Interface = TargetDependency.Feature.Finance.project(name: "UserInterface", isInterface: true)
+//    static let Implement = TargetDependency.Feature.Finance.project(name: "UserInterface", isInterface: false)
+//}
+//
+//public extension TargetDependency.Feature.Finance.Domain {
+//    static let Interface = TargetDependency.Feature.Finance.project(name: "Domain", isInterface: true)
+//    static let Implement = TargetDependency.Feature.Finance.project(name: "Domain", isInterface: false)
+//}
+//
+//public extension TargetDependency.Feature.Finance.Data {
+//    static let Interface = TargetDependency.Feature.Finance.project(name: "Data", isInterface: true)
+//    static let Implement = TargetDependency.Feature.Finance.project(name: "Data", isInterface: false)
+//}
+//
+//// MARK: - Features/User/Transport
+//public extension TargetDependency.Feature.Transport {
+//    static let folderName = "Transport"
+//    static func project(name: String, isInterface: Bool) -> TargetDependency {
+//        let postfix: String = isInterface ? "" : "Impl"
+//        return .project(target: "\(folderName)\(name)\(postfix)",
+//                        path: .relativeToRoot("Features/User/\(folderName)/\(folderName)\(name)"))
+//    }
+//}
+//
+//public extension TargetDependency.Feature.Transport.UserInterface {
+//    static let Interface = TargetDependency.Feature.Transport.project(name: "UserInterface", isInterface: true)
+//    static let Implement = TargetDependency.Feature.Transport.project(name: "UserInterface", isInterface: false)
+//}
+//
+//public extension TargetDependency.Feature.Transport.Domain {
+//    static let Interface = TargetDependency.Feature.Transport.project(name: "Domain", isInterface: true)
+//    static let Implement = TargetDependency.Feature.Transport.project(name: "Domain", isInterface: false)
+//}
+//
+//public extension TargetDependency.Feature.Transport.Data {
+//    static let Interface = TargetDependency.Feature.Transport.project(name: "Data", isInterface: true)
+//    static let Implement = TargetDependency.Feature.Transport.project(name: "Data", isInterface: false)
+//}
 
 // MARK: - Features/User/Main/Home
 public extension TargetDependency.Features.User.Main.Home {
