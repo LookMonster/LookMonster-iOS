@@ -13,8 +13,7 @@ let project = Project.invertedDualTargetProject(
     name: "TokenManager",
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
-    interfaceDependencies: [
-    ],
+    interfaceDependencies: [],
     implementDependencies: [
         .Core.CSLogger
     ]
