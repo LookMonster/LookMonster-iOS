@@ -31,7 +31,7 @@ let project = Project(
             sources: ["Sources/**"],
             dependencies: [
 //                .ThirdParty.SPM.SnapKit,
-//                .ThirdParty.SPM.Then,
+                .ThirdParty.SPM.Then,
                 .ResourceKit.Implement,
 //                .ThirdParty.SPM.RxCocoa,
 //                .ThirdParty.SPM.RxSwift,
@@ -63,7 +63,7 @@ let project = Project(
                 [
                     .target(name: "DesignSystem"),
 //                    .ThirdParty.SPM.SnapKit,
-//                    .ThirdParty.SPM.Then,
+                    .ThirdParty.SPM.Then,
                     .ResourceKit.Implement,
 //                    .ThirdParty.SPM.RxCocoa,
 //                    .ThirdParty.SPM.RxSwift,

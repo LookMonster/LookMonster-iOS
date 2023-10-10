@@ -30,7 +30,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
 //        .ThirdParty.SPM.RxSwift,
 //        .ThirdParty.SPM.RxRelay,
 //        .ThirdParty.SPM.SnapKit,
-//        .ThirdParty.SPM.Then,
+        .ThirdParty.SPM.Then,
 //        .ThirdParty.SPM.RxCocoa,
         .DesignSystem.Implement
     ],
@@ -51,7 +51,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
 //        .ThirdParty.SPM.RxSwift,
 //        .ThirdParty.SPM.RxRelay,
 //        .ThirdParty.SPM.SnapKit,
-//        .ThirdParty.SPM.Then,
+        .ThirdParty.SPM.Then,
 //        .ThirdParty.SPM.RxCocoa,
         .DesignSystem.Implement
     ]

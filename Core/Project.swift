@@ -22,7 +22,7 @@ let project = Project(name: "Core",
 //                                .ThirdParty.SPM.RxCocoa,
 //                                .ThirdParty.SPM.RxSwift,
 //                                .ThirdParty.SPM.SnapKit,
-//                                .ThirdParty.SPM.Then,
+                                .ThirdParty.SPM.Then,
                                 .DesignSystem.Implement,
 //                                .ThirdParty.SPM.Swinject
                             ]
