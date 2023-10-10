@@ -1,16 +1,34 @@
 import UIKit
+import SuperUI
 import ShopUserInterface
 
-class AllViewController: UIViewController, AllPresentable, AllViewControllable, AllListener  {
+enum Item {
+    case subCategory
+    case filter
+    case product
+}
+
+class AllViewController: UITableViewController, AllPresentable, AllViewControllable, AllListener  {
     var listener: AllListener?
     
-    public var uiviewController: UIViewController {
-        return self
+    private let category: MonsterCategory
+    
+    private var items: [Item] = [
+        .subCategory,
+        .filter,
+        .product
+    ]
+    
+    init(category: MonsterCategory) {
+        self.category = category
+        super.init(style: .plain)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        view.backgroundColor = .red
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    public var uiviewController: UITableViewController {
+        return self
     }
 }

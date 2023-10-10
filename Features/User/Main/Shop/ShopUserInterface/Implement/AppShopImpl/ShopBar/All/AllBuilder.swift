@@ -1,4 +1,5 @@
 import RIBs
+import SuperUI
 import ShopUserInterface
 
 final class AllComponent: Component<AllDependency> {
@@ -11,9 +12,9 @@ public final class AllBuilder: Builder<AllDependency>, AllBuildable {
         super.init(dependency: dependency)
     }
     
-    public func build(withListener listener: AllListener, cuttentImageIndex: Int?) -> ViewableRouting {
+    public func build(withListener listener: AllListener, monsterCategory: MonsterCategory?) -> ViewableRouting {
         let component = Component(dependency: dependency)
-        let viewController = AllViewController()
+        let viewController = AllViewController(category: monsterCategory!)
         let interactor = AllInteractor(presenter: viewController)
         interactor.listener = listener
         

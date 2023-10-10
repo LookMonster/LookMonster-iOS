@@ -34,9 +34,9 @@ final class ShopHomeViewController: BaseViewController,
     }()
     
     private lazy var containerViews = UIView()
-    
+        
     internal lazy var viewControllers: [UIViewController] = [
-        AllViewController()
+        AllViewController(category: MonsterCategory(categoryId: 10, name: "asdf"))
     ]
     
     public var uiviewController: UIViewController {
