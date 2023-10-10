@@ -9,29 +9,42 @@ import DesignSystem
 import ResourceKit
 import ShopUserInterface
 
-final class ShopHomeViewController: UIViewController,
+final class ShopHomeViewController: BaseViewController,
                               ShopHomePresentable,
                               ShopHomeViewControllable,
                               ShopHomeListener,
                               PageChangeable  {
         
     var listener: ShopHomeListener?
-    var disposeBag = DisposeBag()
     
     internal lazy var pagingTabBar = MonsterPagingTabBar(categoryTitleList:["전체", "럭셔리", "신발", "아우터", "상의", "하의", "가발", "지갑"])
+    
+    private lazy var searchButton: UIBarButtonItem = {
+        let searchImage = ResourceKitAsset.searchIcon.image
+        return UIBarButtonItem(image: searchImage, style: .plain, target: nil, action: nil).then {
+            $0.tintColor = .black
+        }
+    }()
+
+    private lazy var hamburgerButton: UIBarButtonItem = {
+        let penImage = ResourceKitAsset.writingIcon.image
+        return UIBarButtonItem(image: penImage, style: .plain, target: nil, action: nil).then {
+            $0.tintColor = .black
+        }
+    }()
     
     private lazy var containerViews = UIView()
     
     internal lazy var viewControllers: [UIViewController] = [
-        UIViewController()
+        AllViewController()
     ]
     
     public var uiviewController: UIViewController {
         return self
     }
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    override init() {
+        super.init()
         
         self.setupLayout(containerView: containerViews)
         self.bindEvents(containerView: containerViews, disposeBag: disposeBag)
@@ -42,13 +55,18 @@ final class ShopHomeViewController: UIViewController,
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        super.init()
         
         setupViews()
     }
     
     func setupViews() {
         tabBarItem = UITabBarItem(title: "Shop", image: ResourceKitAsset.shopImage.image, tag: 3)
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
+    }
+    
+    override func configureNavigationBar() {
+        navigationItem.leftBarButtonItem = searchButton
+        navigationItem.rightBarButtonItem = hamburgerButton
     }
 }
