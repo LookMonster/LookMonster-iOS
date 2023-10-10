@@ -7,25 +7,25 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
-        .ThirdParty.SPM.RIBs,
-        .ThirdParty.SPM.SnapKit
+//        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.SnapKit
 
 //        .ThirdParty.RxSwift,
 //        .ThirdParty.RxRelay,
 //        .Core.RIBsUtil,
 //        .Feature.Finance.Data.Interface,
 //        .Feature.Transport.UserInterface.Interface,
+        .Core.RIBsUtil
     ],
     implementDependencies: [
-        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.RIBs,
 //        .ThirdParty.RxSwift,
 //        .ThirdParty.RxRelay,
         
-        .Core.RIBsUtil,
         .Core.SuperUI,
         
-        .Feature.Finance.Data.Interface,
-        .Feature.Transport.UserInterface.Interface,
+//        .Feature.Finance.Data.Interface,
+//        .Feature.Transport.UserInterface.Interface,
         .DesignSystem.Implement
     ]
 )

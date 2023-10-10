@@ -15,6 +15,6 @@ let project = Project.invertedDualTargetProject(
         .ThirdParty.SPM.RxSwift,
         .ThirdParty.SPM.RxCocoa,
         .DesignSystem.Implement,
-        .ThirdParty.SPM.Swinject
+//        .ThirdParty.SPM.Swinject
     ]
 )

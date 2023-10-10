@@ -18,8 +18,8 @@ let project = Project.framework(name: "ResourceKit",
                                 dependencies: [
                                     .ThirdParty.SPM.RxCocoa,
                                     .ThirdParty.SPM.RxSwift,
-                                    .ThirdParty.SPM.SnapKit,
+//                                    .ThirdParty.SPM.SnapKit,
                                     .ThirdParty.SPM.Then,
-                                    .ThirdParty.SPM.Swinject
+//                                    .ThirdParty.SPM.Swinject
                                 ],
                                 infoPlist: infoPlist)

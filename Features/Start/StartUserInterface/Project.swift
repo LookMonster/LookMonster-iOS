@@ -7,17 +7,14 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
-        .Feature.Finance.Domain.Interface,
+//        .Feature.Finance.Domain.Interface,
         
-        .Core.RIBsUtil,
-        
-        .ThirdParty.SPM.RIBs
+        .Core.RIBsUtil
     ],
     implementDependencies: [
-        .Feature.Finance.Domain.Interface,
-        .Feature.Finance.Data.Interface,
+//        .Feature.Finance.Domain.Interface,
+//        .Feature.Finance.Data.Interface,
         
-        .Core.RIBsUtil,
         .Core.SuperUI,
         .Core.DefaultsStore,
         
@@ -26,33 +23,26 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Core.RIBsUtil,
         .Core.SuperUI,
         
-        .ThirdParty.SPM.RIBs,
-        .ThirdParty.SPM.RxSwift,
-        .ThirdParty.SPM.RxRelay,
-        .ThirdParty.SPM.SnapKit,
+//        .ThirdParty.SPM.RxSwift,
+//        .ThirdParty.SPM.RxRelay,
+//        .ThirdParty.SPM.SnapKit,
         .ThirdParty.SPM.Then,
-        .ThirdParty.SPM.RxCocoa,
+//        .ThirdParty.SPM.RxCocoa,
         .DesignSystem.Implement
     ],
     demoAppDependencies: [
-        .Feature.Finance.Domain.Interface,
-        .Feature.Finance.Data.Interface,
-        
-        .Core.RIBsUtil,
+//        .Feature.Finance.Domain.Interface,
+//        .Feature.Finance.Data.Interface,
+//        
         .Core.SuperUI,
         .Core.DefaultsStore,
         
         .ResourceKit.Implement,
         .Core.DefaultsStore,
-        .Core.RIBsUtil,
-        .Core.SuperUI,
-        
-        .ThirdParty.SPM.RIBs,
-        .ThirdParty.SPM.RxSwift,
-        .ThirdParty.SPM.RxRelay,
-        .ThirdParty.SPM.SnapKit,
-        .ThirdParty.SPM.Then,
-        .ThirdParty.SPM.RxCocoa,
+//        .ThirdParty.SPM.RxSwift,
+//        .ThirdParty.SPM.RxRelay,
+//        .ThirdParty.SPM.SnapKit,
+//        .ThirdParty.SPM.RxCocoa,
         .DesignSystem.Implement
     ]
 )

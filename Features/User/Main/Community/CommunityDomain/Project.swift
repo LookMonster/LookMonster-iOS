@@ -7,7 +7,7 @@ let project = Project.invertedDualTargetProject(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
-        .ThirdParty.SPM.RxSwift,
+//        .ThirdParty.SPM.RxSwift,
     ],
     implementDependencies: [
     ]

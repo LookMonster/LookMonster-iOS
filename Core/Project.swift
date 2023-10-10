@@ -16,13 +16,16 @@ let project = Project(name: "Core",
                         Project.makeTarget(
                             name: "SuperUI",
                             dependencies: [
-                                .ThirdParty.SPM.RIBs,
+//                                .ThirdParty.SPM.RIBs,
 //                                .ThirdParty.RxSwift,
                                 .Core.RIBsUtil,
                                 .ThirdParty.SPM.RxCocoa,
                                 .ThirdParty.SPM.RxSwift,
+                                .ThirdParty.SPM.RxBlocking,
+                                .ThirdParty.SPM.RxRelay,
                                 .ThirdParty.SPM.SnapKit,
                                 .ThirdParty.SPM.Then,
+//                                .ThirdParty.SPM.Kingfisher,
                                 .DesignSystem.Implement,
                                 .ThirdParty.SPM.Swinject
                             ]
@@ -32,7 +35,7 @@ let project = Project(name: "Core",
                             dependencies: [
                                 .ThirdParty.SPM.RIBs,
 //                                .ThirdParty.RxSwift,
-                                .ThirdParty.SPM.Swinject
+//                                .ThirdParty.SPM.Swinject
                             ]
                         )
                       ])
