@@ -17,7 +17,6 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
 //        .Feature.Finance.Domain.Interface,
 //        .Feature.Finance.Data.Interface,
         
-        .Core.RIBsUtil,
         .Core.SuperUI,
         .Core.DefaultsStore,
         

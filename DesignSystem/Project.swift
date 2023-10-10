@@ -33,8 +33,8 @@ let project = Project(
 //                .ThirdParty.SPM.SnapKit,
                 .ThirdParty.SPM.Then,
                 .ResourceKit.Implement,
-//                .ThirdParty.SPM.RxCocoa,
-//                .ThirdParty.SPM.RxSwift,
+                .ThirdParty.SPM.RxCocoa,
+                .ThirdParty.SPM.RxSwift,
 //                .ThirdParty.SPM.Kingfisher,
 //                .ThirdParty.SPM.Swinject,
 //                .ThirdParty.SPM.SkeletonView
@@ -65,8 +65,8 @@ let project = Project(
 //                    .ThirdParty.SPM.SnapKit,
                     .ThirdParty.SPM.Then,
                     .ResourceKit.Implement,
-//                    .ThirdParty.SPM.RxCocoa,
-//                    .ThirdParty.SPM.RxSwift,
+                    .ThirdParty.SPM.RxCocoa,
+                    .ThirdParty.SPM.RxSwift,
 //                    .ThirdParty.SPM.Kingfisher,
 //                    .ThirdParty.SPM.Swinject,
 //                    .ThirdParty.SPM.SkeletonView
