@@ -27,7 +27,7 @@ let project = Project(name: "Core",
                                 .ThirdParty.SPM.Then,
 //                                .ThirdParty.SPM.Kingfisher,
                                 .DesignSystem.Implement,
-//                                .ThirdParty.SPM.Swinject
+                                .ThirdParty.SPM.Swinject
                             ]
                         ),
                         Project.makeTarget(
