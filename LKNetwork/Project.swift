@@ -7,14 +7,14 @@ let project = Project.invertedDualTargetProject(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
-        .ThirdParty.SPM.RxSwift,
+//        .ThirdParty.SPM.RxSwift,
         .TokenManager.Interface,
         .Core.CSLogger
     ],
     implementDependencies: [
-        .ThirdParty.SPM.RxSwift,
-        .ThirdParty.SPM.RxCocoa,
+//        .ThirdParty.SPM.RxSwift,
+//        .ThirdParty.SPM.RxCocoa,
         .DesignSystem.Implement,
-        .ThirdParty.SPM.Swinject
+//        .ThirdParty.SPM.Swinject
     ]
 )

@@ -11,7 +11,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         
         .Core.RIBsUtil,
         
-        .ThirdParty.SPM.RIBs
+//        .ThirdParty.SPM.RIBs
     ],
     implementDependencies: [
         .Feature.Finance.Domain.Interface,
@@ -26,12 +26,12 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Core.RIBsUtil,
         .Core.SuperUI,
         
-        .ThirdParty.SPM.RIBs,
-        .ThirdParty.SPM.RxSwift,
-        .ThirdParty.SPM.RxRelay,
-        .ThirdParty.SPM.SnapKit,
-        .ThirdParty.SPM.Then,
-        .ThirdParty.SPM.RxCocoa,
+//        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.RxSwift,
+//        .ThirdParty.SPM.RxRelay,
+//        .ThirdParty.SPM.SnapKit,
+//        .ThirdParty.SPM.Then,
+//        .ThirdParty.SPM.RxCocoa,
         .DesignSystem.Implement
     ],
     demoAppDependencies: [
@@ -47,12 +47,12 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Core.RIBsUtil,
         .Core.SuperUI,
         
-        .ThirdParty.SPM.RIBs,
-        .ThirdParty.SPM.RxSwift,
-        .ThirdParty.SPM.RxRelay,
-        .ThirdParty.SPM.SnapKit,
-        .ThirdParty.SPM.Then,
-        .ThirdParty.SPM.RxCocoa,
+//        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.RxSwift,
+//        .ThirdParty.SPM.RxRelay,
+//        .ThirdParty.SPM.SnapKit,
+//        .ThirdParty.SPM.Then,
+//        .ThirdParty.SPM.RxCocoa,
         .DesignSystem.Implement
     ]
 )

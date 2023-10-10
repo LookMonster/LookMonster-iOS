@@ -7,8 +7,8 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
-        .ThirdParty.SPM.RIBs,
-        .ThirdParty.SPM.SnapKit
+//        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.SnapKit
 
 //        .ThirdParty.RxSwift,
 //        .ThirdParty.RxRelay,
@@ -17,7 +17,7 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
 //        .Feature.Transport.UserInterface.Interface,
     ],
     implementDependencies: [
-        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.RIBs,
 
 //        .ThirdParty.RxSwift,
 //        .ThirdParty.RxRelay,

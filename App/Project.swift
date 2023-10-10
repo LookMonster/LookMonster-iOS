@@ -25,14 +25,14 @@ let project = Project(
             dependencies: [
                 //                .ResourceKit.Implement,
                 
-                .ThirdParty.SPM.RIBs,
+//                .ThirdParty.SPM.RIBs,
                 //                .ThirdParty.RxRelay,
                 //                .ThirdParty.RxSwift,
                 
                 .LKNetwork.Implement,
                 .LKNetwork.Interface,
                 
-                .ThirdParty.SPM.Swinject,
+//                .ThirdParty.SPM.Swinject,
                 
                 .Feature.Finance.Data.Interface,
                 .Feature.Finance.Domain.Interface,

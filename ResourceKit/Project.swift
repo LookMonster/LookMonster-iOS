@@ -16,10 +16,10 @@ let project = Project.framework(name: "ResourceKit",
                                 platform: .iOS,
                                 iOSTargetVersion: "15.0.0",
                                 dependencies: [
-                                    .ThirdParty.SPM.RxCocoa,
-                                    .ThirdParty.SPM.RxSwift,
-                                    .ThirdParty.SPM.SnapKit,
-                                    .ThirdParty.SPM.Then,
-                                    .ThirdParty.SPM.Swinject
+//                                    .ThirdParty.SPM.RxCocoa,
+//                                    .ThirdParty.SPM.RxSwift,
+//                                    .ThirdParty.SPM.SnapKit,
+//                                    .ThirdParty.SPM.Then,
+//                                    .ThirdParty.SPM.Swinject
                                 ],
                                 infoPlist: infoPlist)

@@ -117,7 +117,7 @@ extension TargetDependency {
     
     public struct ResourceKit {}
 
-    public struct ThirdParty {}
+//    public struct ThirdParty {}
     
     public struct TokenManager {}
 
@@ -550,25 +550,25 @@ public extension TargetDependency.LKNetwork {
 
 // MARK: - ThirdParty
 
-public extension TargetDependency.ThirdParty {
-    enum SPM {}
-}
-
-public extension TargetDependency.ThirdParty.SPM {
-    static let RxSwift = TargetDependency.external(name: "RxSwift")
-    static let RxRelay = TargetDependency.external(name: "RxRelay")
-    static let RxCocoa = TargetDependency.external(name: "RxCocoa")
-    static let RIBs = TargetDependency.external(name: "RIBs")
-    static let SnapKit = TargetDependency.external(name: "SnapKit")
-    static let Then = TargetDependency.external(name: "Then")
-    static let Kingfisher = TargetDependency.external(name: "Kingfisher")
-//    static let Moya = TargetDependency.external(name: "Moya")
-    static let RxBlocking = TargetDependency.external(name: "RxBlocking")
-//    static let Pageboy = TargetDependency.external(name: "Pageboy")
-//    static let RxMoya = TargetDependency.external(name: "RxMoya")
-    static let Swinject = TargetDependency.external(name: "Swinject")
-    static let SkeletonView = TargetDependency.external(name: "SkeletonView")
-}
+//public extension TargetDependency.ThirdParty {
+//    enum SPM {}
+//}
+//
+//public extension TargetDependency.ThirdParty.SPM {
+//    static let RxSwift = TargetDependency.external(name: "RxSwift")
+//    static let RxRelay = TargetDependency.external(name: "RxRelay")
+//    static let RxCocoa = TargetDependency.external(name: "RxCocoa")
+//    static let RIBs = TargetDependency.external(name: "RIBs")
+//    static let SnapKit = TargetDependency.external(name: "SnapKit")
+//    static let Then = TargetDependency.external(name: "Then")
+//    static let Kingfisher = TargetDependency.external(name: "Kingfisher")
+////    static let Moya = TargetDependency.external(name: "Moya")
+//    static let RxBlocking = TargetDependency.external(name: "RxBlocking")
+////    static let Pageboy = TargetDependency.external(name: "Pageboy")
+////    static let RxMoya = TargetDependency.external(name: "RxMoya")
+//    static let Swinject = TargetDependency.external(name: "Swinject")
+//    static let SkeletonView = TargetDependency.external(name: "SkeletonView")
+//}
 
 
 public extension TargetDependency.TokenManager {

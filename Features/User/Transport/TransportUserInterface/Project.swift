@@ -12,15 +12,15 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
 //        .ThirdParty.RxSwift,
 //        .ThirdParty.RxRelay,
 //        .ResourceKit.Implement,
-        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.RIBs,
     ],
     implementDependencies: [
         .Feature.Finance.UserInterface.Interface,
         .Feature.Finance.Data.Interface,
         
-        .ThirdParty.SPM.RxSwift,
-        .ThirdParty.SPM.RxRelay,
-        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.RxSwift,
+//        .ThirdParty.SPM.RxRelay,
+//        .ThirdParty.SPM.RIBs,
         
         .Core.SuperUI,
         

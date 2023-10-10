@@ -30,14 +30,14 @@ let project = Project(
             infoPlist: .default,
             sources: ["Sources/**"],
             dependencies: [
-                .ThirdParty.SPM.SnapKit,
-                .ThirdParty.SPM.Then,
+//                .ThirdParty.SPM.SnapKit,
+//                .ThirdParty.SPM.Then,
                 .ResourceKit.Implement,
-                .ThirdParty.SPM.RxCocoa,
-                .ThirdParty.SPM.RxSwift,
-                .ThirdParty.SPM.Kingfisher,
-                .ThirdParty.SPM.Swinject,
-                .ThirdParty.SPM.SkeletonView
+//                .ThirdParty.SPM.RxCocoa,
+//                .ThirdParty.SPM.RxSwift,
+//                .ThirdParty.SPM.Kingfisher,
+//                .ThirdParty.SPM.Swinject,
+//                .ThirdParty.SPM.SkeletonView
             ]),
         Target(
             name: "DesignSystemDemoApp",
@@ -62,14 +62,14 @@ let project = Project(
             dependencies:
                 [
                     .target(name: "DesignSystem"),
-                    .ThirdParty.SPM.SnapKit,
-                    .ThirdParty.SPM.Then,
+//                    .ThirdParty.SPM.SnapKit,
+//                    .ThirdParty.SPM.Then,
                     .ResourceKit.Implement,
-                    .ThirdParty.SPM.RxCocoa,
-                    .ThirdParty.SPM.RxSwift,
-                    .ThirdParty.SPM.Kingfisher,
-                    .ThirdParty.SPM.Swinject,
-                    .ThirdParty.SPM.SkeletonView
+//                    .ThirdParty.SPM.RxCocoa,
+//                    .ThirdParty.SPM.RxSwift,
+//                    .ThirdParty.SPM.Kingfisher,
+//                    .ThirdParty.SPM.Swinject,
+//                    .ThirdParty.SPM.SkeletonView
                 ]
         )
         

@@ -7,8 +7,8 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     platform: .iOS,
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
-        .ThirdParty.SPM.RIBs,
-        .ThirdParty.SPM.SnapKit,
+//        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.SnapKit,
         
         //        .ThirdParty.RxSwift,
         //        .ThirdParty.RxRelay,
@@ -18,11 +18,11 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         
         .Core.RIBsUtil,
         
-        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.RIBs,
         .TokenManager.Interface,
     ],
     implementDependencies: [
-        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.RIBs,
         //        .ThirdParty.RxSwift,
         //        .ThirdParty.RxRelay,
         
@@ -31,11 +31,11 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         
             .Feature.Finance.Data.Interface,
         .Feature.Transport.UserInterface.Interface,
-        .ThirdParty.SPM.RIBs,
-        .ThirdParty.SPM.RxSwift,
-        .ThirdParty.SPM.RxRelay,
-        .ThirdParty.SPM.SnapKit,
-        .ThirdParty.SPM.SkeletonView,
+//        .ThirdParty.SPM.RIBs,
+//        .ThirdParty.SPM.RxSwift,
+//        .ThirdParty.SPM.RxRelay,
+//        .ThirdParty.SPM.SnapKit,
+//        .ThirdParty.SPM.SkeletonView,
         .DesignSystem.Implement
     ],
     demoAppDependencies: [
