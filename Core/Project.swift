@@ -21,8 +21,11 @@ let project = Project(name: "Core",
                                 .Core.RIBsUtil,
                                 .ThirdParty.SPM.RxCocoa,
                                 .ThirdParty.SPM.RxSwift,
-//                                .ThirdParty.SPM.SnapKit,
+                                .ThirdParty.SPM.RxBlocking,
+                                .ThirdParty.SPM.RxRelay,
+                                .ThirdParty.SPM.SnapKit,
                                 .ThirdParty.SPM.Then,
+//                                .ThirdParty.SPM.Kingfisher,
                                 .DesignSystem.Implement,
 //                                .ThirdParty.SPM.Swinject
                             ]
