@@ -15,6 +15,14 @@ protocol AppRootListener: AnyObject {
 }
 
 final class AppRootInteractor: PresentableInteractor<AppRootPresentable>, AppRootInteractable, AppRootPresentableListener, URLHandler {
+    func searchButtonTap() {
+        
+    }
+    
+    func penButtonTap() {
+        
+    }
+    
     
     func homeBackground() {
         print("나중에 지워야함")
