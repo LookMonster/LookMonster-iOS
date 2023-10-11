@@ -1,4 +1,5 @@
 import UIKit
+import ShopUserInterface
 import DesignSystem
 
 fileprivate enum DesignSystemType: String, CaseIterable {
@@ -15,6 +16,7 @@ fileprivate enum DesignSystemType: String, CaseIterable {
     case product
     case category
     case storyStyle
+    case trendingKeywordCollection
 }
 
 final class DesignSystemViewController: UITableViewController {
@@ -86,6 +88,9 @@ final class DesignSystemViewController: UITableViewController {
         case .storyStyle:
             print("storyStyle 뷰")
             self.navigationController?.pushViewController(StoryStyleViewController(), animated: true)
+        case .trendingKeywordCollection:
+            print("trendingKeywordCollection 뷰")
+            self.navigationController?.pushViewController(TrendingKeywordCollectionViewController(category: MonsterCategory(categoryId: 5, name: "asdf")), animated: true)
         }
     }
 }
