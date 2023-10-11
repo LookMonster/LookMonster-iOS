@@ -1,10 +1,3 @@
-//
-//  TrendingKeywordCollectionViewCell.swift
-//  DesignSystemDemoApp
-//
-//  Created by 박준하 on 10/10/23.
-//
-
 import UIKit
 import DesignSystem
 import ShopUserInterface
@@ -41,9 +34,7 @@ class TrendingKeywordCollectionViewController: UITableViewController {
         tableView.allowsSelection = false
         tableView.register(MonsterTrendingKeywordTableViewCell.self, forCellReuseIdentifier: MonsterTrendingKeywordTableViewCell.id)
     }
-    
-    // MARK: - Table view data source
-    
+        
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

@@ -1,7 +1,9 @@
 import UIKit
 import SuperUI
-import ShopUserInterface
+import SnapKit
+import Then
 import DesignSystem
+import ShopUserInterface
 
 enum Item {
     case subCategory
@@ -9,7 +11,7 @@ enum Item {
     case product
 }
 
-class AllViewController: BaseViewController, AllPresentable, AllViewControllable, AllListener, UITableViewDelegate, UITableViewDataSource  {
+class AllViewController: BaseViewController, AllPresentable, AllViewControllable, AllListener, UITableViewDelegate, UITableViewDataSource {
     
     var listener: AllListener?
     
@@ -26,25 +28,26 @@ class AllViewController: BaseViewController, AllPresentable, AllViewControllable
         super.init()
     }
     
-    private lazy var tableView = UITableView()
-
+    private lazy var tableView = UITableView().then {
+        $0.separatorInset.left = 0
+        $0.allowsSelection = false
+        $0.register(MonsterTrendingKeywordTableViewCell.self, forCellReuseIdentifier: MonsterTrendingKeywordTableViewCell.id)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public var uiviewController: UIViewController {
-        return self
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .systemBackground
-        tableView.separatorInset.left = 0
-        tableView.allowsSelection = false
-        tableView.register(MonsterTrendingKeywordTableViewCell.self, forCellReuseIdentifier: MonsterTrendingKeywordTableViewCell.id)
+        view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,10 +68,8 @@ class AllViewController: BaseViewController, AllPresentable, AllViewControllable
                 return UITableViewCell()
             }
         case .filter:
-            print("")
             return UITableViewCell()
         case .product:
-            print("")
             return UITableViewCell()
         }
     }
@@ -77,9 +78,7 @@ class AllViewController: BaseViewController, AllPresentable, AllViewControllable
         switch items[indexPath.item] {
         case .subCategory:
             return MonsterTrendingKeywordTableViewCell.cellHeight
-        case .filter:
-            return 0
-        case .product:
+        case .filter, .product:
             return 0
         }
     }
