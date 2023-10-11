@@ -1,5 +1,4 @@
 import RIBs
-import DesignSystem
  
 public protocol AllBuildable: Buildable {
     // Interface 로 보내주세요
