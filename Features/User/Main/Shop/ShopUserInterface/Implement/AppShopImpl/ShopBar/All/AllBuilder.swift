@@ -12,9 +12,9 @@ public final class AllBuilder: Builder<AllDependency>, AllBuildable {
         super.init(dependency: dependency)
     }
     
-    public func build(withListener listener: AllListener, monsterCategory: MonsterCategory?) -> ViewableRouting {
+    public func build(withListener listener: AllListener) -> ViewableRouting {
         let component = Component(dependency: dependency)
-        let viewController = AllViewController(category: monsterCategory!)
+        let viewController = AllViewController(category: MonsterCategory(categoryId: 3, name: "asdf"))
         let interactor = AllInteractor(presenter: viewController)
         interactor.listener = listener
         

@@ -23,9 +23,7 @@ final class AllInteractor: PresentableInteractor<AllPresentable>, AllListener, A
         presenter.listener = self
     }
     
-    deinit {
-        
-    }
+    deinit {}
     
     override func didBecomeActive() {
         super.didBecomeActive()
