@@ -1,12 +1,15 @@
 import UIKit
+import DesignSystem
 import SnapKit
 import ResourceKit
 import Then
 
-open class MonsterTrendingKeywordCollectionView: UICollectionViewCell {
+open class MonsterTrendingKeywordTableViewCell: UITableViewCell {
     static public var id: String {
         NSStringFromClass(Self.self).components(separatedBy: ".").last ?? ""
     }
+    
+    static public let cellHeight = 320.0
     
     var model: MonsterTrendingKeyword? {
         didSet {
@@ -42,7 +45,7 @@ open class MonsterTrendingKeywordCollectionView: UICollectionViewCell {
         }
     }
     
-    func setUp() {
+    open func setUp() {
         self.configureUI()
     }
     
