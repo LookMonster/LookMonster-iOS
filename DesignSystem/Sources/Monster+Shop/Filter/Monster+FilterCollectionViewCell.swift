@@ -1,4 +1,5 @@
 import UIKit
+import Then
 
 open class MonsterFilterCollectionViewCell: UICollectionViewCell {
     
@@ -12,11 +13,9 @@ open class MonsterFilterCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    lazy var label: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16, weight: .light)
-        return label
-    }()
+    lazy var label = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 16, weight: .light)
+    }
     
     private func setLabelText(text: String) {
         let attributedString = NSMutableAttributedString(string: "")

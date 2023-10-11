@@ -2,14 +2,14 @@ import UIKit
 
 open class MonsterFilterTableViewCell: UITableViewCell {
     
-    static var id: String {
+    public static var id: String {
         NSStringFromClass(Self.self).components(separatedBy: ".").last ?? ""
     }
-    static let cellHeight = 70.0
+    public static let cellHeight = 70.0
     
     private let filterList: [String] = ["카테고리", "브랜드", "컬렉션", "사이즈"]
     
-    var selectFilterCellClosure: ((Int) -> Void)?
+    public var selectFilterCellClosure: ((Int) -> Void)?
     
     private lazy var filterCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()

@@ -32,6 +32,8 @@ class AllViewController: BaseViewController, AllPresentable, AllViewControllable
         $0.separatorInset.left = 0
         $0.allowsSelection = false
         $0.register(MonsterTrendingKeywordTableViewCell.self, forCellReuseIdentifier: MonsterTrendingKeywordTableViewCell.id)
+        $0.register(MonsterFilterTableViewCell.self, forCellReuseIdentifier: MonsterFilterTableViewCell.id)
+
     }
     
     required init?(coder: NSCoder) {
@@ -68,7 +70,16 @@ class AllViewController: BaseViewController, AllPresentable, AllViewControllable
                 return UITableViewCell()
             }
         case .filter:
-            return UITableViewCell()
+//            if let cell = tableView.dequeueReusableCell(withIdentifier: MonsterFilterTableViewCell.id) as? MonsterFilterTableViewCell {
+//                cell.setUp()
+//                cell.selectFilterCellClosure = { [weak self] index in
+//                    let filterPopupViewController = FilterPopupViewController(index: index)
+//                    self?.present(filterPopupViewController, animated: true)
+//                }
+//                return cell
+//            } else {
+                return UITableViewCell()
+//            }
         case .product:
             return UITableViewCell()
         }
@@ -78,7 +89,9 @@ class AllViewController: BaseViewController, AllPresentable, AllViewControllable
         switch items[indexPath.item] {
         case .subCategory:
             return MonsterTrendingKeywordTableViewCell.cellHeight
-        case .filter, .product:
+        case .filter:
+            return MonsterFilterTableViewCell.cellHeight
+        case .product:
             return 0
         }
     }
