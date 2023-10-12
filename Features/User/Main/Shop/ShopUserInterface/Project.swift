@@ -12,6 +12,14 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     implementDependencies: [
         .Core.SuperUI,
         .DesignSystem.Implement
+    ],
+    demoAppDependencies: [
+        .Features.User.Main.Shop.Data.Implement,
+        .Features.User.Main.Shop.Domain.Implement,
+        .Features.User.Main.Shop.UserInterface.Implement,
+        .Features.User.Main.Shop.UserInterface.Interface,
+        .LKNetwork.Implement,
+        .TokenManager.Implement
     ]
 )
 
