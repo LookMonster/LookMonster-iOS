@@ -9,7 +9,7 @@ open class MonsterTrendingKeywordTableViewCell: UITableViewCell {
         NSStringFromClass(Self.self).components(separatedBy: ".").last ?? ""
     }
     
-    static public let cellHeight = 320.0
+    static public let cellHeight = 212.0
     
     private lazy var subCategoryList: [MonsterTrendingKeyword] = [
         MonsterTrendingKeyword(id: 1, name: "반팔", imgUrl: "https://kream-phinf.pstatic.net/MjAyMzA1MzBfMjY0/MDAxNjg1NDM0NjM5MjQ1.XaATmir_qbj-dvZ9OqRtvpgVNyXVKLxAGOFHLnJSC-kg.MCeNg9LTh6dRpyTSJu6gjfDrDbBZCdjSk4jj2XBFEvAg.PNG/a_tmp_file_38cb5ce0523d4e6caba2208a77c2e6c2.png?type=s"),
@@ -48,23 +48,24 @@ open class MonsterTrendingKeywordTableViewCell: UITableViewCell {
         return collectionView
     }()
     
-    private lazy var pageControl: UIPageControl = {
-        let pageControl = UIPageControl()
-        pageControl.hidesForSinglePage = true
-        pageControl.numberOfPages = (subCategoryList.count - 1) / 10 + 1
-        pageControl.currentPage = 0
-        pageControl.pageIndicatorTintColor = .gray
-        pageControl.currentPageIndicatorTintColor = .darkGray
-        return pageControl
-    }()
+    private lazy var pageControl = UIPageControl().then {
+        $0.hidesForSinglePage = true
+        $0.numberOfPages = (subCategoryList.count - 1) / 10 + 1
+        $0.currentPage = 0
+        $0.pageIndicatorTintColor = .gray
+        $0.currentPageIndicatorTintColor = .darkGray
+    }
     
     private func configureUI() {
-        self.contentView.addSubview(subCategoryCollectionView)
-        self.contentView.addSubview(pageControl)
+        [
+            subCategoryCollectionView,
+            pageControl
+        ].forEach { self.contentView.addSubview($0) }
+
         subCategoryCollectionView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.top.equalToSuperview().inset(12)
-            $0.height.equalTo(240)
+            $0.height.equalTo(164)
         }
         pageControl.snp.makeConstraints {
             $0.centerX.equalToSuperview()
@@ -97,14 +98,14 @@ extension MonsterTrendingKeywordTableViewCell: UICollectionViewDelegateFlowLayou
     public func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSpacing: CGFloat = 5
-        let width: CGFloat = (collectionView.bounds.width - itemSpacing * 4) / 5
-        let height: CGFloat = width * 1.5
+        let itemSpacing: CGFloat = 6
+        let width: CGFloat = (collectionView.bounds.width - itemSpacing * 4) / 6
+        let height: CGFloat = width * 1.3
         return CGSize(width: width, height: height)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        return 20.75
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -113,13 +114,15 @@ extension MonsterTrendingKeywordTableViewCell: UICollectionViewDelegateFlowLayou
 }
 
 extension MonsterTrendingKeywordTableViewCell: UIScrollViewDelegate {
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let width = scrollView.bounds.size.width
         let xVal = scrollView.contentOffset.x + (width / 2)
 
         let newPage = Int(xVal / width)
         if pageControl.currentPage != newPage {
             pageControl.currentPage = newPage
+            let newXOffset = CGFloat(newPage) * width
+            scrollView.setContentOffset(CGPoint(x: newXOffset, y: 0), animated: true)
         }
     }
 }
