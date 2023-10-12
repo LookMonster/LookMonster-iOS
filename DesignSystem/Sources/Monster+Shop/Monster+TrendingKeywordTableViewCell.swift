@@ -62,8 +62,8 @@ open class MonsterTrendingKeywordTableViewCell: UITableViewCell {
         self.contentView.addSubview(subCategoryCollectionView)
         self.contentView.addSubview(pageControl)
         subCategoryCollectionView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(10)
-            $0.top.equalToSuperview().inset(40)
+            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.top.equalToSuperview().inset(12)
             $0.height.equalTo(240)
         }
         pageControl.snp.makeConstraints {

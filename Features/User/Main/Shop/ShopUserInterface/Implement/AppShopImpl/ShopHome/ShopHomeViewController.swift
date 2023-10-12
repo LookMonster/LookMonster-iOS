@@ -27,7 +27,7 @@ final class ShopHomeViewController: BaseViewController,
     }()
 
     private lazy var hamburgerButton: UIBarButtonItem = {
-        let penImage = ResourceKitAsset.writingIcon.image
+        let penImage = ResourceKitAsset.menuIcon.image
         return UIBarButtonItem(image: penImage, style: .plain, target: nil, action: nil).then {
             $0.tintColor = .black
         }
@@ -36,7 +36,14 @@ final class ShopHomeViewController: BaseViewController,
     private lazy var containerViews = UIView()
         
     internal lazy var viewControllers: [UIViewController] = [
-        AllViewController(category: MonsterCategory(categoryId: 1, name: "asdf"))
+        AllViewController(category: MonsterCategory(categoryId: 1, name: "asdf")),
+        UIViewController(),
+        UIViewController(),
+        UIViewController(),
+        UIViewController(),
+        UIViewController(),
+        UIViewController(),
+        UIViewController()
     ]
     
     public var uiviewController: UIViewController {

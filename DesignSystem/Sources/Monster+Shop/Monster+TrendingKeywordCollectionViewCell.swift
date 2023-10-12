@@ -16,42 +16,43 @@ open class MonsterTrendingKeywordCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    private lazy var iconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        imageView.layer.cornerRadius = imageView.frame.width / 2
-        imageView.layer.masksToBounds = true
-        imageView.clipsToBounds = true
-        return imageView
-    }()
-    private lazy var nameLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        label.textAlignment = .center
-        label.numberOfLines = 0
-        return label
-    }()
+    private lazy var iconImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.layer.cornerRadius = $0.frame.width / 2
+//        $0.backgroundColor = ResourceKitAsset.gray50.color
+        $0.layer.masksToBounds = true
+        $0.clipsToBounds = true
+    }
+    
+    private lazy var nameLabel = UILabel().then {
+        $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+        $0.textAlignment = .center
+        $0.numberOfLines = 0
+    }
     
     private func configureUI() {
         contentView.addSubview(iconImageView)
         contentView.addSubview(nameLabel)
         
-        iconImageView.snp.makeConstraints({ make in
-            make.top.equalToSuperview()
-            make.width.equalToSuperview()
-            make.height.equalTo(iconImageView.snp.width)
-        })
-        nameLabel.snp.makeConstraints({ make in
-            make.top.equalTo(iconImageView.snp.bottom).offset(3)
-            make.centerX.equalToSuperview()
-        })
+        iconImageView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalTo(iconImageView.snp.width)
+        }
+        nameLabel.snp.makeConstraints {
+            $0.top.equalTo(iconImageView.snp.bottom).offset(3)
+            $0.centerX.equalToSuperview()
+        }
     }
+    
     open func setUp() {
         self.configureUI()
     }
+    
     open override func prepareForReuse() {
         super.prepareForReuse()
     }
+    
     private func bind() {
         if let model = model {
             DispatchQueue.global().async {

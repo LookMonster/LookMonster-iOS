@@ -33,7 +33,6 @@ class AllViewController: BaseViewController, AllPresentable, AllViewControllable
         $0.allowsSelection = false
         $0.register(MonsterTrendingKeywordTableViewCell.self, forCellReuseIdentifier: MonsterTrendingKeywordTableViewCell.id)
         $0.register(MonsterFilterTableViewCell.self, forCellReuseIdentifier: MonsterFilterTableViewCell.id)
-
     }
     
     required init?(coder: NSCoder) {
@@ -47,8 +46,8 @@ class AllViewController: BaseViewController, AllPresentable, AllViewControllable
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        tableView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
