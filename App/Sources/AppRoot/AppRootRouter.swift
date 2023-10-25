@@ -56,7 +56,6 @@ final class AppRootRouter: LaunchRouter<AppRootInteractable, AppRootViewControll
     
     func attachTabs() {
         let appHomeRouting = appHome.build(withListener: interactor)
-//        let financeHomeRouting = financeHome.build(withListener: interactor)
         let profileHomeRouting = profileHome.build(withListener: interactor)
         let styleHomeRouting = styleHome.build(withListener: interactor)
         let communityRouting = communityHome.build(withListener: interactor, cuttentImageIndex: 0)

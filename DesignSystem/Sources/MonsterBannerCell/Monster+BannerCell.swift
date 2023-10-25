@@ -19,7 +19,6 @@ public class MonsterBannerCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
 }
 
 extension MonsterBannerCell {

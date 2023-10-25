@@ -21,8 +21,6 @@ import ShopUserInterface
 import ShopUserInterfaceImpl
 
 final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, UserProfileHomeDependency, StyleHomeDependency, CommunityDependency, ShopHomeDependency  {
-
-//    var topupBaseViewController: ViewControllable { rootViewcontroller.topViewControllable }
     
     private let rootViewcontroller: ViewControllable
     
@@ -32,9 +30,7 @@ final class AppRootComponent: Component<AppRootDependency>, AppHomeDependency, U
     ) {
         let config = URLSessionConfiguration.ephemeral
         config.protocolClasses = [SuperAppURLProtocol.self]
-        
-//        setupURLProtocol()
-        
+                
         let network = NetworkImp(session: URLSession(configuration: config))
         
         self.rootViewcontroller = rootViewcontroller
