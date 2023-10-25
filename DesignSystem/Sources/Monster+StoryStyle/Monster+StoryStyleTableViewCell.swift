@@ -1,10 +1,3 @@
-//
-//  Monster+StoryStyleTableViewCell.swift
-//  DesignSystem
-//
-//  Created by 박준하 on 2023/09/25.
-//
-
 import UIKit
 import SnapKit
 import Then

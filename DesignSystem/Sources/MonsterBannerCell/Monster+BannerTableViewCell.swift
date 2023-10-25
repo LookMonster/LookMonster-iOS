@@ -64,16 +64,18 @@ public class MonsterBannerTableViewCell: UITableViewCell {
         self.imageList.append(imageList[1])
         self.imageList.insert(self.imageList[self.imageList.count - 3], at: 0)
         self.imageList.append(imageList[3])
-        
     }
     
     private func layout() {
-        self.contentView.addSubview(collectionView)
+        [
+            collectionView,
+            indicatorView
+        ].forEach { self.contentView.addSubview($0) }
+        
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
         
-        self.contentView.addSubview(indicatorView)
         indicatorView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(16)
             $0.bottom.equalToSuperview().inset(30)

@@ -5,6 +5,7 @@ import SnapKit
 import RxCocoa
 import RxSwift
 import ResourceKit
+import Then
 
 enum TestBannerCell {
     case banner(model: MonsterBannerModel)
@@ -15,18 +16,16 @@ public class BannerViewController: UIViewController {
     private var viewModel: MonsterBannerModel?
     private var cellList: [UITableViewCell] = []
     private var cells: [TestBannerCell] = []
-    private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.backgroundColor = .systemBackground
-        tableView.showsHorizontalScrollIndicator = false
-        tableView.register(
+    private lazy var tableView = UITableView(frame: .zero).then {
+        $0.delegate = self
+        $0.dataSource = self
+        $0.backgroundColor = .systemBackground
+        $0.showsHorizontalScrollIndicator = false
+        $0.register(
             MonsterBannerTableViewCell.self,
             forCellReuseIdentifier: MonsterBannerTableViewCell.identifier
         )
-        return tableView
-    }()
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,13 +33,16 @@ public class BannerViewController: UIViewController {
         self.configureUI()
         self.addCells()
         
-        view.backgroundColor = .white
     }
 }
 
 extension BannerViewController {
+    
     private func configureUI() {
+        view.backgroundColor = .white
+
         self.view.addSubview(self.tableView)
+        
         self.tableView.snp.makeConstraints {
             $0.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             $0.leading.equalToSuperview()
@@ -48,6 +50,7 @@ extension BannerViewController {
             $0.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
         }
     }
+    
     private func addCells() {
         guard let viewModel = self.viewModel else { return }
         self.cells.append(.banner(model: viewModel))
