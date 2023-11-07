@@ -1,6 +1,6 @@
 import UIKit
-import ShopUserInterface
 import DesignSystem
+import SuperUI
 
 fileprivate enum DesignSystemType: String, CaseIterable {
     case button

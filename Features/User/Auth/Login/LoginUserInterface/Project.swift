@@ -8,7 +8,8 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
         .Core.RIBsUtil,
-        .TokenManager.Interface
+        .TokenManager.Interface,
+        .DesignSystem.Implement
     ],
     implementDependencies: [
         .Core.SuperUI,
@@ -21,7 +22,9 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Features.User.Auth.Login.Domain.Implement,
 
         .LKNetwork.Implement,
-        .TokenManager.Implement
+        .TokenManager.Implement,
+        .DesignSystem.Implement
+
     ],
     isUserInterface: true
 )
