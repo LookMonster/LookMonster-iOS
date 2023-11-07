@@ -1,9 +1,8 @@
 //
-//  a.swift
-//  ShopUserInterface
+//  MonsterCategory.swift
+//  CSLogger
 //
-//  Created by 박준하 on 10/11/23.
-//  Copyright © 2023 lookMonster.io. All rights reserved.
+//  Created by 박준하 on 11/7/23.
 //
 
 import Foundation
