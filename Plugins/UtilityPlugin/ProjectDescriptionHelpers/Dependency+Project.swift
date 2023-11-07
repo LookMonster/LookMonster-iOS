@@ -485,12 +485,8 @@ public extension Monster.ThirdParty.SPM {
     static let SnapKit = TargetDependency.external(name: "SnapKit")
     static let Then = TargetDependency.external(name: "Then")
     static let Kingfisher = TargetDependency.external(name: "Kingfisher")
-//    static let Moya = TargetDependency.external(name: "Moya")
     static let RxBlocking = TargetDependency.external(name: "RxBlocking")
-//    static let Pageboy = TargetDependency.external(name: "Pageboy")
-//    static let RxMoya = TargetDependency.external(name: "RxMoya")
     static let Swinject = TargetDependency.external(name: "Swinject")
-//    static let SkeletonView = TargetDependency.external(name: "SkeletonView")
 }
 
 
