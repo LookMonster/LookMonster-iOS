@@ -21,7 +21,9 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
         .Features.User.Auth.Login.Domain.Implement,
 
         .LKNetwork.Implement,
-        .TokenManager.Implement
+        .TokenManager.Implement,
+        .DesignSystem.Implement
+
     ],
     isUserInterface: true
 )
