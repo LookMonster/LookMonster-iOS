@@ -1,8 +1,6 @@
 import ProjectDescription
 
 let AppName: Template.Attribute = .required("name")
-//let author: Template.Attribute = .required("author")
-//let currentDate: Template.Attribute = .required("currentDate")
 
 let App = Template(
     description: "This Template is for making App files",
@@ -18,10 +16,7 @@ let App = Template(
             path: "App/Sources/AppDelegate.swift",
             templatePath: "AppDelegate.stencil"
         ),
-//        .file(
-//            path: "App/Sources/SceneDelegate.swift",
-//            templatePath: "SceneDelegate.stencil"
-//        ),
+
         .file(
             path: "App/Resources/LaunchScreen.storyboard",
             templatePath: "LaunchScreen.stencil"
@@ -40,9 +35,3 @@ let App = Template(
         ),
     ]
 )
-
-//extension String {
-//    static var appBasePath: Self {
-//        return "Features/\(name)"
-//    }
-//}
