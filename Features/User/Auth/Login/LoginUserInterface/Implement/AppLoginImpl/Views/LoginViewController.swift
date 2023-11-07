@@ -4,7 +4,6 @@ import SnapKit
 import Then
 import RxCocoa
 import RxSwift
-import Kingfisher
 import LoginUserInterface
 import SuperUI
 import DesignSystem
@@ -27,16 +26,16 @@ public final class LoginViewContoller: BaseViewController, LoginPresentable, Log
         $0.isSecureTextEntry = true
     }
     
+    public lazy var doubleButton = MonsterDoubleTextButton(title1: "비밀번호 찾기", title2: "아이디 찾기", thintColor: .black, backgroundColor: .clear)
+    
     public lazy var nextButton = MonsterButton(title: "다음", backgorundColor: .gray, titleColor: .white)
     
     public var uiviewController: UIViewController {
         return self
     }
 
-    public let loginView = LoginView()
-
-    public init() {
-        super.init(nibName: nil, bundle: nil)
+    public override init() {
+        super.init()
         self.textFieldBind()
         self.buttonBind()
         self.keyboardBind()
@@ -57,7 +56,8 @@ public final class LoginViewContoller: BaseViewController, LoginPresentable, Log
             titleLabel,
             idTextField,
             passwordTextField,
-            nextButton
+            nextButton,
+            doubleButton
         ].forEach { view.addSubview($0) }
 
         titleLabel.snp.makeConstraints {
@@ -88,6 +88,11 @@ public final class LoginViewContoller: BaseViewController, LoginPresentable, Log
             $0.right.left.equalToSuperview().inset(20.0)
             $0.height.equalTo(48.0)
         }
+        
+        doubleButton.snp.makeConstraints {
+            $0.leading.equalTo(passwordTextField.snp.leading)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-20.0)
+        }
     }
 
     private func attrebute() {
@@ -96,15 +101,17 @@ public final class LoginViewContoller: BaseViewController, LoginPresentable, Log
     }
     
     private func textFieldBind() {
+        let idTextFieldObservable = idTextField.rx.text.orEmpty
+        let passwordTextFieldObservable = passwordTextField.rx.text.orEmpty
 
-        let inputTextObservable = idTextField.rx.text.orEmpty
-        
-        inputTextObservable
-            .map { !$0.isEmpty }
+        Observable.combineLatest(idTextFieldObservable, passwordTextFieldObservable)
+            .map { idText, passwordText in
+                return !idText.isEmpty && !passwordText.isEmpty
+            }
             .bind(to: nextButton.rx.isEnabled)
             .disposed(by: disposeBag)
-        
-        inputTextObservable
+
+        idTextFieldObservable
             .map { text in
                 text.isEmpty ? UIColor.gray : UIColor.black
             }
@@ -113,7 +120,7 @@ public final class LoginViewContoller: BaseViewController, LoginPresentable, Log
                 self?.nextButton.backgroundColor = backgroundColor
             })
             .disposed(by: disposeBag)
-        
+
         idTextField.rx.controlEvent(.editingChanged)
             .subscribe(onNext: { [weak self] in
                 if let text = self?.idTextField.text, text.count > 30 {
@@ -121,8 +128,8 @@ public final class LoginViewContoller: BaseViewController, LoginPresentable, Log
                 }
             })
             .disposed(by: disposeBag)
-        
-        inputTextObservable
+
+        idTextFieldObservable
             .subscribe(onNext: { [weak self] text in
                 self?.listener?.checkGmailTextField(textfield: self?.idTextField ?? MonsterTextField())
             })
@@ -139,8 +146,9 @@ public final class LoginViewContoller: BaseViewController, LoginPresentable, Log
         Observable.merge(keyboardWillShowObservable)
             .subscribe(onNext: { [weak self] height in
                 self?.nextButton.snp.updateConstraints {
-                    $0.left.right.equalToSuperview()
                     $0.bottom.equalToSuperview().offset(-height)
+                    $0.left.equalToSuperview()
+                    $0.right.equalToSuperview()
                 }
                 self?.nextButton.layer.cornerRadius = 0
                 UIView.animate(withDuration: 0.3) {
@@ -153,10 +161,10 @@ public final class LoginViewContoller: BaseViewController, LoginPresentable, Log
             .subscribe(onNext:  { [weak self] _ in
                 self?.nextButton.snp.updateConstraints {
                     $0.bottom.equalToSuperview().inset(48.0)
-                    $0.right.left.equalToSuperview().inset(20.0)
+                    $0.left.equalToSuperview().inset(20.0)
+                    $0.right.equalToSuperview().inset(20.0)
                 }
                 self?.nextButton.layer.cornerRadius = 8.0
-
                 UIView.animate(withDuration: 0.3) {
                     self?.view.layoutIfNeeded()
                 }
@@ -164,8 +172,6 @@ public final class LoginViewContoller: BaseViewController, LoginPresentable, Log
             .disposed(by: disposeBag)
     }
 
-
-    
     private func buttonBind() {
         nextButton.rx.tap
             .subscribe(onNext: { [weak self] _ in

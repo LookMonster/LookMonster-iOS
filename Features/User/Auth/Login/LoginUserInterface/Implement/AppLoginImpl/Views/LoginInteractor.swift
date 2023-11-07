@@ -37,7 +37,6 @@ final class LoginInteractor: PresentableInteractor<LoginPresentable>,
     
 }
 
-//로직 처리 함수
 extension LoginInteractor {
     
     func loginButtonDidTap(email: String, password: String) {
@@ -67,12 +66,10 @@ extension LoginInteractor {
         } else {
             textfield.passwordErrorType = .notMatch
             print("비밀번호가 올바르지 않습니다.")
-//            fatalError("비밀번호가 올바르지 않습니다.")
         }
     }
 }
 
-//로직 함수
 extension LoginInteractor {
     
     func checkGmailFormat(emailText: String?) -> Bool {
