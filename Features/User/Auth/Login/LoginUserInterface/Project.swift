@@ -8,7 +8,8 @@ let project = Project.invertedDualTargetProjectWithDemoApp(
     iOSTargetVersion: "15.0.0",
     interfaceDependencies: [
         .Core.RIBsUtil,
-        .TokenManager.Interface
+        .TokenManager.Interface,
+        .DesignSystem.Implement
     ],
     implementDependencies: [
         .Core.SuperUI,

@@ -58,7 +58,8 @@ let project = Project(
                     .ThirdParty.SPM.Then,
                     .ResourceKit.Implement,
                     .ThirdParty.SPM.RxCocoa,
-                    .ThirdParty.SPM.RxSwift
+                    .ThirdParty.SPM.RxSwift,
+                    .Core.SuperUI
                 ]
         )
         
