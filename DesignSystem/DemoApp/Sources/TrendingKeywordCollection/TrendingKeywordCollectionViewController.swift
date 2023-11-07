@@ -1,6 +1,6 @@
 import UIKit
 import DesignSystem
-import ShopUserInterface
+import SuperUI
 
 enum Item {
     case subCategory
